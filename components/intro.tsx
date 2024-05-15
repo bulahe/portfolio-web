@@ -3,7 +3,7 @@ import Image from "next/image";
 import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import {BsArrowRight,BsDiscord} from "react-icons/bs";
+import { BsArrowRight, BsDiscord } from "react-icons/bs";
 import { HiDownload } from "react-icons/hi";
 import { FaGithubSquare } from "react-icons/fa";
 
@@ -50,7 +50,7 @@ export default function Intro() {
           transition={{ ease: "easeOut", duration: 0.5, delay: 0.2 }}
           className="text-xl"
         >
-          Hi, I'm{""}
+          Hi, I&apos;m
           <span className="font-bold"> Bulahe Chung.</span>
         </motion.h1>
         <motion.p
@@ -59,16 +59,16 @@ export default function Intro() {
           transition={{ ease: "easeOut", duration: 0.5, delay: 0.4 }}
           className="text-xl"
         >
-          I'm a third year EE student at {""}
+          I&apos;m a third year EE student at 
           <a
             href="https://www.sjtu.edu.cn"
             className="underline hover:text-gray-500"
           >
             SJTU(上海交通大学)
           </a>
-          . I'm currently learning {""}
+          . I&apos;m currently learning 
           <span className="font-bold">web development </span>
-          and hope that I'll be able to start my own project ASAP. {""}
+          and hope that I&apos;ll be able to start my own project ASAP.
         </motion.p>
         <motion.p
           initial={{ opacity: 0 }}
@@ -76,7 +76,7 @@ export default function Intro() {
           transition={{ ease: "easeOut", duration: 0.5, delay: 0.6 }}
           className="text-xl"
         >
-          Well, at least I've already written some song(s?) with my friends in{" "}
+          Well, at least I&apos;ve already written some song(s?) with my friends in{" "}
           <span className="font-bold">SJTU Art Center </span>
           You can check them out below~~
         </motion.p>
