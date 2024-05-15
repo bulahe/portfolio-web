@@ -9,7 +9,7 @@ import { FaGithubSquare } from "react-icons/fa";
 
 export default function Intro() {
   return (
-    <section>
+    <section id="home" className="scroll-mt-[100rem]">
       <div className="flex items-center justify-center">
         <div className="relative">
           <motion.div
@@ -59,12 +59,12 @@ export default function Intro() {
           transition={{ ease: "easeOut", duration: 0.5, delay: 0.4 }}
           className="text-xl"
         >
-          I'm a 20 yo EE student at {""}
+          I'm a third year EE student at {""}
           <a
             href="https://www.sjtu.edu.cn"
             className="underline hover:text-gray-500"
           >
-            SJTU
+            SJTU(上海交通大学)
           </a>
           . I'm currently learning {""}
           <span className="font-bold">web development </span>
@@ -78,7 +78,7 @@ export default function Intro() {
         >
           Well, at least I've already written some song(s?) with my friends in{" "}
           <span className="font-bold">SJTU Art Center </span>
-          plz check them out below~~
+          You can check them out below~~
         </motion.p>
       </div>
       <motion.div className="flex flex-col sm:flex-row items-center justify-center gap-2 px-4 text-lg font-medium"
@@ -100,6 +100,6 @@ export default function Intro() {
           <FaGithubSquare />
         </a>
       </motion.div>
-    </section>
+    </section> 
   );
 }
