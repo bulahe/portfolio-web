@@ -6,10 +6,22 @@ import Link from "next/link";
 import { BsArrowRight, BsDiscord } from "react-icons/bs";
 import { HiDownload } from "react-icons/hi";
 import { FaGithubSquare } from "react-icons/fa";
+import { useInView } from "react-intersection-observer";
+import { useActiveSectionContext } from "@/context/active-section-context";
+import { useEffect } from "react";
 
 export default function Intro() {
+  const {ref, inView} = useInView({threshold: 0.65});
+  const { setActiveSection } = useActiveSectionContext();
+
+  useEffect(() => {
+      if (inView) {
+      setActiveSection("Home");
+      }
+  }, [inView, setActiveSection]);
+
   return (
-    <section id="home" className="scroll-mt-[100rem]">
+    <section ref={ref} id="home" className="scroll-mt-[100rem]">
       <div className="flex items-center justify-center">
         <div className="relative">
           <motion.div
@@ -19,7 +31,7 @@ export default function Intro() {
           >
             <Image
               alt="picture of bulahe chung"
-              src="/IMG_0214.png"
+              src="/me.jpg"
               width={192}
               height={192}
               priority={true}
@@ -36,7 +48,7 @@ export default function Intro() {
               duration: 0.7,
             }}
           >
-            <span className="absolute bottom-0 right-0 text-5xl ">👋</span>
+            {/* <span className="absolute bottom-0 right-0 text-5xl ">👋</span> */}
           </motion.div>
         </div>
       </div>
@@ -92,11 +104,18 @@ export default function Intro() {
         <a className="group bg-white text-gray-700 px-7 py-3 flex items-center gap-2 rounded-full  outline-none fucus:scale-110 hover:scale-110 hover:bg-white active:scale-105 transition cursor-pointer border border-black/10" href="/bla.png" download>Download CV<HiDownload className="opacity-40 group-hover:translate-y-1 transition"/>
         </a>
 
-        <a className="bg-white text-gray-700 p-4 flex items-center gap-2 rounded-full text-[1.35rem] outline-none fucus:scale-110 hover:scale-110 hover:text-gray-950 hover:bg-white active:scale-105 transition cursor-pointer border border-black/10">
+        <a
+          className="bg-white text-gray-700 p-4 flex items-center gap-2 rounded-full text-[1.35rem] outline-none fucus:scale-110 hover:scale-110 hover:text-gray-950 hover:bg-white active:scale-105 transition cursor-pointer border border-black/10"
+          aria-label="Connect with me on Discord"
+        >
           <BsDiscord />
         </a>
 
-        <a className="bg-white text-gray-700 p-4 flex items-center gap-2 rounded-full text-[1.35rem] outline-none fucus:scale-110 hover:scale-110 hover:text-gray-950 hover:bg-white active:scale-105 transition cursor-pointer border border-black/10" href="https://github.com/bulahe"> 
+        <a
+          className="bg-white text-gray-700 p-4 flex items-center gap-2 rounded-full text-[1.35rem] outline-none fucus:scale-110 hover:scale-110 hover:text-gray-950 hover:bg-white active:scale-105 transition cursor-pointer border border-black/10"
+          href="https://github.com/bulahe"
+          aria-label="Visit my GitHub profile"
+        >
           <FaGithubSquare />
         </a>
       </motion.div>
