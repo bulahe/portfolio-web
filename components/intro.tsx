@@ -12,7 +12,7 @@ import { useEffect } from "react";
 import { useSectionInView } from "@/lib/hooks";
 
 export default function Intro() {
-  const { ref } = useSectionInView("Home");
+  const { ref } = useSectionInView("Home", 0.65);
 
   return (
     <section ref={ref} id="home" className="scroll-mt-[100rem]">

@@ -13,12 +13,12 @@ export default function Header() {
   return (
     <header className="z-[999] relative">
       <motion.div
-        className="fixed top-0 left-1/2 h-[4.5rem] w-full rounded-none border border-white border-opacity-40 bg-white bg-opacity-80 shadow-lg shadow-black/[0.03] backdrop-blur-[0.5rem] sm:top-6 sm:h-[3.25rem] sm:w-[20rem] sm:rounded-full dark:bg-gray-950 dark:border-black/40 dark:bg-opacity-75"
-        initial={{ x: "-50%", y: -100, opacity: 0 }}
+        className="fixed sm:top-6 bottom-6 sm:bottom-auto left-1/2 h-[3.25rem] w-[20rem] rounded-full border border-white border-opacity-40 bg-white bg-opacity-80 shadow-lg shadow-black/[0.03] backdrop-blur-[0.5rem] dark:bg-gray-950 dark:border-black/40 dark:bg-opacity-75"
+        initial={{ x: "-50%", y: 100, opacity: 0 }}
         animate={{ x: "-50%", y: 0, opacity: 1 }}
       ></motion.div>
-      <nav className="flex fixed top-[0.15rem] left-1/2 h-12 -translate-x-1/2 py-2 sm:top-[1.7rem] sm:h-[initial] sm:py-0">
-        <ul className="flex w-[18rem] flex-wrap items-center justify-between gap-y-1 text-[1rem] font-medium text-gray-500 sm:w-[18rem] sm:flex-nowrap">
+      <nav className="flex fixed sm:top-[1.7rem] bottom-[1.7rem] sm:bottom-auto left-1/2 h-[initial] -translate-x-1/2 py-0">
+        <ul className="flex w-[18rem] items-center justify-between text-[1rem] font-medium text-gray-500 flex-nowrap">
           {links.map((link) => (
             <motion.li
               className="h-3/4 flex items-center justify-center relative"
