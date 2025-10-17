@@ -7,7 +7,7 @@ import clsx from "clsx";
 import { useActiveSectionContext } from "@/context/active-section-context";
 
 export default function Header() {
-  const { activeSection, setActiveSection } = useActiveSectionContext();
+  const { activeSection, setActiveSection, setTimeOfLastClick } = useActiveSectionContext();
   
 
   return (
@@ -29,7 +29,7 @@ export default function Header() {
               <Link
                 className={clsx("flex w-full p-3 hover:text-gray-950 dark:hover:text-gray-300",{"text-gray-950": activeSection === link.name, "dark:text-gray-300": activeSection === link.name})}
                 href={link.hash}
-                onClick={() => setActiveSection(link.name)}
+                onClick={() =>{ setActiveSection (link.name); setTimeOfLastClick(Date.now());}}
               >
                 {link.name}
                 {link.name === activeSection && (
