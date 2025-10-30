@@ -11,13 +11,13 @@ export default function About() {
   return (
     <motion.section
       ref={ref}
-      className="mb-28 max-w-[45rem] text-center leading-8 sm:mb-4 scroll-mt-28 mx-auto"
+      className="mx-auto max-w-[45rem] text-center leading-8 scroll-mt-28"
       initial={{ opacity: 0, y: 100 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.175 }}
       id="about"
     >
-        <div className='mb-28 text-center max-w-[45rem] leading-8 sm:mb-40 mx-auto'>
+        <div className='mx-auto text-center max-w-[45rem] leading-8 space-y-4 sm:space-y-5'>
             <SectionHeading>about me</SectionHeading>
             <p className='mb-3 '>
                 <span className='font-medium'>为什么叫bulahe呢？</span>{" "}
@@ -25,7 +25,6 @@ export default function About() {
             </p>
             <p className='mb-3'>然后其实用bulahe最主要的原因还是 {""}
                 <span className='font-medium'>brianchung.com的域名实在太贵了{""}</span>
-
             </p>
 
         </div>

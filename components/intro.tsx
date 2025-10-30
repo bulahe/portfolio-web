@@ -22,9 +22,9 @@ const HIGHLIGHTS: HighlightItem[] = [
     icon: (
       <LuGraduationCap className="h-7 w-7 text-[var(--brand-primary)] dark:text-[var(--brand-accent)]" />
     ),
-    title: "Undergraduate Student @ Shanghai Jiao Tong University",
+    title: "Undergraduate Student @ SJTU",
     body:
-      "Studying Electrical and Computer Engineering (Microelectronics focus), exploring creative computing and interactive systems.",
+      "Pursuing a B.S. in Electrical and Computer Engineering (Microelectronics focus) at Shanghai Jiao Tong University.",
   },
   {
     icon: (
@@ -40,7 +40,7 @@ const HIGHLIGHTS: HighlightItem[] = [
     ),
     title: "HCI & AI Researcher",
     body:
-      "A human–computer interaction researcher with publications in XR and digital media.My undergraduate thesis focuses on AI-related research.",
+      "A human–computer interaction researcher with publications in XR and digital media. My undergraduate thesis focuses on AI-related research.",
   },
   {
     icon: (
@@ -60,6 +60,10 @@ const SKILLS = [
   "C#",
   "Python",
   "C++",
+  "swift",
+  "CAD",
+  "Web Development"
+
 ];
 
 export default function Intro() {
