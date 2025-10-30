@@ -10,10 +10,10 @@ import { useEffect } from "react";
 import { useSectionInView } from "@/lib/hooks";
 
 export default function Projects() {
-    const { ref } = useSectionInView("Projects", 0.5);
+    const { ref } = useSectionInView("Portfolio", 0.5);
     return(
-        <section ref={ref} id="projects" className="scroll-mt-28">
-            <SectionHeading>My projects </SectionHeading>
+        <section ref={ref} id="portfolio" className="scroll-mt-28">
+            <SectionHeading>Portfolio </SectionHeading>
             <div>
                 {
                     projectsData.map((project, index)=>(
