@@ -45,7 +45,7 @@ const SKILLS = [
 ];
 
 export default function Intro() {
-  const { ref } = useSectionInView("Home", 0.65);
+  const { ref } = useSectionInView("Home", 0.3);
 
   return (
     <section
