@@ -1,118 +1,243 @@
 "use client";
 import Image from "next/image";
-import React from "react";
 import { motion } from "framer-motion";
-import Link from "next/link";
-import { BsArrowRight, BsDiscord } from "react-icons/bs";
-import { HiDownload } from "react-icons/hi";
-import { FaGithubSquare } from "react-icons/fa";
-import { useInView } from "react-intersection-observer";
-import { useActiveSectionContext } from "@/context/active-section-context";
-import { useEffect } from "react";
+import { FiMail } from "react-icons/fi";
 import { useSectionInView } from "@/lib/hooks";
+import { brandVarStyles } from "@/lib/theme";
+
+const HIGHLIGHTS = [
+  {
+    emoji: "🎓",
+    title: "Undergraduate Student @ Shanghai Jiao Tong University",
+    body:
+      "Studying Electrical and Computer Engineering (Microelectronics focus), exploring creative computing and interactive systems.",
+  },
+  {
+    emoji: "🥽",
+    title: "XR Developer / Creative Technologist",
+    body:
+      "Designing and building immersive AR/VR experiences that blend spatial interaction, sound, and narrative design.",
+  },
+  {
+    emoji: "🧠",
+    title: "HCI & AI Researcher",
+    body:
+      "I’m a human–computer interaction researcher with publications in XR and digital media. My undergraduate thesis explores AI-driven motion generation, optimizing GPT-based text-to-motion models for virtual IMU data.",
+  },
+  {
+    emoji: "🎧",
+    title: "Performer & Sound Technologist",
+    body:
+      "Mixing, producing, and performing across digital and physical stages. I also build custom hardware tools—like an Arduino-based MIDI looper—to bring interactivity to live performance.",
+  },
+];
+
+const SKILLS = [
+  "Unity",
+  "visionOS",
+  "PyTorch",
+  "Arduino",
+  "C#",
+  "Python",
+  "C++",
+  "User Study",
+  "Sensor Integration",
+];
 
 export default function Intro() {
   const { ref } = useSectionInView("Home", 0.65);
 
   return (
-    <section ref={ref} id="home" className="scroll-mt-[100rem]">
-      <div className="flex items-center justify-center">
-        <div className="relative">
-          <motion.div
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ type: "tween", duration: 0.2 }}
+    <section
+      ref={ref}
+      id="home"
+      className="scroll-mt-[100rem]"
+      style={brandVarStyles}
+    >
+      <div className="mx-auto flex w-full max-w-6xl flex-col gap-12 px-6 md:flex-row md:items-start md:gap-16">
+        <motion.aside
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ ease: "easeOut", duration: 0.4, delay: 0.1 }}
+          className="flex w-full max-w-md flex-col items-center md:max-w-xs md:basis-[35%] md:self-start md:sticky md:top-24 md:items-stretch"
+        >
+          <div className="w-full rounded-3xl border border-neutral-200/70 bg-white/95 p-5 shadow-lg dark:border-neutral-800/60 dark:bg-neutral-900/80 md:hidden">
+            <div className="flex items-center gap-4">
+              <div className="relative aspect-square w-24 flex-shrink-0 overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-800">
+                <Image
+                  alt="Portrait of Yu-Chen bulahe Chung"
+                  src="/me.jpg"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
+              <div className="flex-1 space-y-2 min-w-[60%]">
+                <div className="space-y-1">
+                  <p className="text-base font-semibold text-neutral-900 dark:text-white">
+                    Yu-Chen “bulahe” Chung
+                  </p>
+                  <p className="text-xs text-neutral-500 dark:text-neutral-400">
+                    Creative technologist & XR developer
+                  </p>
+                </div>
+                <div className="flex items-center gap-3">
+                  <a
+                    href="mailto:a539907687@icloud.com"
+                    className="flex h-10 w-10 items-center justify-center rounded-full border border-neutral-200 bg-white text-neutral-400 shadow-sm transition hover:border-[var(--brand-hover)] hover:text-[var(--brand-primary)] dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-500 dark:hover:border-[var(--brand-secondary)] dark:hover:text-[var(--brand-secondary)]"
+                    aria-label="Email Yu-Chen “bulahe” Chung"
+                  >
+                    <FiMail className="text-lg" />
+                  </a>
+                  <span className="text-xs text-neutral-400 dark:text-neutral-500">
+                    Tap to email
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="hidden w-full flex-col gap-6 rounded-3xl border border-neutral-200/70 bg-white/95 p-6 text-left shadow-lg dark:border-neutral-800/60 dark:bg-neutral-900/80 md:flex">
+            <div className="relative mx-auto aspect-square w-40 overflow-hidden rounded-3xl border border-neutral-200 bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-800">
+              <Image
+                alt="Portrait of Yu-Chen bulahe Chung"
+                src="/me.jpg"
+                fill
+                className="object-cover"
+                priority
+              />
+            </div>
+            <div>
+              <p className="text-xl font-semibold text-neutral-900 dark:text-white">
+                Yu-Chen “bulahe” Chung
+              </p>
+              <p className="text-sm text-neutral-500 dark:text-neutral-400">
+                Creative technologist & XR developer
+              </p>
+            </div>
+            <div className="space-y-4">
+              <div className="rounded-2xl border border-neutral-200/60 bg-white/80 p-4 dark:border-neutral-800/60 dark:bg-neutral-900/60">
+                <p className="text-xs font-semibold uppercase tracking-wide text-neutral-500 dark:text-neutral-400">
+                  Email
+                </p>
+                <a
+                  href="mailto:a539907687@icloud.com"
+                  className="mt-1 flex items-center gap-2 text-sm font-medium text-neutral-800 hover:text-[var(--brand-primary)] dark:text-neutral-100 dark:hover:text-[var(--brand-secondary)]"
+                >
+                  <FiMail className="text-[var(--brand-primary)] dark:text-[var(--brand-secondary)]" />
+                  a539907687@icloud.com
+                </a>
+              </div>
+              <div className="rounded-2xl border border-neutral-200/60 bg-white/70 p-4 dark:border-neutral-800/60 dark:bg-neutral-900/60">
+                <p className="text-xs font-semibold uppercase tracking-wide text-neutral-500 dark:text-neutral-400">
+                  Birthday
+                </p>
+                <p className="mt-1 text-sm font-medium text-neutral-800 dark:text-neutral-100">
+                  2002/10/01
+                </p>
+              </div>
+              <div className="rounded-2xl border border-neutral-200/60 bg-white/70 p-4 dark:border-neutral-800/60 dark:bg-neutral-900/60">
+                <p className="text-xs font-semibold uppercase tracking-wide text-neutral-500 dark:text-neutral-400">
+                  Location
+                </p>
+                <p className="mt-1 text-sm font-medium text-neutral-800 dark:text-neutral-100">
+                  Shanghai, China
+                </p>
+              </div>
+            </div>
+          </div>
+        </motion.aside>
+
+        <div className="flex w-full flex-col gap-6 text-left md:basis-[65%]">
+          <motion.h1
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ ease: "easeOut", duration: 0.4, delay: 0.15 }}
+            className="text-4xl font-semibold tracking-tight text-neutral-900 dark:text-white"
           >
-            <Image
-              alt="picture of bulahe chung"
-              src="/me.jpg"
-              width={192}
-              height={192}
-              priority={true}
-              className="h-[8.5rem] w-[8.5rem] rounded-full object-cover border-[0.2rem] border-double border-white border-opacity-70 shadow-xl"
-            />
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{
-              type: "spring",
-              stiffness: 125,
-              delay: 0.1,
-              duration: 0.7,
-            }}
+            Hey, I&apos;m{" "}
+            <span className="text-[var(--brand-primary)] dark:text-[var(--brand-accent)]">
+              Yu-Chen “bulahe” Chung
+            </span>
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ ease: "easeOut", duration: 0.4, delay: 0.25 }}
+            className="relative pl-6 text-lg leading-relaxed text-neutral-700 before:absolute before:left-0 before:top-2 before:text-xl before:font-medium before:text-neutral-400 before:content-['—'] dark:text-neutral-200 dark:before:text-neutral-500"
           >
-            {/* <span className="absolute bottom-0 right-0 text-5xl ">👋</span> */}
+            A creative technologist exploring the intersection of AR/VR, sound, and
+            human–computer interaction.
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ ease: "easeOut", duration: 0.4, delay: 0.3 }}
+            className="text-base leading-relaxed text-neutral-700 dark:text-neutral-300"
+          >
+            I build immersive experiences, design interactive tools, and experiment with how technology can feel expressive and human.
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ ease: "easeOut", duration: 0.4, delay: 0.35 }}
+            className="text-sm leading-relaxed text-neutral-700 dark:text-neutral-400"
+          >
+            I&apos;m currently studying{" "}
+            <span className="font-medium text-neutral-900 dark:text-neutral-100">
+              Electrical and Computer Engineering (Microelectronics focus)
+            </span>{" "}
+            at{" "}
+            <span className="font-medium text-neutral-900 dark:text-neutral-100">
+              Shanghai Jiao Tong University
+            </span>
+            .
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ ease: "easeOut", duration: 0.4, delay: 0.45 }}
+            className="grid gap-4 rounded-3xl bg-neutral-50/60 p-6 backdrop-blur-sm dark:bg-neutral-900/40"
+          >
+            <div className="grid gap-4 sm:grid-cols-2">
+              {HIGHLIGHTS.map((item, index) => (
+                <motion.div
+                  key={item.title}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ ease: "easeOut", duration: 0.4, delay: 0.55 + index * 0.05 }}
+                  className="flex h-full flex-col gap-4 rounded-2xl border border-neutral-200/70 bg-white/90 p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-md dark:border-neutral-800/70 dark:bg-neutral-900/70"
+                >
+                  <div className="text-3xl">{item.emoji}</div>
+                  <div>
+                    <h2 className="text-lg font-semibold text-neutral-900 dark:text-white">
+                      {item.title}
+                    </h2>
+                    <p className="mt-2 text-sm leading-relaxed text-neutral-600 dark:text-neutral-300">
+                      {item.body}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            <div className="flex flex-wrap gap-2 pt-2">
+              {SKILLS.map((skill, index) => (
+                <motion.span
+                  key={skill}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ ease: "easeOut", duration: 0.3, delay: 0.75 + index * 0.03 }}
+                  className="rounded-full border border-neutral-300 bg-white px-4 py-1 text-sm font-medium text-neutral-700 shadow-sm dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-200"
+                >
+                  {skill}
+                </motion.span>
+              ))}
+            </div>
           </motion.div>
         </div>
       </div>
-
-      <div className="h-[3rem]"></div>
-
-      <div className="text-center max-w-[50rem] dark:text-neutral-300 text-neutral-700 mb-4 mx-auto space-y-2">
-        <motion.h1
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ ease: "easeOut", duration: 0.5, delay: 0.2 }}
-          className="text-xl"
-        >
-          Hi, I&apos;m
-          <span className="font-bold"> Bulahe Chung.</span>
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ ease: "easeOut", duration: 0.5, delay: 0.4 }}
-          className="text-xl"
-        >
-          I&apos;m a third year EE student at 
-          <a
-            href="https://www.sjtu.edu.cn"
-            className="underline hover:text-gray-500"
-          >
-            SJTU(上海交通大学)
-          </a>
-          . I&apos;m currently learning 
-          <span className="font-bold">web development </span>
-          and hope that I&apos;ll be able to start my own project ASAP.
-        </motion.p>
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ ease: "easeOut", duration: 0.5, delay: 0.6 }}
-          className="text-xl"
-        >
-          Well, at least I&apos;ve already written some song(s?) with my friends in{" "}
-          <span className="font-bold">SJTU Art Center </span>
-          You can check them out below~~
-        </motion.p>
-      </div>
-      <motion.div className="flex flex-col sm:flex-row items-center justify-center gap-2 px-4 text-lg font-medium"
-        initial={{ opacity: 0, y:100}}
-        animate={{ opacity: 1, y:0 }}
-        transition={{delay: 0.1 }}>
-        <Link href="#contact" 
-        className="group bg-gray-900 text-white px-7 py-3 flex items-center gap-2 rounded-full outline-none fucus:scale-110 hover:scale-110 hover:bg-gray-950 active:scale-105 transition">Contact me here<BsArrowRight className="opacity-70 group-hover:translate-x-2 transition" />
-        </Link>
-
-        <a className="group bg-white text-gray-700 px-7 py-3 flex items-center gap-2 rounded-full  outline-none fucus:scale-110 hover:scale-110 hover:bg-white active:scale-105 transition cursor-pointer border border-black/10" href="/bla.png" download>Download CV<HiDownload className="opacity-40 group-hover:translate-y-1 transition"/>
-        </a>
-
-        <a
-          className="bg-white text-gray-700 p-4 flex items-center gap-2 rounded-full text-[1.35rem] outline-none fucus:scale-110 hover:scale-110 hover:text-gray-950 hover:bg-white active:scale-105 transition cursor-pointer border border-black/10"
-          aria-label="Connect with me on Discord"
-        >
-          <BsDiscord />
-        </a>
-
-        <a
-          className="bg-white text-gray-700 p-4 flex items-center gap-2 rounded-full text-[1.35rem] outline-none fucus:scale-110 hover:scale-110 hover:text-gray-950 hover:bg-white active:scale-105 transition cursor-pointer border border-black/10"
-          href="https://github.com/bulahe"
-          aria-label="Visit my GitHub profile"
-        >
-          <FaGithubSquare />
-        </a>
-      </motion.div>
-    </section> 
+    </section>
   );
 }
