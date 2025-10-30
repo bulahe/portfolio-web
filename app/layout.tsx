@@ -20,8 +20,8 @@ export default function RootLayout({
       <body
         className={`${inter.className} bg-gray-50 text-gray-950 relative pt-28 sm:pt-36 text-opacity-90 dark:bg-gray-900 dark:text-gray-50 dark:text-opacity-90 h-[5000px] overflow-x-hidden`}
       >
-        <div className="bg-[#fbe2e3] absolute top-[-6rem] -z-10 right-[11rem] h-[31.25rem] w-[31.25rem] rounded-full blur-[10rem] sm:w-[68.75rem] dark:bg-[#946263]"></div>
-        <div className="bg-[#dbd7fb] absolute top-[-1rem] -z-10 left-[-35rem] h-[31.25rem] w-[50rem] rounded-full blur-[10rem] sm:w-[68.75rem] md:left-[-33rem] lg:left-[-28rem] xl:left-[-15rem] 2xl:left-[-5rem] dark:bg-[#676394]"></div>
+        <div className="absolute inset-x-1/2 top-[-5rem] -z-10 h-[22rem] w-[22rem] -translate-x-1/2 rounded-full bg-[#fbe2e3] blur-[9rem] dark:bg-[#946263] sm:inset-auto sm:right-[11rem] sm:h-[31.25rem] sm:w-[31.25rem] sm:translate-x-0 sm:top-[-6rem] sm:blur-[10rem] sm:rounded-full lg:w-[40rem]"></div>
+        <div className="absolute inset-x-1/2 top-[6rem] -z-10 h-[26rem] w-[26rem] -translate-x-1/2 rounded-full bg-[#dbd7fb] blur-[9rem] dark:bg-[#676394] sm:left-[-35rem] sm:top-[-1rem] sm:h-[31.25rem] sm:w-[68.75rem] sm:translate-x-0 sm:blur-[10rem] md:left-[-33rem] lg:left-[-28rem] xl:left-[-15rem] 2xl:left-[-5rem]"></div>
 
       <ActiveSectionContextProvider>
         <Header />
