@@ -72,12 +72,12 @@ export default function Intro() {
       className="scroll-mt-[100rem]"
       style={brandVarStyles}
     >
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-12 px-6 md:flex-row md:items-start md:gap-16">
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-3 px-0 sm:px-6 md:flex-row md:items-start md:gap-9">
         <motion.aside
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ ease: "easeOut", duration: 0.4, delay: 0.1 }}
-          className="flex w-full max-w-md flex-col items-start -mt-24 md:mt-0 md:w-[19rem] md:max-w-none md:flex-none md:self-start md:sticky md:top-24 md:items-stretch"
+          className="flex w-full flex-col items-start -mt-24 md:mt-0 md:w-[19rem] md:flex-none md:self-start md:sticky md:top-24 md:items-stretch"
         >
           <div className="w-full rounded-3xl border border-neutral-200/70 bg-white/95 p-5 shadow-lg dark:border-neutral-800/60 dark:bg-neutral-900/80 md:hidden">
             <div className="flex items-center gap-4">
@@ -196,8 +196,8 @@ export default function Intro() {
                     transition={{ ease: "easeOut", duration: 0.4, delay: 0.55 + index * 0.05 }}
                     className="flex h-full flex-col gap-3 rounded-2xl border border-neutral-200/70 bg-white/90 p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-md dark:border-neutral-800/70 dark:bg-neutral-900/70"
                   >
-                    <div className="flex items-center gap-3">
-                      <div className="flex items-center justify-center text-neutral-700 dark:text-neutral-200">
+                    <div className="flex min-h-[3.5rem] items-start gap-3">
+                      <div className="flex items-start justify-center text-neutral-700 dark:text-neutral-200">
                         {item.icon}
                       </div>
                       <h2 className="flex-1 text-lg font-semibold text-neutral-900 dark:text-white">
