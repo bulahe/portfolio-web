@@ -1,70 +1,10 @@
 "use client";
-import type { ReactNode } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { FiMail } from "react-icons/fi";
-import { LuGraduationCap } from "react-icons/lu";
-import { TbDeviceVisionPro } from "react-icons/tb";
-import { TfiWrite } from "react-icons/tfi";
-import { FiHeadphones } from "react-icons/fi";
 import { useSectionInView } from "@/lib/hooks";
 import { brandVarStyles } from "@/lib/theme";
-
-
-type HighlightItem = {
-  icon: ReactNode;
-  title: string;
-  body: string;
-};
-
-const HIGHLIGHTS: HighlightItem[] = [
-  {
-    icon: (
-      <LuGraduationCap className="h-7 w-7 text-[var(--brand-primary)] dark:text-[var(--brand-accent)]" />
-    ),
-    title: "Undergraduate Student @ SJTU",
-    body:
-      "Pursuing a B.S. in Electrical and Computer Engineering (Microelectronics focus) at Shanghai Jiao Tong University.",
-  },
-  {
-    icon: (
-      <TbDeviceVisionPro className="h-7 w-7 text-[var(--brand-primary)] dark:text-[var(--brand-accent)]" />
-    ),
-    title: "XR Developer / Creative Technologist",
-    body:
-      "Designing and building immersive AR/VR experiences that blend spatial interaction and sound.",
-  },
-  {
-    icon: (
-      <TfiWrite className="h-7 w-7 text-[var(--brand-primary)] dark:text-[var(--brand-accent)]" />
-    ),
-    title: "HCI & AI Researcher",
-    body:
-      "A human–computer interaction researcher with publications in XR and digital media. My undergraduate thesis focuses on AI-related research.",
-  },
-  {
-    icon: (
-      <FiHeadphones className="h-7 w-7 text-[var(--brand-primary)] dark:text-[var(--brand-accent)]" />
-    ),
-    title: "Performer & Sound Technologist",
-    body:
-      "Mixing, producing, and performing across digital and physical stages.Building custom hardware tools for interactive performance.",
-  },
-];
-
-const SKILLS = [
-  "Unity",
-  "visionOS",
-  "PyTorch",
-  "Arduino",
-  "C#",
-  "Python",
-  "C++",
-  "swift",
-  "CAD",
-  "Web Development"
-
-];
+import { introHighlights, introSkills } from "@/lib/data";
 
 export default function Intro() {
   const { ref } = useSectionInView("Home", 0.3);
@@ -192,27 +132,30 @@ export default function Intro() {
               style={{ borderColor: "var(--brand-secondary)" }}
             >
               <div className="grid gap-4 sm:grid-cols-2">
-                {HIGHLIGHTS.map((item, index) => (
-                  <motion.div
-                    key={item.title}
-                    initial={{ opacity: 0, y: 16 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ ease: "easeOut", duration: 0.4, delay: 0.55 + index * 0.05 }}
-                    className="flex h-full flex-col gap-3 rounded-2xl border border-neutral-200/70 bg-white/90 p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-md dark:border-neutral-800/70 dark:bg-neutral-900/70"
-                  >
-                    <div className="flex min-h-[3.5rem] items-start gap-3">
-                      <div className="flex items-start justify-center text-neutral-700 dark:text-neutral-200">
-                        {item.icon}
+                {introHighlights.map((item, index) => {
+                  const Icon = item.icon;
+                  return (
+                    <motion.div
+                      key={item.title}
+                      initial={{ opacity: 0, y: 16 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ ease: "easeOut", duration: 0.4, delay: 0.55 + index * 0.05 }}
+                      className="flex h-full flex-col gap-3 rounded-2xl border border-neutral-200/70 bg-white/90 p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-md dark:border-neutral-800/70 dark:bg-neutral-900/70"
+                    >
+                      <div className="flex min-h-[3.5rem] items-start gap-3">
+                        <div className="flex items-start justify-center text-neutral-700 dark:text-neutral-200">
+                          <Icon className="h-7 w-7 text-[var(--brand-primary)] dark:text-[var(--brand-accent)]" />
+                        </div>
+                        <h2 className="flex-1 text-lg font-semibold text-neutral-900 dark:text-white">
+                          {item.title}
+                        </h2>
                       </div>
-                      <h2 className="flex-1 text-lg font-semibold text-neutral-900 dark:text-white">
-                        {item.title}
-                      </h2>
-                    </div>
-                    <p className="text-sm leading-relaxed text-neutral-600 dark:text-neutral-300">
-                      {item.body}
-                    </p>
-                  </motion.div>
-                ))}
+                      <p className="text-sm leading-relaxed text-neutral-600 dark:text-neutral-300">
+                        {item.body}
+                      </p>
+                    </motion.div>
+                  );
+                })}
               </div>
             </div>
 
@@ -221,7 +164,7 @@ export default function Intro() {
               style={{ borderColor: "var(--brand-secondary)" }}
             >
               <div className="flex flex-wrap gap-2">
-                {SKILLS.map((skill, index) => (
+                {introSkills.map((skill, index) => (
                   <motion.span
                     key={skill}
                     initial={{ opacity: 0, y: 8 }}
