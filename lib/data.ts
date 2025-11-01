@@ -28,30 +28,14 @@ export type ProjectCard = {
 };
 
 export const projectsData: ProjectCard[] = [
+  /*
   {
     title: "CorpComment",
     subtitle: "Full-stack platform enabling public company feedback.",
     tags: ["React", "Next.js", "MongoDB", "Tailwind", "Prisma"],
     image: "/projects/corpcomment.jpg",
   },
-  {
-    title: "Spatial Soundstage",
-    subtitle: "Immersive XR performance toolkit for live artists.",
-    tags: ["Unity", "visionOS", "Spatial Audio"],
-    image: "/projects/spatial-soundstage.jpg",
-  },
-  {
-    title: "SenseLab Studio",
-    subtitle: "Interactive installations blending light with motion.",
-    tags: ["TouchDesigner", "Hardware", "Installation"],
-    image: "/projects/senselab-studio.jpg",
-  },
-  {
-    title: "Pulse Sketch",
-    subtitle: "Generative visuals responding to biometric sensors.",
-    tags: ["Processing", "Arduino", "Generative Art"],
-    image: "/projects/pulse-sketch.jpg",
-  },
+  */
 ];
 
 export type IntroHighlight = {

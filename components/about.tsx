@@ -98,8 +98,8 @@ export default function About() {
                 </div>
               </div>
 
-              <div className="relative grid h-full w-full gap-6 px-6 pt-6 pb-0 md:grid-cols-[minmax(0,0.7fr)_minmax(0,0.3fr)] md:items-stretch md:px-12 md:pt-12 md:pb-0">
-                <div className="relative flex min-h-[26rem] items-end justify-center">
+              <div className="relative grid h-full w-full gap-4 px-5 pt-7 pb-7 sm:gap-5 sm:px-6 sm:pt-8 sm:pb-8 md:grid-cols-[minmax(0,0.7fr)_minmax(0,0.3fr)] md:items-stretch md:px-12 md:pt-10 md:pb-10">
+                <div className="relative flex min-h-[14rem] sm:min-h-[15rem] md:min-h-[16rem] items-end justify-center">
                   <Image
                     src="/XR.png"
                     alt="Brian exploring XR with immersive gestures."
@@ -132,7 +132,7 @@ export default function About() {
                   <div className="pointer-events-none absolute inset-x-0 top-10 hidden h-[55%] rounded-[1.75rem] bg-black/20 blur-3xl md:block" />
                 </div>
 
-                <div className="relative flex h-full flex-col items-end gap-6 pb-8 md:h-full md:justify-between md:pb-16">
+                <div className="relative flex h-full flex-col items-end gap-2 pb-0 sm:pb-0 md:h-full md:justify-between md:pb-0">
                   <InteractiveBlock
                     title="From vision to reality"
                     description="My dream, my journey, my creation."
@@ -140,8 +140,8 @@ export default function About() {
                     onActivate={() => handleFocus("xr")}
                     onHoverEnd={() => setAccentSegment(null)}
                     variant="xr"
-                    positionClass="md:mt-4 md:min-h-[16rem] md:[--block-width:29rem] md:[--block-aspect:3.2/1]"
-                 />
+                    positionClass="-mt-8 sm:-mt-7 md:-mt-6 sm:[--block-width:22rem] md:[--block-width:27rem] lg:[--block-width:29rem] md:[--block-aspect:3.2/1]"
+                  />
 
                   <InteractiveBlock
                     title="From notes to notion"
@@ -150,7 +150,7 @@ export default function About() {
                     onActivate={() => handleFocus("music")}
                     onHoverEnd={() => setAccentSegment(null)}
                     variant="music"
-                    positionClass="md:mt-6 md:min-h-[8rem] md:[--block-width:29rem] md:[--block-aspect:3.2/1] md:[--music-scale:1]"
+                    positionClass="mt-0 sm:mt-1 md:mt-2 sm:[--block-width:22rem] md:[--block-width:27rem] lg:[--block-width:29rem] md:[--block-aspect:3.2/1] md:[--music-scale:1]"
                     scale="music"
                   />
                 </div>
@@ -197,9 +197,7 @@ function InteractiveBlock({
     ? "0px 10px 32px rgba(24, 8, 74, 0.5)"
     : "0px 10px 32px rgba(62, 18, 0, 0.55)";
   const titleStroke = "1px rgba(255,255,255,0.82)";
-  const descriptionColor = active
-    ? "rgba(255,255,255,0.9)"
-    : "rgba(255,255,255,0.78)";
+  const descriptionColor = "rgba(255,255,255,0.88)";
 
   return (
     <div
@@ -212,44 +210,44 @@ function InteractiveBlock({
       onBlur={onHoverEnd}
       onTouchEnd={onHoverEnd}
       className={clsx(
-        "relative mr-0 flex min-h-[9.5rem] w-full cursor-pointer overflow-hidden rounded-[1.85rem] border border-white/40 bg-white/8 px-9 py-7 transition-all duration-500 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900 backdrop-blur-[4px] shadow-[0_18px_45px_-28px_rgba(15,23,42,0.55)] hover:-translate-y-1.5 hover:shadow-[0_26px_65px_-28px_rgba(15,23,42,0.68)] md:w-[var(--block-width)] md:max-w-none md:self-end md:aspect-[var(--block-aspect,auto)]",
+        "relative mr-0 flex min-h-[9.5rem] w-full cursor-pointer overflow-hidden rounded-[1.85rem] border border-white/40 bg-white/12 px-5 py-5 transition-all duration-500 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900 backdrop-blur-[4px] shadow-[0_18px_45px_-28px_rgba(15,23,42,0.55)] hover:-translate-y-1.5 hover:shadow-[0_26px_65px_-28px_rgba(15,23,42,0.68)] sm:px-6 sm:py-6 md:px-9 md:py-7 md:w-[var(--block-width)] md:max-w-none md:self-end md:aspect-[var(--block-aspect,auto)]",
         alignmentClass,
         positionClass,
         scale === "music"
-          ? "min-h-[7rem] md:min-h-[7rem] md:origin-right md:scale-[var(--music-scale,1)]"
-          : "md:min-h-[9.5rem]",
-        active ? "opacity-100" : "opacity-75 hover:opacity-95"
+          ? "min-h-[5.5rem] sm:min-h-[6.25rem] md:min-h-[8rem] md:origin-right md:scale-[var(--music-scale,1)]"
+          : "min-h-[10.5rem] sm:min-h-[12.5rem] md:min-h-[16rem]",
+        "opacity-100"
       )}
     >
       <div className="absolute inset-0">
-        <div className="absolute -inset-10 rounded-[2.5rem] bg-black/10 blur-xl opacity-30" /> {/* 减少模糊效果和透明度 */}
+        <div className="absolute -inset-10 rounded-[2.5rem] bg-black/10 blur-xl opacity-25" />
         <div
           className={clsx(
             "absolute inset-0 rounded-[1.85rem] transition-all duration-700 ease-out",
             gradientClass,
-            active ? "opacity-70 blur-0" : "opacity-35 blur-[1px]" // 减少模糊效果和调整透明度
+            "opacity-85 blur-0"
           )}
         />
-        <div className="absolute inset-0 rounded-[1.85rem] bg-white/3" /> {/* 降低白色叠加层透明度 */}
+        <div className="absolute inset-0 rounded-[1.85rem] bg-white/10" />
       </div>
 
       <div
         className={clsx(
           "relative z-10 flex h-full w-full flex-col text-right items-end",
           scale === "music"
-            ? "gap-1.5 justify-end"
-            : "gap-6 md:gap-8 justify-center"
+            ? "gap-2 justify-end"
+            : "gap-4 sm:gap-5 md:gap-8 justify-center"
         )}
       >
         <h3
           className={clsx(
             "font-semibold leading-tight",
             scale === "music"
-              ? "text-[2.3rem]"
-              : "text-[clamp(2.6rem,3vw+1.4rem,3.6rem)]",
+              ? "text-[1.55rem] sm:text-[1.75rem] md:text-[2.05rem] lg:text-[2.3rem]"
+              : "text-[2.1rem] sm:text-[2.8rem] lg:text-[4.3rem]",
           )}
           style={{
-            color: active ? titleColor : titleInactiveColor,
+            color: titleColor,
             textShadow: titleShadow,
             WebkitTextStroke: titleStroke,
           }}
@@ -258,14 +256,14 @@ function InteractiveBlock({
         </h3>
         <p
           className={clsx(
-            "text-white/80",
-            scale === "music" ? "text-sm md:text-base" : "text-base md:text-xl"
+            "text-white/80 leading-snug",
+            scale === "music"
+              ? "text-sm sm:text-base md:text-[1.05rem]"
+              : "text-base sm:text-lg md:text-[1.32rem]"
           )}
           style={{
             color: descriptionColor,
-            fontSize: scale === "music" ? "1.05rem" : "1.26rem",
-            lineHeight: scale === "music" ? "1.52rem" : "1.82rem",
-            maxWidth: scale === "music" ? "24rem" : "24rem",
+            maxWidth: scale === "music" ? "22rem" : "26rem",
           }}
         >
           {description}
