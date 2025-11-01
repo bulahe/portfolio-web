@@ -10,7 +10,7 @@ import SectionHeading from "./section-heading";
 type FocusSegment = "xr" | "music";
 
 export default function About() {
-  const { ref } = useSectionInView("About", 0.3);
+  const { ref } = useSectionInView("About", 0.4);
   const [activeSegment, setActiveSegment] = useState<FocusSegment>("xr");
 
   const handleFocus = (segment: FocusSegment) => {
@@ -36,11 +36,11 @@ export default function About() {
               onMouseLeave={() => handleFocus("xr")}
             >
               <div className="pointer-events-none absolute inset-0">
-                <div className="absolute -inset-20 bg-[linear-gradient(14deg,rgba(131,88,249,0.55)_0%,rgba(140,103,255,0.52)_44%,rgba(186,132,230,0.38)_52%,rgba(255,153,94,0.45)_60%,rgba(255,140,82,0.62)_100%)] blur-[70px]" />
-                <div className="absolute inset-0 bg-[linear-gradient(14deg,rgba(129,80,255,0.82)_0%,rgba(133,92,255,0.78)_38%,rgba(162,120,255,0.55)_50%,rgba(253,133,82,0.65)_60%,rgba(255,136,76,0.85)_100%)]" />
+                <div className="absolute -inset-20 bg-[linear-gradient(14deg,rgba(255,140,82,0.62)_0%,rgba(255,153,94,0.45)_42%,rgba(186,132,230,0.38)_50%,rgba(140,103,255,0.52)_58%,rgba(131,88,249,0.55)_100%)] blur-[70px]" />
+                <div className="absolute inset-0 bg-[linear-gradient(14deg,rgba(255,136,76,0.85)_0%,rgba(253,133,82,0.65)_20%,rgba(162,120,255,0.55)_52%,rgba(133,92,255,0.78)_84%,rgba(129,80,255,0.82)_100%)]" />
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_16%_28%,rgba(158,120,255,0.35),transparent_60%)]" />
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_82%,rgba(255,164,108,0.38),transparent_62%)]" />
-                <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.06),transparent_45%)]" />
+                <div className="absolute inset-0 bg-[linear-gradient(315deg,rgba(255,255,255,0.06),transparent_45%)]" />
               </div>
 
               <div className="relative grid h-full w-full gap-6 px-6 pt-6 pb-0 md:grid-cols-[minmax(0,0.7fr)_minmax(0,0.3fr)] md:items-stretch md:px-12 md:pt-12 md:pb-0">

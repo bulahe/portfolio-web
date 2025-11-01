@@ -69,7 +69,7 @@ export const introHighlights: IntroHighlight[] = [
   },
   {
     icon: TbDeviceVisionPro,
-    title: "XR Developer / Creative Technologist",
+    title: "XR Developer",
     body:
       "Designing and building immersive AR/VR experiences that blend spatial interaction and sound.",
   },
@@ -81,7 +81,7 @@ export const introHighlights: IntroHighlight[] = [
   },
   {
     icon: FiHeadphones,
-    title: "Performer & Sound Engineer",
+    title: "Producer & Performer & Sound Engineer",
     body:
       "Mixing, producing, and performing across digital and physical stages. Building custom hardware tools for interactive performance.",
   },

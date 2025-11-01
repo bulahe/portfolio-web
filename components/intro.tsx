@@ -57,7 +57,7 @@ export default function Intro() {
                 Yu-Chen “bulahe” Chung
               </p>
               <p className="text-sm text-neutral-500 dark:text-neutral-400">
-                Creative technologist & XR developer
+               
               </p>
             </div>
             <div className="space-y-4">
