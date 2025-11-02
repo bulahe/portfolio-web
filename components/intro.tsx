@@ -170,7 +170,7 @@ export default function Intro() {
                     initial={{ opacity: 0, y: 8 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ ease: "easeOut", duration: 0.3, delay: 0.75 + index * 0.03 }}
-                    className="rounded-full border border-neutral-300 bg-white px-4 py-1 text-sm font-medium text-[var(--brand-accent)] shadow-sm transition-colors duration-200 hover:border-[var(--brand-hover)] hover:bg-[var(--brand-secondary)]/35 hover:text-[var(--brand-primary)] dark:border-neutral-700 dark:bg-neutral-800 dark:text-[var(--brand-accent)] dark:hover:border-[var(--brand-hover)] dark:hover:bg-[var(--brand-primary)]/20 dark:hover:text-[var(--brand-secondary)]"
+                    className="rounded-full border border-neutral-300 bg-white px-4 py-1 text-sm font-medium text-[var(--brand-accent)] shadow-sm transition-colors duration-200 hover:border-[var(--brand-primary)] hover:bg-[var(--brand-secondary)]/35 hover:text-[var(--brand-hover)] dark:border-neutral-700 dark:bg-neutral-800 dark:text-[var(--brand-accent)] dark:hover:border-[var(--brand-secondary)] dark:hover:bg-[var(--brand-primary)]/20 dark:hover:text-[var(--brand-hover)]"
                   >
                     {skill}
                   </motion.span>

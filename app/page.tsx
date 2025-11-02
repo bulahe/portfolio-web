@@ -7,9 +7,9 @@ export default function Home() {
   return (
     <main className="flex flex-col items-center px-4">
       <Intro />
-      <SectionDivider />
+      <SectionDivider flowDuration={2.8} />
       <About />
-      <SectionDivider />
+      <SectionDivider flowDuration={2.8} />
       <Projects />
     </main>
   );
