@@ -53,7 +53,7 @@ export default function Project({
   };
 
   const overlayClass = clsx(
-    "absolute inset-0 z-10 flex flex-col items-stretch justify-center gap-3 bg-neutral-950/55 px-6 py-6 text-right transition-opacity duration-300",
+    "absolute inset-0 z-10 flex flex-col items-stretch justify-center gap-3 bg-neutral-900/70 px-6 py-6 text-right transition-opacity duration-300",
     isMobile && isActive
       ? "opacity-100 pointer-events-auto"
       : "pointer-events-none opacity-0"
@@ -106,14 +106,16 @@ export default function Project({
             >
               <button
                 type="button"
-                className="w-full rounded-xl bg-white/20 py-4 text-lg font-semibold uppercase tracking-wide text-white shadow-sm backdrop-blur transition hover:bg-white/30 drop-shadow-[0_3px_12px_rgba(0,0,0,0.55)]"
+                className="w-full rounded-xl bg-white/20 py-4 text-lg font-semibold uppercase tracking-wide text-white backdrop-blur transition hover:bg-white/30"
+                style={{ textShadow: "0 3px 10px rgba(0,0,0,0.55)" }}
                 onClick={handleLearnMore}
               >
                 learn more
               </button>
               <button
                 type="button"
-                className="w-full rounded-xl border border-white/45 py-4 text-base font-semibold uppercase tracking-wide text-white drop-shadow-[0_3px_12px_rgba(0,0,0,0.5)] backdrop-blur transition hover:bg-white/12"
+                className="w-full rounded-xl border border-white/45 py-4 text-base font-semibold uppercase tracking-wide text-white backdrop-blur transition hover:bg-white/12"
+                style={{ textShadow: "0 3px 10px rgba(0,0,0,0.5)" }}
                 onClick={handleMobileBack}
               >
                 back
