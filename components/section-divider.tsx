@@ -3,7 +3,11 @@ import React from "react";
 import { motion } from "framer-motion";
 import { brandTheme } from "@/lib/theme";
 
-export default function SectionDivider() {
+type SectionDividerProps = {
+  flowDuration?: number;
+};
+
+export default function SectionDivider({ flowDuration = 5 }: SectionDividerProps) {
   return (
     <motion.div
       className="relative mx-auto my-16 h-[2px] w-full max-w-4xl overflow-hidden rounded-full sm:my-24"
@@ -21,11 +25,36 @@ export default function SectionDivider() {
         }}
       />
       <span
+        className="pointer-events-none absolute inset-0 opacity-80 mix-blend-screen flow-divider-glow"
+        style={{
+          background: `linear-gradient(90deg, transparent 15%, ${brandTheme.primary}70 35%, ${brandTheme.accent}80 50%, ${brandTheme.accent}60 65%, transparent 85%)`,
+          backgroundSize: "200% 100%",
+          filter: "blur(6px)",
+          animationDuration: `${flowDuration}s`,
+        }}
+      />
+      <span
         className="pointer-events-none absolute inset-0"
         style={{
           boxShadow: `0 0 48px ${brandTheme.accent}33`,
         }}
       />
+      <style jsx>{`
+        .flow-divider-glow {
+          animation-name: flow-divider;
+          animation-timing-function: linear;
+          animation-iteration-count: infinite;
+        }
+
+        @keyframes flow-divider {
+          0% {
+            background-position: 0% 50%;
+          }
+          100% {
+            background-position: 200% 50%;
+          }
+        }
+      `}</style>
     </motion.div>
   );
 }

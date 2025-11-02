@@ -263,86 +263,92 @@ function InteractiveBlock({
   const titleStroke = "1px rgba(255,255,255,0.82)";
   const descriptionColor = "rgba(255,255,255,0.88)";
 
+  const wrapperClassName = clsx(
+    "relative mr-0 w-full md:w-[var(--block-width)] md:max-w-none md:self-end md:aspect-[var(--block-aspect,auto)]",
+    positionClass
+  );
+
+  const blockClassName = clsx(
+    "relative flex h-full min-h-[9.5rem] w-full cursor-pointer overflow-hidden rounded-[1.85rem] border border-white/40 bg-white/12 px-5 py-5 transition-all duration-500 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900 backdrop-blur-[4px] shadow-[0_18px_45px_-28px_rgba(15,23,42,0.55)] hover:-translate-y-1.5 hover:shadow-[0_26px_65px_-28px_rgba(15,23,42,0.68)] sm:px-6 sm:py-6 md:px-9 md:py-7",
+    alignmentClass,
+    scale === "music"
+      ? "min-h-[5.5rem] sm:min-h-[6.25rem] md:min-h-[8rem] md:origin-right md:scale-[var(--music-scale,1)]"
+      : "min-h-[10.5rem] sm:min-h-[12.5rem] md:min-h-[16rem]",
+    "opacity-100"
+  );
+
   return (
-    <div
-      role="button"
-      tabIndex={0}
-      onMouseEnter={!isMobile ? handleActivate : undefined}
-      onFocus={!isMobile ? handleActivate : undefined}
-      onMouseLeave={!isMobile ? onHoverEnd : undefined}
-      onBlur={!isMobile ? onHoverEnd : undefined}
-      onTouchStart={isMobile ? handleActivate : undefined}
-      onClick={isMobile ? handleActivate : undefined}
-      className={clsx(
-        "relative mr-0 flex min-h-[9.5rem] w-full cursor-pointer overflow-hidden rounded-[1.85rem] border border-white/40 bg-white/12 px-5 py-5 transition-all duration-500 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900 backdrop-blur-[4px] shadow-[0_18px_45px_-28px_rgba(15,23,42,0.55)] hover:-translate-y-1.5 hover:shadow-[0_26px_65px_-28px_rgba(15,23,42,0.68)] sm:px-6 sm:py-6 md:px-9 md:py-7 md:w-[var(--block-width)] md:max-w-none md:self-end md:aspect-[var(--block-aspect,auto)]",
-        alignmentClass,
-        positionClass,
-        scale === "music"
-          ? "min-h-[5.5rem] sm:min-h-[6.25rem] md:min-h-[8rem] md:origin-right md:scale-[var(--music-scale,1)]"
-          : "min-h-[10.5rem] sm:min-h-[12.5rem] md:min-h-[16rem]",
-        "opacity-100"
-      )}
-    >
-      <div className="absolute inset-0">
-        <div className="absolute -inset-10 rounded-[2.5rem] bg-black/10 blur-xl opacity-25" />
+    <div className={wrapperClassName}>
+      <button
+        type="button"
+        aria-pressed={_active ? "true" : "false"}
+        onMouseEnter={!isMobile ? handleActivate : undefined}
+        onFocus={!isMobile ? handleActivate : undefined}
+        onMouseLeave={!isMobile ? onHoverEnd : undefined}
+        onBlur={!isMobile ? onHoverEnd : undefined}
+        onTouchStart={isMobile ? handleActivate : undefined}
+        onClick={isMobile ? handleActivate : undefined}
+        className={blockClassName}
+      >
+        <div className="absolute inset-0">
+          <div className="absolute -inset-10 rounded-[2.5rem] bg-black/10 blur-xl opacity-25" />
+          <div
+            className={clsx(
+              "absolute inset-0 rounded-[1.85rem] transition-all duration-700 ease-out",
+              gradientClass,
+              "opacity-85 blur-0"
+            )}
+          />
+          <div className="absolute inset-0 rounded-[1.85rem] bg-white/10" />
+        </div>
+
         <div
           className={clsx(
-            "absolute inset-0 rounded-[1.85rem] transition-all duration-700 ease-out",
-            gradientClass,
-            "opacity-85 blur-0"
-          )}
-        />
-        <div className="absolute inset-0 rounded-[1.85rem] bg-white/10" />
-      </div>
-
-      <div
-        className={clsx(
-          "relative z-10 flex h-full w-full flex-col text-right items-end transition-all duration-300",
-          scale === "music"
-            ? "gap-2 justify-end"
-            : "gap-4 sm:gap-5 md:gap-8 justify-center",
-          showMobileOverlay ? "pointer-events-none blur-sm opacity-20" : "opacity-100"
-        )}
-      >
-        <h3
-          className={clsx(
-            "font-semibold leading-tight",
+            "relative z-10 flex h-full w-full flex-col text-right items-end transition-all duration-300",
             scale === "music"
-              ? "text-[1.55rem] sm:text-[1.75rem] md:text-[2.05rem] lg:text-[2.3rem]"
-              : "text-[2.1rem] sm:text-[2.8rem] lg:text-[4.3rem]",
+              ? "gap-2 justify-end"
+              : "gap-4 sm:gap-5 md:gap-8 justify-center",
+            showMobileOverlay ? "pointer-events-none blur-sm opacity-20" : "opacity-100"
           )}
-          style={{
-            color: titleColor,
-            textShadow: titleShadow,
-            WebkitTextStroke: titleStroke,
-          }}
         >
-          {title}
-        </h3>
-        <p
-          className={clsx(
-            "text-white/80 leading-snug",
-            scale === "music"
-              ? "text-sm sm:text-base md:text-[1.05rem]"
-              : "text-base sm:text-lg md:text-[1.32rem]"
-          )}
-          style={{
-            color: descriptionColor,
-            maxWidth: scale === "music" ? "22rem" : "26rem",
-          }}
-        >
-          {description}
-        </p>
-      </div>
+          <h3
+            className={clsx(
+              "font-semibold leading-tight",
+              scale === "music"
+                ? "text-[1.55rem] sm:text-[1.75rem] md:text-[2.05rem] lg:text-[2.3rem]"
+                : "text-[2.1rem] sm:text-[2.8rem] lg:text-[4.3rem]",
+            )}
+            style={{
+              color: titleColor,
+              textShadow: titleShadow,
+              WebkitTextStroke: titleStroke,
+            }}
+          >
+            {title}
+          </h3>
+          <p
+            className={clsx(
+              "text-white/80 leading-snug",
+              scale === "music"
+                ? "text-sm sm:text-base md:text-[1.05rem]"
+                : "text-base sm:text-lg md:text-[1.32rem]"
+            )}
+            style={{
+              color: descriptionColor,
+              maxWidth: scale === "music" ? "22rem" : "26rem",
+            }}
+          >
+            {description}
+          </p>
+        </div>
+      </button>
 
       {isMobile && (
         <div
           className={clsx(
-            "absolute inset-0 flex flex-col items-stretch justify-center gap-3 bg-neutral-950/55 px-6 py-6 text-right transition-opacity duration-300",
-            showMobileOverlay ? "opacity-100 pointer-events-auto" : "pointer-events-none opacity-0"
+            "pointer-events-none absolute inset-0 z-20 flex flex-col items-stretch justify-center gap-3 rounded-[1.85rem] bg-neutral-950/55 px-6 py-6 text-right transition-opacity duration-300",
+            showMobileOverlay ? "opacity-100 pointer-events-auto" : "opacity-0"
           )}
-          onClick={(event) => event.stopPropagation()}
-          onTouchStart={(event) => event.stopPropagation()}
         >
           <button
             type="button"

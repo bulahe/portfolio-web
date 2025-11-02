@@ -67,9 +67,9 @@ export default function Intro() {
                 </p>
                 <a
                   href="mailto:a539907687@icloud.com"
-                  className="mt-1 flex items-center gap-2 text-sm font-medium text-neutral-800 hover:text-[var(--brand-primary)] dark:text-neutral-100 dark:hover:text-[var(--brand-secondary)]"
+                  className="mt-1 flex items-center gap-2 text-sm font-medium text-neutral-800 hover:text-[var(--brand-accent)] dark:text-neutral-100 dark:hover:text-[var(--brand-accent)]"
                 >
-                  <FiMail className="text-[var(--brand-primary)] dark:text-[var(--brand-secondary)]" />
+                  <FiMail className="text-[var(--brand-accent)]" />
                   a539907687@icloud.com
                 </a>
               </div>
@@ -102,7 +102,7 @@ export default function Intro() {
           >
             <h1 className="text-4xl font-semibold tracking-tight text-neutral-900 dark:text-white">
               Hey, I&apos;m{" "}
-              <span className="text-[var(--brand-primary)] dark:text-[var(--brand-accent)]">
+              <span className="text-[var(--brand-accent)]">
                 bulahe Chung
               </span>
             </h1>
@@ -144,7 +144,7 @@ export default function Intro() {
                     >
                       <div className="flex min-h-[3.5rem] items-start gap-3">
                         <div className="flex items-start justify-center text-neutral-700 dark:text-neutral-200">
-                          <Icon className="h-7 w-7 text-[var(--brand-primary)] dark:text-[var(--brand-accent)]" />
+                          <Icon className="h-7 w-7 text-[var(--brand-accent)]" />
                         </div>
                         <h2 className="flex-1 text-lg font-semibold text-neutral-900 dark:text-white">
                           {item.title}
@@ -165,12 +165,12 @@ export default function Intro() {
             >
               <div className="flex flex-wrap gap-2">
                 {introSkills.map((skill, index) => (
-                  <motion.span
+                    <motion.span
                     key={skill}
                     initial={{ opacity: 0, y: 8 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ ease: "easeOut", duration: 0.3, delay: 0.75 + index * 0.03 }}
-                    className="rounded-full border border-neutral-300 bg-white px-4 py-1 text-sm font-medium text-[var(--brand-primary)] shadow-sm transition-colors duration-200 hover:border-[var(--brand-primary)] hover:bg-[var(--brand-secondary)]/30 hover:text-[var(--brand-hover)] dark:border-neutral-700 dark:bg-neutral-800 dark:text-[var(--brand-accent)] dark:hover:border-[var(--brand-accent)] dark:hover:bg-[var(--brand-accent)]/20 dark:hover:text-[var(--brand-secondary)]"
+                    className="rounded-full border border-neutral-300 bg-white px-4 py-1 text-sm font-medium text-[var(--brand-accent)] shadow-sm transition-colors duration-200 hover:border-[var(--brand-hover)] hover:bg-[var(--brand-secondary)]/35 hover:text-[var(--brand-primary)] dark:border-neutral-700 dark:bg-neutral-800 dark:text-[var(--brand-accent)] dark:hover:border-[var(--brand-hover)] dark:hover:bg-[var(--brand-primary)]/20 dark:hover:text-[var(--brand-secondary)]"
                   >
                     {skill}
                   </motion.span>
