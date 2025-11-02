@@ -25,9 +25,20 @@ export default function Project({
   onMobileBack,
   onLearnMore,
 }: ProjectProps) {
-  const handleCardActivate = () => {
+  const handleCardActivate = (
+    event: MouseEvent<HTMLDivElement> | TouchEvent<HTMLDivElement>
+  ) => {
     if (!isMobile) return;
+    event.stopPropagation();
     onActivate();
+  };
+
+  const handleCardClick = (event: MouseEvent<HTMLDivElement>) => {
+    handleCardActivate(event);
+  };
+
+  const handleCardTouchStart = (event: TouchEvent<HTMLDivElement>) => {
+    handleCardActivate(event);
   };
 
   const handleMobileBack = (event: MouseEvent<HTMLButtonElement> | TouchEvent<HTMLButtonElement>) => {
@@ -41,15 +52,8 @@ export default function Project({
     onMobileBack();
   };
 
-  const cardContentClass = clsx(
-    "flex flex-col gap-4",
-    isMobile && isActive
-      ? "pointer-events-none opacity-20 blur-[1px]"
-      : "opacity-100"
-  );
-
   const overlayClass = clsx(
-    "absolute inset-0 z-10 flex flex-col items-stretch justify-center gap-3 rounded-3xl bg-neutral-950/55 px-6 py-6 transition-opacity duration-300",
+    "absolute inset-0 z-10 flex flex-col items-stretch justify-center gap-3 bg-neutral-950/55 px-6 py-6 text-right transition-opacity duration-300",
     isMobile && isActive
       ? "opacity-100 pointer-events-auto"
       : "pointer-events-none opacity-0"
@@ -65,22 +69,55 @@ export default function Project({
         "relative flex flex-col gap-4",
         isMobile ? "cursor-pointer" : "cursor-default"
       )}
-      onClick={handleCardActivate}
-      onTouchStart={handleCardActivate}
     >
-      <div className={cardContentClass}>
-        <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl border border-neutral-200 bg-neutral-100 shadow-[0_18px_45px_-25px_rgba(15,23,42,0.45)] transition duration-300 hover:-translate-y-1.5 hover:shadow-[0_22px_55px_-25px_rgba(15,23,42,0.55)] dark:border-neutral-800 dark:bg-neutral-900 dark:shadow-[0_18px_45px_-25px_rgba(15,23,42,0.65)]">
+      <div className="flex flex-col gap-4">
+        <div
+          className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl border border-neutral-200 bg-neutral-100 shadow-[0_18px_45px_-25px_rgba(15,23,42,0.45)] transition duration-300 hover:-translate-y-1.5 hover:shadow-[0_22px_55px_-25px_rgba(15,23,42,0.55)] dark:border-neutral-800 dark:bg-neutral-900 dark:shadow-[0_18px_45px_-25px_rgba(15,23,42,0.65)]"
+          onClick={isMobile ? handleCardClick : undefined}
+          onTouchStart={isMobile ? handleCardTouchStart : undefined}
+        >
           {image ? (
             <Image
               src={image}
               alt={title}
               fill
               sizes="(min-width: 1024px) 40vw, (min-width: 640px) 50vw, 90vw"
-              className="object-cover"
+              className={clsx(
+                "object-cover transition duration-300",
+                isMobile && isActive ? "opacity-30 blur-[1px]" : "opacity-100"
+              )}
             />
           ) : (
-            <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-neutral-200 via-neutral-100 to-neutral-300 text-sm font-medium text-neutral-500 dark:from-neutral-800 dark:via-neutral-900 dark:to-neutral-800 dark:text-neutral-400">
+            <div
+              className={clsx(
+                "flex h-full w-full items-center justify-center bg-gradient-to-br from-neutral-200 via-neutral-100 to-neutral-300 text-sm font-medium text-neutral-500 transition duration-300 dark:from-neutral-800 dark:via-neutral-900 dark:to-neutral-800 dark:text-neutral-400",
+                isMobile && isActive ? "opacity-30 blur-[1px]" : "opacity-100"
+              )}
+            >
               Preview coming soon
+            </div>
+          )}
+
+          {isMobile && (
+            <div
+              className={overlayClass}
+              onClick={(event) => event.stopPropagation()}
+              onTouchStart={(event) => event.stopPropagation()}
+            >
+              <button
+                type="button"
+                className="w-full rounded-xl bg-white/20 py-4 text-lg font-semibold uppercase tracking-wide text-white shadow-sm backdrop-blur transition hover:bg-white/30 drop-shadow-[0_3px_12px_rgba(0,0,0,0.55)]"
+                onClick={handleLearnMore}
+              >
+                learn more
+              </button>
+              <button
+                type="button"
+                className="w-full rounded-xl border border-white/45 py-4 text-base font-semibold uppercase tracking-wide text-white drop-shadow-[0_3px_12px_rgba(0,0,0,0.5)] backdrop-blur transition hover:bg-white/12"
+                onClick={handleMobileBack}
+              >
+                back
+              </button>
             </div>
           )}
         </div>
@@ -101,34 +138,11 @@ export default function Project({
                 >
                   {tag}
                 </li>
-              ))}
-            </ul>
-          )}
-        </div>
+            ))}
+          </ul>
+        )}
       </div>
-
-      {isMobile && (
-        <div
-          className={overlayClass}
-          onClick={(event) => event.stopPropagation()}
-          onTouchStart={(event) => event.stopPropagation()}
-        >
-          <button
-            type="button"
-            className="w-full rounded-xl bg-white/20 py-3 text-base font-semibold uppercase tracking-wide text-white shadow-sm backdrop-blur transition hover:bg-white/30"
-            onClick={handleLearnMore}
-          >
-            learn more
-          </button>
-          <button
-            type="button"
-            className="w-full rounded-xl border border-white/40 py-3 text-sm font-medium uppercase tracking-wide text-white/90 backdrop-blur transition hover:bg-white/10"
-            onClick={handleMobileBack}
-          >
-            back
-          </button>
-        </div>
-      )}
+      </div>
     </motion.article>
   );
 }

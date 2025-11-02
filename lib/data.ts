@@ -28,14 +28,12 @@ export type ProjectCard = {
 };
 
 export const projectsData: ProjectCard[] = [
-  /*
-  {
-    title: "CorpComment",
-    subtitle: "Full-stack platform enabling public company feedback.",
-    tags: ["React", "Next.js", "MongoDB", "Tailwind", "Prisma"],
-    image: "/projects/corpcomment.jpg",
-  },
-  */
+  { 
+    title: "Managing Multi-User Interruptions in Human–Robot Interaction",
+    subtitle: "A CHI-submitted AR study on service robots in multi-user environments, featuring an experimental system independently developed by me.",
+    tags: ["PUBLICATION","Unity", "C#","XR","MULTI-USER AR"],
+    image: "/XRobot/XRobotHero.png",
+  }
 ];
 
 export type IntroHighlight = {
