@@ -184,6 +184,25 @@ function InteractiveBlock({
   positionClass,
   scale = "base",
 }: InteractiveBlockProps) {
+
+  const [mobileFocus, setMobileFocus] = useState<FocusSegment | null>(null);
+  const isMobile = typeof window !== "undefined" && window.matchMedia("(max-width: 767px)").matches;
+
+  const handleActivate(variant) = (segment: FocusSegment) => {
+    onActivate();
+    if (typeof window !== "undefined" && window.matchMedia('(max-width: 767px)').matches) {
+      setMobileFocus(segment);
+    }
+  };
+
+  const handleMobileBack = () => {
+    setMobileFocus(null);
+  };
+
+  const showMobileOverlay =
+    typeof window !== "undefined" && window.matchMedia('(max-width: 767px)').matches &&
+    mobileFocus === variant;
+
   const isXR = variant === "xr";
   const gradientClass = isXR
     ? "bg-[radial-gradient(circle_at_top_right,rgba(167,139,250,0.45),transparent_60%)]"
@@ -203,9 +222,9 @@ function InteractiveBlock({
     <div
       role="button"
       tabIndex={0}
-      onMouseEnter={onActivate}
-      onFocus={onActivate}
-      onTouchStart={onActivate}
+      onMouseEnter={() => handleActivate(variant)}
+      onFocus={() => handleActivate(variant)}
+      onTouchStart={() => handleActivate(variant)}
       onMouseLeave={onHoverEnd}
       onBlur={onHoverEnd}
       onTouchEnd={onHoverEnd}
