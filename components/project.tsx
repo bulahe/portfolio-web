@@ -2,19 +2,21 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import clsx from "clsx";
 import type { ProjectCard } from "@/lib/data";
 import type { MouseEvent, TouchEvent } from "react";
 
 type ProjectProps = ProjectCard & {
+  slug: string;
   isMobile: boolean;
   isActive: boolean;
   onActivate: () => void;
   onMobileBack: () => void;
-  onLearnMore?: () => void;
 };
 
 export default function Project({
+  slug,
   title,
   subtitle,
   tags,
@@ -23,7 +25,6 @@ export default function Project({
   isActive,
   onActivate,
   onMobileBack,
-  onLearnMore,
 }: ProjectProps) {
   const handleCardActivate = (
     event: MouseEvent<HTMLDivElement> | TouchEvent<HTMLDivElement>
@@ -43,12 +44,6 @@ export default function Project({
 
   const handleMobileBack = (event: MouseEvent<HTMLButtonElement> | TouchEvent<HTMLButtonElement>) => {
     event.stopPropagation();
-    onMobileBack();
-  };
-
-  const handleLearnMore = (event: MouseEvent<HTMLButtonElement> | TouchEvent<HTMLButtonElement>) => {
-    event.stopPropagation();
-    onLearnMore?.();
     onMobileBack();
   };
 
@@ -104,14 +99,14 @@ export default function Project({
               onClick={(event) => event.stopPropagation()}
               onTouchStart={(event) => event.stopPropagation()}
             >
-              <button
-                type="button"
+              <Link
+                href={`/projects/${slug}`}
                 className="w-full rounded-xl bg-white/20 py-4 text-lg font-semibold uppercase tracking-wide text-white backdrop-blur transition hover:bg-white/30"
                 style={{ textShadow: "0 3px 10px rgba(0,0,0,0.55)" }}
-                onClick={handleLearnMore}
+                onClick={(event) => event.stopPropagation()}
               >
                 learn more
-              </button>
+              </Link>
               <button
                 type="button"
                 className="w-full rounded-xl border border-white/45 py-4 text-base font-semibold uppercase tracking-wide text-white backdrop-blur transition hover:bg-white/12"
@@ -140,10 +135,17 @@ export default function Project({
                 >
                   {tag}
                 </li>
-            ))}
-          </ul>
-        )}
-      </div>
+              ))}
+            </ul>
+          )}
+          <Link
+            href={`/projects/${slug}`}
+            className="mt-4 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-[var(--brand-accent)] transition hover:text-[var(--brand-primary)] dark:text-[var(--brand-accent)]"
+          >
+            Learn more
+            <span aria-hidden>→</span>
+          </Link>
+        </div>
       </div>
     </motion.article>
   );

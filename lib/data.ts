@@ -33,7 +33,34 @@ export const projectsData: ProjectCard[] = [
     subtitle: "A CHI-submitted AR study on service robots in multi-user environments, featuring an experimental system independently developed by me.",
     tags: ["PUBLICATION","Unity", "C#","XR","MULTI-USER AR"],
     image: "/XRobot/XRobotHero.png",
-  }
+  },
+  {
+    title: "Enhancing Synthetic IMU Generation for Human Activity Recognition",
+    subtitle: "Bachelor thesis proposing a closed-loop framework for controllable virtual IMU data generation and evaluation, improving model generalization across datasets.",
+    tags: [ "Undergraduate Thesis","Python", "pytorch", "Machine Learning"],
+    image: "/undergraduate thesis/undergraduate thesisHero.png",
+  },
+
+  {
+    title: "GAME: Surprise Party",
+    subtitle: "A Roblox-based multiplayer party game that won a campus game design award.",
+    tags: ["Roblox", "Multiplayer", "Game Design"],
+    image: "/partyGame/partyGameHero.png",
+  },
+
+  {
+    title: "Modular AR Glasses with Magnetic Hand-Tracking Bands",
+    subtitle: "A conceptual design envisioning lightweight AR eyewear with magnetic, detachable dual bands for full-range hand tracking.",
+    tags: ['CAD',"AR"],
+    image: "/glassBandDesign/glassBandDesignHero.png",
+  },
+
+  {
+    title: "ESP32 MIDI Foot Pedal for Live Looping",
+    subtitle: "A custom Python-powered MIDI controller designed to interface with an iPad looper app, enabling hands-free multi-track recording and playback.",
+    tags: ["python", "CAD", "Creative Hardware ", "Music Technology"],
+    image: "/Looper/LooperHero.png",
+  },
 ];
 
 export type IntroHighlight = {
