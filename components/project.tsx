@@ -51,7 +51,7 @@ export default function Project({
   };
 
   const overlayClass = clsx(
-    "absolute inset-0 z-10 flex flex-col items-stretch justify-center gap-3 bg-neutral-900/70 px-6 py-6 text-right transition-opacity duration-300",
+    "absolute inset-0 z-10 flex flex-col items-stretch justify-center gap-3 bg-neutral-900/75 px-6 py-6 text-center transition-opacity duration-300",
     isMobile && isActive
       ? "opacity-100 pointer-events-auto"
       : "pointer-events-none opacity-0"
@@ -126,14 +126,17 @@ export default function Project({
               onClick={(event) => event.stopPropagation()}
               onTouchStart={(event) => event.stopPropagation()}
             >
-              <Link
-                href={`/projects/${slug}`}
+              <button
+                type="button"
                 className="w-full rounded-xl bg-white/20 py-4 text-lg font-semibold uppercase tracking-wide text-white backdrop-blur transition hover:bg-white/30"
                 style={{ textShadow: "0 3px 10px rgba(0,0,0,0.55)" }}
-                onClick={(event) => event.stopPropagation()}
+                onClick={(event) => {
+                  event.stopPropagation();
+                  router.push(`/projects/${slug}`);
+                }}
               >
-                learn more
-              </Link>
+                Learn more
+              </button>
               <button
                 type="button"
                 className="w-full rounded-xl border border-white/45 py-4 text-base font-semibold uppercase tracking-wide text-white backdrop-blur transition hover:bg-white/12"
