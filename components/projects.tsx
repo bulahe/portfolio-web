@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import SectionHeading from "./section-heading";
 import { projectsData } from "@/lib/data";
 import Project from "./project";
 import { useSectionInView } from "@/lib/hooks";
+import SectionHeading from "./section-heading";
+import { generateSlug } from "@/lib/slug";
 
 export default function Projects() {
   const { ref } = useSectionInView("Portfolio", 0.2);
@@ -43,19 +44,22 @@ export default function Projects() {
   };
 
   return (
-    <section ref={ref} id="portfolio" className="scroll-mt-28 pb-20">
-      <SectionHeading>Portfolio</SectionHeading>
-      <div className="mt-10 grid gap-10 sm:grid-cols-2 lg:gap-12">
-        {projectsData.map((project, index) => (
-          <Project
-            key={project.title}
-            {...project}
-            isMobile={isMobile}
-            isActive={isMobile && activeIndex === index}
-            onActivate={() => handleActivate(index)}
-            onMobileBack={handleMobileBack}
-          />
-        ))}
+    <section ref={ref} id="portfolio" className="scroll-mt-28 w-full pb-20">
+      <div className="mx-auto w-full max-w-6xl px-2 sm:px-6 lg:px-8">
+        <SectionHeading>Portfolio</SectionHeading>
+        <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:gap-10">
+          {projectsData.map((project, index) => (
+            <Project
+              key={project.title}
+              {...project}
+              slug={generateSlug(project.title)}
+              isMobile={isMobile}
+              isActive={isMobile && activeIndex === index}
+              onActivate={() => handleActivate(index)}
+              onMobileBack={handleMobileBack}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );

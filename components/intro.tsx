@@ -103,7 +103,7 @@ export default function Intro() {
             <h1 className="text-4xl font-semibold tracking-tight text-neutral-900 dark:text-white">
               Hey, I&apos;m{" "}
               <span className="text-[var(--brand-accent)]">
-                bulahe Chung
+                Bulahe Chung
               </span>
             </h1>
             <div className="space-y-3 text-neutral-700 dark:text-neutral-200">

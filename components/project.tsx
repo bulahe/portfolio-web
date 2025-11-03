@@ -4,8 +4,9 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import clsx from "clsx";
+import { useRouter } from "next/navigation";
 import type { ProjectCard } from "@/lib/data";
-import type { MouseEvent, TouchEvent } from "react";
+import type { KeyboardEvent, MouseEvent, TouchEvent } from "react";
 
 type ProjectProps = ProjectCard & {
   slug: string;
@@ -26,6 +27,8 @@ export default function Project({
   onActivate,
   onMobileBack,
 }: ProjectProps) {
+  const router = useRouter();
+
   const handleCardActivate = (
     event: MouseEvent<HTMLDivElement> | TouchEvent<HTMLDivElement>
   ) => {
@@ -54,6 +57,19 @@ export default function Project({
       : "pointer-events-none opacity-0"
   );
 
+  const handleDesktopNavigate = () => {
+    if (isMobile) return;
+    router.push(`/projects/${slug}`);
+  };
+
+  const handleDesktopKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    if (isMobile) return;
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      router.push(`/projects/${slug}`);
+    }
+  };
+
   return (
     <motion.article
       initial={{ opacity: 0, y: 24 }}
@@ -67,9 +83,12 @@ export default function Project({
     >
       <div className="flex flex-col gap-4">
         <div
-          className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl border border-neutral-200 bg-neutral-100 shadow-[0_18px_45px_-25px_rgba(15,23,42,0.45)] transition duration-300 hover:-translate-y-1.5 hover:shadow-[0_22px_55px_-25px_rgba(15,23,42,0.55)] dark:border-neutral-800 dark:bg-neutral-900 dark:shadow-[0_18px_45px_-25px_rgba(15,23,42,0.65)]"
-          onClick={isMobile ? handleCardClick : undefined}
+          className="group relative aspect-[4/3] w-full overflow-hidden rounded-3xl border border-neutral-200 bg-neutral-100 shadow-[0_18px_45px_-25px_rgba(15,23,42,0.45)] transition duration-300 hover:-translate-y-1.5 hover:shadow-[0_22px_55px_-25px_rgba(15,23,42,0.55)] dark:border-neutral-800 dark:bg-neutral-900 dark:shadow-[0_18px_45px_-25px_rgba(15,23,42,0.65)]"
+          onClick={isMobile ? handleCardClick : handleDesktopNavigate}
           onTouchStart={isMobile ? handleCardTouchStart : undefined}
+          onKeyDown={!isMobile ? handleDesktopKeyDown : undefined}
+          role={!isMobile ? "button" : undefined}
+          tabIndex={!isMobile ? 0 : undefined}
         >
           {image ? (
             <Image
@@ -90,6 +109,14 @@ export default function Project({
               )}
             >
               Preview coming soon
+            </div>
+          )}
+
+          {!isMobile && (
+            <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-neutral-950/40 opacity-0 transition duration-300 group-hover:opacity-100">
+              <span className="rounded-full border border-white/60 bg-white/15 px-6 py-3 text-sm font-semibold uppercase tracking-[0.3em] text-white backdrop-blur-md">
+                Learn more
+              </span>
             </div>
           )}
 
@@ -138,13 +165,6 @@ export default function Project({
               ))}
             </ul>
           )}
-          <Link
-            href={`/projects/${slug}`}
-            className="mt-4 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-[var(--brand-accent)] transition hover:text-[var(--brand-primary)] dark:text-[var(--brand-accent)]"
-          >
-            Learn more
-            <span aria-hidden>→</span>
-          </Link>
         </div>
       </div>
     </motion.article>
