@@ -34,6 +34,85 @@ export default function Projects() {
     return () => query.removeListener(handleMatch);
   }, []);
 
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const scrollToStoredProject = () => {
+      let desiredTop: number | null = null;
+      const hash = window.location.hash;
+
+      if (hash.startsWith("#project-")) {
+        const target = document.getElementById(hash.slice(1));
+        if (target) {
+          desiredTop = target.getBoundingClientRect().top + window.scrollY - 120;
+        }
+      }
+
+      if (desiredTop === null) {
+        try {
+          const rawScroll = window.sessionStorage.getItem("portfolio:return-scroll");
+          if (rawScroll !== null) {
+            const parsed = JSON.parse(rawScroll);
+            if (typeof parsed === "number") {
+              desiredTop = parsed;
+            }
+          }
+          window.sessionStorage.removeItem("portfolio:return-scroll");
+        } catch {
+          /* ignore */
+        }
+      }
+
+      if (desiredTop === null) {
+        return;
+      }
+
+      requestAnimationFrame(() => {
+        const root = document.documentElement;
+        const hadSmoothClass = root.classList.contains("!scroll-smooth");
+        const previousBehavior = root.style.getPropertyValue("scroll-behavior");
+        const previousPriority = root.style.getPropertyPriority("scroll-behavior");
+
+        if (hadSmoothClass) {
+          root.classList.remove("!scroll-smooth");
+        }
+        root.style.setProperty("scroll-behavior", "auto", "important");
+
+        window.scrollTo({
+          top: Math.max(0, desiredTop as number),
+          behavior: "auto",
+        });
+
+        requestAnimationFrame(() => {
+          if (previousBehavior) {
+            root.style.setProperty(
+              "scroll-behavior",
+              previousBehavior,
+              previousPriority || undefined
+            );
+          } else {
+            root.style.removeProperty("scroll-behavior");
+          }
+
+          if (hadSmoothClass) {
+            root.classList.add("!scroll-smooth");
+          }
+        });
+      });
+
+      try {
+        window.sessionStorage.removeItem("portfolio:return-target");
+        window.sessionStorage.removeItem("portfolio:return-scroll");
+      } catch {
+        /* ignore */
+      }
+    };
+
+    scrollToStoredProject();
+    window.addEventListener("hashchange", scrollToStoredProject);
+    return () => window.removeEventListener("hashchange", scrollToStoredProject);
+  }, []);
+
   const handleActivate = (index: number) => {
     if (!isMobile) return;
     setActiveIndex(index);

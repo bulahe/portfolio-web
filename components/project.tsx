@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import Link from "next/link";
 import clsx from "clsx";
 import { useRouter } from "next/navigation";
 import type { ProjectCard } from "@/lib/data";
@@ -28,6 +27,22 @@ export default function Project({
   onMobileBack,
 }: ProjectProps) {
   const router = useRouter();
+  const anchorId = `project-${slug}`;
+
+  const rememberReturnTarget = () => {
+    if (typeof window === "undefined") return;
+    try {
+      const { pathname } = window.location;
+      const payload = JSON.stringify({
+        path: pathname || "/",
+        hash: anchorId,
+        scroll: window.scrollY,
+      });
+      window.sessionStorage.setItem("portfolio:return-target", payload);
+    } catch {
+      /* ignore storage failure */
+    }
+  };
 
   const handleCardActivate = (
     event: MouseEvent<HTMLDivElement> | TouchEvent<HTMLDivElement>
@@ -59,6 +74,7 @@ export default function Project({
 
   const handleDesktopNavigate = () => {
     if (isMobile) return;
+    rememberReturnTarget();
     router.push(`/projects/${slug}`);
   };
 
@@ -66,12 +82,14 @@ export default function Project({
     if (isMobile) return;
     if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
+      rememberReturnTarget();
       router.push(`/projects/${slug}`);
     }
   };
 
   return (
     <motion.article
+      id={anchorId}
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, ease: "easeOut" }}
@@ -143,7 +161,7 @@ export default function Project({
                 style={{ textShadow: "0 3px 10px rgba(0,0,0,0.5)" }}
                 onClick={handleMobileBack}
               >
-                back
+                Back
               </button>
             </div>
           )}
