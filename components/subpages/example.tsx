@@ -1,5 +1,8 @@
+'use client';
+
+import { useLayoutEffect } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const TITLE = "ESP32 MIDI Foot Pedal for Live Looping";
 const HEADLINE =
@@ -43,24 +46,92 @@ const SECTIONS = [
 ] as const;
 
 export default function ExampleSubpage() {
+  useLayoutEffect(() => {
+    const root = document.documentElement;
+    const hadSmoothClass = root.classList.contains("!scroll-smooth");
+    const previousBehavior = root.style.getPropertyValue("scroll-behavior");
+    const previousPriority = root.style.getPropertyPriority("scroll-behavior");
+
+    if (hadSmoothClass) {
+      root.classList.remove("!scroll-smooth");
+    }
+    root.style.setProperty("scroll-behavior", "auto", "important");
+
+    return () => {
+      if (hadSmoothClass) {
+        root.classList.add("!scroll-smooth");
+      }
+      if (previousBehavior) {
+        root.style.setProperty(
+          "scroll-behavior",
+          previousBehavior,
+          previousPriority || undefined
+        );
+      } else {
+        root.style.removeProperty("scroll-behavior");
+      }
+    };
+  }, []);
+
+  const router = useRouter();
+
+  const handleBack = () => {
+    let targetUrl = "/#portfolio";
+    if (typeof window !== "undefined") {
+      try {
+        const raw = window.sessionStorage.getItem("portfolio:return-target");
+        if (raw) {
+          const data = JSON.parse(raw) as {
+            path?: string;
+            hash?: string;
+            scroll?: number;
+          };
+
+          const path = data.path || "/";
+          const hash = data.hash ? `#${data.hash}` : "";
+          targetUrl = `${path}${hash}`;
+
+          if (typeof data.scroll === "number") {
+            window.sessionStorage.setItem(
+              "portfolio:return-scroll",
+              JSON.stringify(data.scroll)
+            );
+          } else {
+            window.sessionStorage.removeItem("portfolio:return-scroll");
+          }
+
+          window.sessionStorage.removeItem("portfolio:return-target");
+        } else {
+          window.sessionStorage.removeItem("portfolio:return-scroll");
+        }
+      } catch {
+        window.sessionStorage.removeItem("portfolio:return-scroll");
+      }
+    }
+    router.push(targetUrl, { scroll: false });
+  };
+
   return (
     <main className="relative flex w-full justify-center px-4 pb-24 pt-16 sm:px-6 lg:px-8">
-      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[28rem] overflow-hidden">
-        <div className="absolute left-1/2 top-[-6rem] h-[22rem] w-[36rem] -translate-x-1/2 rounded-full bg-[#fbe2e3] blur-[8rem] dark:bg-[#946263] sm:left-[15%] sm:translate-x-0 sm:blur-[9rem]" />
-        <div className="absolute right-[12%] top-[2rem] h-[26rem] w-[42rem] rounded-full bg-[#dbd7fb] blur-[9rem] dark:bg-[#676394] sm:right-[5%]" />
-      </div>
+      <div className="relative w-full">
+        <button
+          type="button"
+          onClick={handleBack}
+          className="fixed left-6 top-20 z-50 hidden items-center gap-2 rounded-full border border-neutral-200/70 bg-white/90 px-5 py-3 text-sm font-semibold uppercase tracking-wide text-neutral-800 shadow-md backdrop-blur transition hover:-translate-x-1 hover:shadow-lg dark:border-neutral-700/70 dark:bg-neutral-900/80 dark:text-neutral-100 xl:flex"
+        >
+          <span aria-hidden>←</span>
+          Back
+        </button>
 
-      <div className="w-full max-w-6xl">
-        <div className="grid gap-12 lg:grid-cols-[12rem_minmax(0,1fr)] lg:gap-16">
-          <aside className="lg:pl-2">
-            <Link
-              href="/#portfolio"
-              className="sticky top-24 inline-flex items-center gap-2 rounded-full border border-neutral-200/70 bg-white/90 px-5 py-3 text-sm font-semibold uppercase tracking-wide text-neutral-800 shadow-md backdrop-blur transition hover:-translate-x-1 hover:shadow-lg dark:border-neutral-700/70 dark:bg-neutral-900/80 dark:text-neutral-100"
-            >
-              <span aria-hidden>←</span>
-              Back to portfolio
-            </Link>
-          </aside>
+        <div className="mx-auto flex w-full max-w-5xl flex-col gap-12 lg:max-w-[68%]">
+          <button
+            type="button"
+            onClick={handleBack}
+            className="inline-flex items-center gap-2 self-start rounded-full border border-neutral-200/70 bg-white/90 px-5 py-3 text-sm font-semibold uppercase tracking-wide text-neutral-800 shadow-md backdrop-blur transition hover:-translate-x-1 hover:shadow-lg dark:border-neutral-700/70 dark:bg-neutral-900/80 dark:text-neutral-100 xl:hidden"
+          >
+            <span aria-hidden>←</span>
+            Back
+          </button>
 
           <article className="flex flex-col gap-12">
             <header className="flex flex-col gap-6 rounded-[2.5rem] border border-neutral-200/60 bg-white/85 p-8 text-neutral-900 shadow-xl backdrop-blur-sm dark:border-neutral-700/70 dark:bg-neutral-900/70 dark:text-neutral-100">
