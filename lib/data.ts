@@ -38,7 +38,7 @@ export const projectsData: ProjectCard[] = [
     title: "Enhancing Synthetic IMU Generation for Human Activity Recognition",
     subtitle: "Bachelor thesis proposing a closed-loop framework for controllable virtual IMU data generation and evaluation, improving model generalization across datasets.",
     tags: [ "Undergraduate Thesis","Python", "pytorch", "Machine Learning"],
-    image: "/undergraduate thesis/undergraduate thesisHero.png",
+    image: "/undergraduate thesis/undergraduate thesisHero.jpeg",
   },
 
   {

@@ -4,7 +4,53 @@ import { useLayoutEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-export default function ExampleSubpage() {
+type ProjectDetails = {
+  overview: string[];
+  scope: string | null;
+  role: string[];
+  team: string | null;
+};
+
+const projectDetails: ProjectDetails = {
+  overview: [],
+  scope: null,
+  role: [],
+  team: null,
+};
+
+const renderText = (value: string | null) =>
+  value ? (
+    <p className="mt-2 text-sm">{value}</p>
+  ) : (
+    <div className="mt-2 min-h-[4rem] rounded-xl border border-dashed border-neutral-200/70 bg-white/60 dark:border-neutral-700/60 dark:bg-neutral-900/35" />
+  );
+
+const renderList = (items: readonly string[]) =>
+  items.length > 0 ? (
+    <ul className="mt-2 space-y-1 text-sm">
+      {items.map((item) => (
+        <li key={item}>{item}</li>
+      ))}
+    </ul>
+  ) : (
+    <div className="mt-2 min-h-[4rem] rounded-xl border border-dashed border-neutral-200/70 bg-white/60 dark:border-neutral-700/60 dark:bg-neutral-900/35" />
+  );
+
+const renderOverviewPoints = (points: readonly string[]) =>
+  points.length > 0 ? (
+    <ul className="space-y-2 text-sm leading-relaxed">
+      {points.map((text) => (
+        <li key={text} className="flex items-start gap-2">
+          <span className="select-none text-lg leading-none">·</span>
+          <span>{text}</span>
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <div className="min-h-[6rem] rounded-2xl border border-neutral-200/60 bg-white/40 dark:border-neutral-700/60 dark:bg-neutral-900/35" />
+  );
+
+export default function SyntheticImuSubpage() {
   useLayoutEffect(() => {
     const root = document.documentElement;
     const hadSmoothClass = root.classList.contains("!scroll-smooth");
@@ -83,17 +129,16 @@ export default function ExampleSubpage() {
         </button>
 
         <div className="mx-auto flex w-full max-w-3xl flex-col gap-4 lg:max-w-[54%]">
-
           <article className="flex flex-col gap-4">
             <header className="flex flex-col gap-5 rounded-[2.5rem] border border-neutral-200/70 bg-neutral-50/60 p-6 text-neutral-900 shadow-xl backdrop-blur-sm dark:border-neutral-700/60 dark:bg-neutral-900/40 dark:text-neutral-100">
               <h1 className="text-2xl font-semibold leading-tight sm:text-3xl">
-                ESP32 MIDI Foot Pedal for Live Looping
+                Enhancing Synthetic IMU Generation for Human Activity Recognition
               </h1>
 
               <div className="relative mx-auto aspect-[4/3] w-full overflow-hidden rounded-3xl border border-neutral-200 bg-neutral-100 shadow-inner dark:border-neutral-800 dark:bg-neutral-950">
                 <Image
-                  src="/Looper/LooperHero.png"
-                  alt="Photo of the custom ESP32 MIDI pedalboard."
+                  src="/undergraduate thesis/undergraduate thesisHero.png"
+                  alt="Visualization of the synthetic IMU research project."
                   fill
                   sizes="(min-width: 1280px) 60vw, (min-width: 768px) 70vw, 90vw"
                   className="object-cover"
@@ -106,49 +151,25 @@ export default function ExampleSubpage() {
               <h2 className="text-xs font-semibold uppercase tracking-[0.25em] text-neutral-500 dark:text-neutral-400">
                 Overview
               </h2>
-              <div className="space-y-3 text-sm leading-relaxed">
-                <p>
-                  Designed and built a 6-switch ESP32 pedal with Bluetooth MIDI and a web-based companion for mapping presets.
-                </p>
-                <p>
-                  Focused on tactile feedback and latency-sensitive firmware to match the timing needs of live looping.
-                </p>
-              </div>
-              <div className="grid gap-6 sm:grid-cols-2">
+              {renderOverviewPoints(projectDetails.overview)}
+              <div className="mt-6 grid gap-6 sm:grid-cols-3">
                 <div>
                   <h3 className="text-xs font-semibold uppercase tracking-[0.25em] text-neutral-500 dark:text-neutral-400">
-                    Timeline
+                    SCOPE
                   </h3>
-                  <p className="mt-2 text-sm">2023</p>
+                  {renderText(projectDetails.scope)}
                 </div>
                 <div>
                   <h3 className="text-xs font-semibold uppercase tracking-[0.25em] text-neutral-500 dark:text-neutral-400">
-                    Role
+                    ROLE
                   </h3>
-                  <ul className="mt-2 space-y-1 text-sm">
-                    <li>Hardware designer</li>
-                    <li>Firmware engineer</li>
-                    <li>Product designer</li>
-                  </ul>
+                  {renderList(projectDetails.role)}
                 </div>
-                <div className="sm:col-span-2">
+                <div>
                   <h3 className="text-xs font-semibold uppercase tracking-[0.25em] text-neutral-500 dark:text-neutral-400">
-                    Tools
+                    TEAM
                   </h3>
-                  <ul className="mt-2 flex flex-wrap gap-2 text-xs font-semibold uppercase tracking-wide text-neutral-600 dark:text-neutral-300">
-                    <li className="rounded-full border border-neutral-300/70 px-3 py-1 dark:border-neutral-600/70">
-                      KiCad
-                    </li>
-                    <li className="rounded-full border border-neutral-300/70 px-3 py-1 dark:border-neutral-600/70">
-                      ESP-IDF
-                    </li>
-                    <li className="rounded-full border border-neutral-300/70 px-3 py-1 dark:border-neutral-600/70">
-                      TypeScript
-                    </li>
-                    <li className="rounded-full border border-neutral-300/70 px-3 py-1 dark:border-neutral-600/70">
-                      React
-                    </li>
-                  </ul>
+                  {renderText(projectDetails.team)}
                 </div>
               </div>
             </section>
