@@ -5,18 +5,21 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 type ProjectDetails = {
-  overview: string[];
+  overview: readonly string[];
   scope: string | null;
-  role: string[];
+  role: readonly string[];
   team: string | null;
 };
 
-const projectDetails: ProjectDetails = {
-  overview: [],
-  scope: null,
-  role: [],
-  team: null,
-};
+
+const projectDetails = {
+  overview: ["Proposed a feature-level evaluation framework to ensure the reliability of synthetic IMU data for human activity recognition.","Introduced a closed-loop filtering pipeline combining semantic screening, signal calibration, and distribution alignment.","Enhanced the generalization and cross-dataset consistency of existing text-to-motion generation methods."],
+  scope: "(2025) Undergraduate Thesis",
+  role: ["Research & development", "Implementation", "Evaluation"],
+  team: "individual",
+} satisfies ProjectDetails;
+
+
 
 const renderText = (value: string | null) =>
   value ? (

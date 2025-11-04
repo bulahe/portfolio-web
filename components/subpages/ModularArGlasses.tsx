@@ -5,18 +5,18 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 type ProjectDetails = {
-  overview: string[];
+  overview: readonly string[];
   scope: string | null;
-  role: string[];
+  role: readonly string[];
   team: string | null;
 };
 
-const projectDetails: ProjectDetails = {
-  overview: [],
-  scope: null,
-  role: [],
-  team: null,
-};
+const projectDetails = {
+  overview: ["This project explores a conceptual design for lightweight AR glasses paired with detachable magnetic hand-tracking bands. The system was created during my freshman design elective as an early exploration into spatial interaction hardware — before most consumer AR eyewear even existed.","Unlike vision-only tracking, which fails when hands leave the camera’s field of view, the dual-band setup provides consistent gesture sensing through wearable sensors. When combined, the two magnetic bands form a compact accessory; when separated, they attach to both hands to enable full-range tracking. The design emphasizes modularity, ergonomics, and a vision for more seamless, human-centered AR experiences."],
+  scope: "(2022) Course project — The Art of Design Innovation",
+  role: ["Lead Designer", "Hardware Modeler"],
+  team: "Yu-Chen Chong, Chu Chen, Yufan Zhang, Nan Li, Jiarui Zhou,Liuhao Feng",
+} satisfies ProjectDetails;
 
 const renderText = (value: string | null) =>
   value ? (

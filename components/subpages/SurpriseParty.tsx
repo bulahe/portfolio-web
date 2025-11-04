@@ -5,18 +5,18 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 type ProjectDetails = {
-  overview: string[];
+  overview: readonly string[];
   scope: string | null;
-  role: string[];
+  role: readonly string[];
   team: string | null;
 };
 
-const projectDetails: ProjectDetails = {
+const projectDetails = {
   overview: [],
   scope: null,
   role: [],
   team: null,
-};
+} satisfies ProjectDetails;
 
 const renderText = (value: string | null) =>
   value ? (
