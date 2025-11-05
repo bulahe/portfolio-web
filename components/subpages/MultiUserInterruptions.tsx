@@ -12,10 +12,10 @@ type ProjectDetails = {
 };
 
 const projectDetails = {
-  overview: [],
-  scope: null,
-  role: [],
-  team: null,
+  overview: ["An AR-based behavioral study exploring how service robots balance fairness and efficiency when interrupted by multiple users.","I independently built the full Unity experiment system with a real-time synchronization framework linking multiple AR headsets, ensuring consistent robot state, dialogue timing, and spatial alignment across users.","Designed all experimental visuals in the paper, including Figures 1 – 4."],
+  scope: "(2025) Academic research",
+  role: ["Experiment Developer", "Visualization designer"],
+  team: "Zixuan Guo, Yu-Chen Chung, et al.",
 } satisfies ProjectDetails;
 
 const renderText = (value: string | null) =>

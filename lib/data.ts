@@ -30,7 +30,7 @@ export type ProjectCard = {
 export const projectsData: ProjectCard[] = [
   { 
     title: "Managing Multi-User Interruptions in Human–Robot Interaction",
-    subtitle: "A CHI-submitted AR study on service robots in multi-user environments, featuring an experimental system independently developed by me.",
+    subtitle: "An AR-simulated study of real-world service robot interactions in multi-user environments, reviewed at CHI 2026 and currently undergoing revision for resubmission.",
     tags: ["PUBLICATION","Unity", "C#","XR","MULTI-USER AR"],
     image: "/XRobot/XRobotHero.png",
   },

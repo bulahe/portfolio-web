@@ -12,15 +12,16 @@ type ProjectDetails = {
 };
 
 const projectDetails = {
-  overview: [],
-  scope: null,
-  role: [],
-  team: null,
+  overview: ["A festive Roblox party game where players vote to enter randomly selected mini-games and compete for points across multiple challenges.","Took on a new creative role beyond coding, focusing on art direction and game design.","Built the environment models and designed two signature mini-games — Rolling Log Challenge and Falling Ice Survival."],
+  scope: "(2022) Course project - Tencent Electronic Game Creation Workshop",
+  role: ["Environment Artist", "Gameplay Designer"],
+  team:
+    "Yang Jinlong — Game Design / Sound\nZou Zihao, Pan Haonan — Programming\nChong Yu-Chen — Art & Level Design",
 } satisfies ProjectDetails;
 
 const renderText = (value: string | null) =>
   value ? (
-    <p className="mt-2 text-sm">{value}</p>
+    <p className="mt-2 whitespace-pre-line text-sm">{value}</p>
   ) : (
     <div className="mt-2 min-h-[4rem] rounded-xl border border-dashed border-neutral-200/70 bg-white/60 dark:border-neutral-700/60 dark:bg-neutral-900/35" />
   );
