@@ -44,6 +44,11 @@ export default function Project({
     }
   };
 
+  const navigateToProject = () => {
+    rememberReturnTarget();
+    router.push(`/projects/${slug}`);
+  };
+
   const handleCardActivate = (
     event: MouseEvent<HTMLDivElement> | TouchEvent<HTMLDivElement>
   ) => {
@@ -74,16 +79,14 @@ export default function Project({
 
   const handleDesktopNavigate = () => {
     if (isMobile) return;
-    rememberReturnTarget();
-    router.push(`/projects/${slug}`);
+    navigateToProject();
   };
 
   const handleDesktopKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
     if (isMobile) return;
     if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
-      rememberReturnTarget();
-      router.push(`/projects/${slug}`);
+      navigateToProject();
     }
   };
 
@@ -150,7 +153,7 @@ export default function Project({
                 style={{ textShadow: "0 3px 10px rgba(0,0,0,0.55)" }}
                 onClick={(event) => {
                   event.stopPropagation();
-                  router.push(`/projects/${slug}`);
+                  navigateToProject();
                 }}
               >
                 Learn more
