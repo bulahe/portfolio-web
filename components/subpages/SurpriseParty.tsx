@@ -2,7 +2,7 @@
 
 import { useLayoutEffect } from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import PortfolioBackButton from "@/components/ui/portfolio-back-button";
 
 type ProjectDetails = {
   overview: readonly string[];
@@ -51,6 +51,12 @@ const renderOverviewPoints = (points: readonly string[]) =>
     <div className="min-h-[6rem] rounded-2xl border border-neutral-200/60 bg-white/40 dark:border-neutral-700/60 dark:bg-neutral-900/35" />
   );
 
+const baseSectionClass =
+  "flex flex-col rounded-[2.25rem] border border-neutral-200/70 bg-neutral-50/55 text-neutral-800 shadow-lg backdrop-blur-sm dark:border-neutral-700/60 dark:bg-neutral-900/40 dark:text-neutral-200";
+const sectionPaddingClass = "p-6 sm:p-7";
+const sectionHeadingClass =
+  "text-sm font-semibold uppercase tracking-[0.2em] text-neutral-500 dark:text-neutral-400 sm:text-base";
+
 export default function SurprisePartySubpage() {
   useLayoutEffect(() => {
     const root = document.documentElement;
@@ -79,55 +85,10 @@ export default function SurprisePartySubpage() {
     };
   }, []);
 
-  const router = useRouter();
-
-  const handleBack = () => {
-    let targetUrl = "/#portfolio";
-    if (typeof window !== "undefined") {
-      try {
-        const raw = window.sessionStorage.getItem("portfolio:return-target");
-        if (raw) {
-          const data = JSON.parse(raw) as {
-            path?: string;
-            hash?: string;
-            scroll?: number;
-          };
-
-          const path = data.path || "/";
-          const hash = data.hash ? `#${data.hash}` : "";
-          targetUrl = `${path}${hash}`;
-
-          if (typeof data.scroll === "number") {
-            window.sessionStorage.setItem(
-              "portfolio:return-scroll",
-              JSON.stringify(data.scroll)
-            );
-          } else {
-            window.sessionStorage.removeItem("portfolio:return-scroll");
-          }
-
-          window.sessionStorage.removeItem("portfolio:return-target");
-        } else {
-          window.sessionStorage.removeItem("portfolio:return-scroll");
-        }
-      } catch {
-        window.sessionStorage.removeItem("portfolio:return-scroll");
-      }
-    }
-    router.push(targetUrl, { scroll: false });
-  };
-
   return (
     <main className="relative flex w-full justify-center px-4 pb-24 pt-16 sm:px-6 lg:px-8">
       <div className="relative w-full">
-        <button
-          type="button"
-          onClick={handleBack}
-          className="fixed left-3 top-6 z-50 inline-flex items-center gap-2 rounded-full border border-neutral-200/70 bg-white/85 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-neutral-800 shadow-md backdrop-blur transition hover:-translate-x-1 hover:shadow-lg dark:border-neutral-700/70 dark:bg-neutral-900/80 dark:text-neutral-100 sm:left-6 sm:top-8 sm:px-5 sm:py-2.5 sm:text-sm lg:left-8"
-        >
-          <span aria-hidden>←</span>
-          Back
-        </button>
+        <PortfolioBackButton />
 
         <div className="mx-auto flex w-full max-w-3xl flex-col gap-4 lg:max-w-[54%]">
           <article className="flex flex-col gap-4">
@@ -148,8 +109,8 @@ export default function SurprisePartySubpage() {
               </div>
             </header>
 
-            <section className="flex flex-col gap-3 rounded-[2.25rem] border border-neutral-200/70 bg-neutral-50/55 p-5 text-neutral-800 shadow-lg backdrop-blur-sm dark:border-neutral-700/60 dark:bg-neutral-900/40 dark:text-neutral-200">
-              <h2 className="text-xs font-semibold uppercase tracking-[0.25em] text-neutral-500 dark:text-neutral-400">
+            <section className={`${baseSectionClass} gap-3 ${sectionPaddingClass}`}>
+              <h2 className={sectionHeadingClass}>
                 Overview
               </h2>
               {renderOverviewPoints(projectDetails.overview)}
@@ -175,22 +136,22 @@ export default function SurprisePartySubpage() {
               </div>
             </section>
 
-            <section className="flex flex-col gap-3 rounded-[2.25rem] border border-neutral-200/70 bg-neutral-50/55 p-5 text-neutral-800 shadow-lg backdrop-blur-sm dark:border-neutral-700/60 dark:bg-neutral-900/40 dark:text-neutral-200">
-              <h2 className="text-xs font-semibold uppercase tracking-[0.25em] text-neutral-500 dark:text-neutral-400">
+            <section className={`${baseSectionClass} gap-3 ${sectionPaddingClass}`}>
+              <h2 className={sectionHeadingClass}>
                 The Problem
               </h2>
               <div className="min-h-[6rem] rounded-2xl border border-neutral-200/60 bg-white/40 dark:border-neutral-700/60 dark:bg-neutral-900/35" />
             </section>
 
-            <section className="flex flex-col gap-3 rounded-[2.25rem] border border-neutral-200/70 bg-neutral-50/55 p-5 text-neutral-800 shadow-lg backdrop-blur-sm dark:border-neutral-700/60 dark:bg-neutral-900/40 dark:text-neutral-200">
-              <h2 className="text-xs font-semibold uppercase tracking-[0.25em] text-neutral-500 dark:text-neutral-400">
+            <section className={`${baseSectionClass} gap-3 ${sectionPaddingClass}`}>
+              <h2 className={sectionHeadingClass}>
                 The Solution
               </h2>
               <div className="min-h-[6rem] rounded-2xl border border-neutral-200/60 bg-white/40 dark:border-neutral-700/60 dark:bg-neutral-900/35" />
             </section>
 
-            <section className="flex flex-col gap-4 rounded-[2.25rem] border border-neutral-200/70 bg-neutral-50/55 p-6 text-neutral-800 shadow-lg backdrop-blur-sm dark:border-neutral-700/60 dark:bg-neutral-900/40 dark:text-neutral-200">
-              <h2 className="text-xs font-semibold uppercase tracking-[0.25em] text-neutral-500 dark:text-neutral-400">
+            <section className={`${baseSectionClass} gap-4 ${sectionPaddingClass}`}>
+              <h2 className={sectionHeadingClass}>
                 Key Learnings
               </h2>
               <div className="min-h-[6rem] rounded-2xl border border-neutral-200/60 bg-white/40 dark:border-neutral-700/60 dark:bg-neutral-900/35" />
