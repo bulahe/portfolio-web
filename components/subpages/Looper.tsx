@@ -8,7 +8,7 @@ import Link from "next/link";
 
 const looperDetails = {
   overview: [
-    "Designed and built a custom 11-switch Bluetooth MIDI foot pedal powered by an ESP32 running MicroPython.",
+    "Designed and built a custom Bluetooth MIDI foot pedal with eleven footswitches powered by an ESP32 running MicroPython.",
     "Developed the pedal to control an iPad-based looping app during live performances.",
     "Modeled and rendered the enclosure in Shapr3D with an emphasis on ergonomics and stage usability.",
     "Explores the intersection of hardware, music performance, and UX through creative embedded systems.",
@@ -25,7 +25,7 @@ const cadImages = [
   },
   {
     src: "/Looper/CAD/LooperCAD2.png",
-    alt: "CAD render highlighting the switch layout of the looper pedal.",
+    alt: "CAD render highlighting the footswitch layout of the looper pedal.",
   },
   {
     src: "/Looper/CAD/LooperCAD3.png",
@@ -44,7 +44,7 @@ const realImages = [
   },
   {
     src: "/Looper/Real/Real2.png",
-    alt: "Close-up of the looper pedal switches and enclosure.",
+    alt: "Close-up of the looper pedal footswitches and enclosure.",
   },
   {
     src: "/Looper/Real/Real3.png",
@@ -217,7 +217,7 @@ export default function LooperSubpage() {
                 
                 <p>
                   That is why I insisted on a Bluetooth MIDI pedal—yet none on the market offered
-                  both wireless connectivity and enough switches for multi-track control. So I
+                  both wireless connectivity and enough footswitches for multi-track control. So I
                   decided to build my own.
                 </p>
               </div>
@@ -240,11 +240,11 @@ export default function LooperSubpage() {
                   </h3>
                   <div className="mt-4 space-y-4 sm:space-y-5">
                     <p>
-                      I began by modeling the pedal enclosure in Shapr3D, determining the optimal spacing and height for the mechanical foot switches to ensure reliable triggering during live performance.
+                      I began by modeling the pedal enclosure in Shapr3D, determining the optimal spacing and height for the mechanical footswitches to ensure reliable triggering during live performance.
 
                     </p>
                     <p>
-                      The layout originally featured twelve switches, but during testing I found the upper row too dense and prone to accidental presses. To improve ergonomics, I reduced it to eleven switches, arranging the upper row in a staggered formation so that each switch sits between the gaps of the lower row — making it easier to target while standing.
+                      The layout originally featured twelve footswitches, but during testing I found the upper row too dense and prone to accidental presses. To improve ergonomics, I reduced it to eleven footswitches, arranging the upper row in a staggered formation so that each footswitch sits between the gaps of the lower row — making it easier to target while standing.
                     </p>
                     
                     <ImageCarousel
@@ -284,7 +284,7 @@ export default function LooperSubpage() {
                     </p>
                     <p>
                       Switching to an ESP32 solved it. With native Bluetooth Classic and BLE, I
-                      implemented a MicroPython MIDI control script so each foot switch could send
+                      implemented a MicroPython MIDI control script so each footswitch could send
                       configurable CC or Note messages wirelessly to Loopy Pro on iPad.
                     </p>
                     <div className="mx-auto w-full max-w-2xl overflow-hidden rounded-2xl border border-neutral-200/60 bg-neutral-100 shadow-sm dark:border-neutral-700/60 dark:bg-neutral-900/35">
