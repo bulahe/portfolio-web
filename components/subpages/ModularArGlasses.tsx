@@ -4,6 +4,7 @@ import { useLayoutEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import PortfolioBackButton from "@/components/ui/portfolio-back-button";
+import ImageCarousel from "@/components/ui/image-carousel";
 
 type ProjectDetails = {
   overview: readonly string[];
@@ -16,8 +17,38 @@ const projectDetails = {
   overview: ["This project explores a conceptual design for lightweight AR glasses paired with detachable magnetic hand-tracking bands. The system was created during my freshman design elective as an early exploration into spatial interaction hardware — before most consumer AR eyewear even existed.","Unlike vision-only tracking, which fails when hands leave the camera’s field of view, the dual-band setup provides consistent gesture sensing through wearable sensors. When combined, the two magnetic bands form a compact accessory; when separated, they attach to both hands to enable full-range tracking. The design emphasizes modularity, ergonomics, and a vision for more seamless, human-centered AR experiences."],
   scope: "(2022) Course project — The Art of Design Innovation",
   role: ["Lead Designer", "Hardware Modeler"],
-  team: "Yu-Chen Chong, Chu Chen, Yufan Zhang, Nan Li, Jiarui Zhou,Liuhao Feng",
+  team: "Yu-Chen Chung, Chu Chen, Yufan Zhang, Nan Li, Jiarui Zhou,Liuhao Feng",
 } satisfies ProjectDetails;
+
+const batteryCarouselImages = [
+  {
+    src: "/glassBandDesign/battery/battery1.png",
+    alt: "Exploded view highlighting the detachable battery side-arms on the AR glasses.",
+  },
+  {
+    src: "/glassBandDesign/battery/battery2.png",
+    alt: "Close-up render showing the magnetic interface between the battery module and glasses frame.",
+  },
+  {
+    src: "/glassBandDesign/battery/battery3.png",
+    alt: "Perspective render of the battery module detached from the glasses, illustrating swappable power packs.",
+  },
+] as const;
+
+const threeInOneCarouselImages = [
+  {
+    src: "/glassBandDesign/3in1/3in11.png",
+    alt: "Render showing the wrist bands merged into a single watch-like wearable.",
+  },
+  {
+    src: "/glassBandDesign/3in1/3in12.png",
+    alt: "Visualization of each band worn independently with sensors highlighted.",
+  },
+  {
+    src: "/glassBandDesign/3in1/3in13.png",
+    alt: "Diagram illustrating the bands separating into two modules for AR use.",
+  },
+] as const;
 
 const renderText = (value: string | null) =>
   value ? (
@@ -281,14 +312,136 @@ export default function ModularArGlassesSubpage() {
               <h2 className={sectionHeadingClass}>
                 3D Modeling
               </h2>
-              <div className="min-h-[6rem] rounded-2xl border border-neutral-200/60 bg-white/40 dark:border-neutral-700/60 dark:bg-neutral-900/35" />
+              <div className="space-y-5">
+                <div className="space-y-2">
+                  <p className="text-base font-semibold text-neutral-900 dark:text-white sm:text-2xl">
+                    👓 AR Glasses
+                  </p>
+                  <div className="space-y-5 text-sm leading-relaxed text-neutral-800 dark:text-neutral-100">
+                    <div className="relative overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-100 shadow-inner dark:border-neutral-800 dark:bg-neutral-950">
+                      <Image
+                        src="/glassBandDesign/ARglassHero.jpg"
+                        alt="Hero render of the modular AR glasses concept."
+                        width={1600}
+                        height={900}
+                        className="h-auto w-full object-cover"
+                        sizes="(min-width: 1280px) 50vw, (min-width: 768px) 65vw, 95vw"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <p className="text-base font-semibold text-neutral-900 dark:text-white">
+                        Privacy-First Sensing
+                      </p>
+                      <ul className="list-disc space-y-1 pl-5">
+                        <li>LiDAR-only spatial mapping replaces traditional cameras to avoid capturing bystanders' images.</li>
+                        <li>Maintains depth perception and scene reconstruction accuracy while minimizing privacy concerns.</li>
+                      </ul>
+                    </div>
+                    <div className="relative overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-100 shadow-inner dark:border-neutral-800 dark:bg-neutral-950">
+                      <Image
+                        src="/glassBandDesign/lidar.png"
+                        alt="Diagram explaining LiDAR-based sensing for the AR glasses concept."
+                        width={1200}
+                        height={675}
+                        className="h-auto w-full object-cover"
+                        sizes="(min-width: 1280px) 40vw, (min-width: 768px) 55vw, 90vw"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <p className="text-base font-semibold text-neutral-900 dark:text-white">
+                        2️⃣ Modular Power &amp; Design Flexibility
+                      </p>
+                      <ul className="list-disc space-y-1 pl-5">
+                        <li>Detachable battery side-arms let both temples act as swappable battery modules when power runs low.</li>
+                        <li>Interchangeable frame styles enable sport or lightweight side-arms, balancing endurance, comfort, and personal aesthetics.</li>
+                      </ul>
+                    </div>
+                    <ImageCarousel
+                      images={batteryCarouselImages}
+                      aspectClassName="aspect-video"
+                      sizes="(min-width: 1280px) 40vw, (min-width: 768px) 60vw, 95vw"
+                      ariaLabel="Battery module render carousel"
+                      containerClassName="mt-1"
+                    />
+                  </div>
+                </div>
+                <div className="space-y-4">
+                  <p className="text-base font-semibold text-neutral-900 dark:text-white sm:text-2xl">
+                    ⌚ Dual Wrist Bands
+                  </p>
+                  <p className="text-sm leading-relaxed text-neutral-800 dark:text-neutral-100">
+                    A pair of magnetically detachable wrist bands that provide full-range hand tracking beyond camera limits, designed for both ergonomic comfort and daily wearability.
+                  </p>
+                  <div className="relative overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-100 shadow-inner dark:border-neutral-800 dark:bg-neutral-950">
+                    <Image
+                      src="/glassBandDesign/bandHero.png"
+                      alt="Hero render showcasing the dual wrist band concept."
+                      width={1600}
+                      height={900}
+                      className="h-auto w-full object-cover"
+                      sizes="(min-width: 1280px) 50vw, (min-width: 768px) 65vw, 95vw"
+                    />
+                  </div>
+                  <div className="space-y-5 text-sm leading-relaxed text-neutral-800 dark:text-neutral-100">
+                    <div className="space-y-2">
+                      <p className="text-base font-semibold text-neutral-900 dark:text-white">
+                        Modular Three-in-One Design
+                      </p>
+                      <p>
+                        The wrist bands were designed as a modular three-in-one system to balance functionality and everyday usability. Each single band integrates essential motion-tracking components — such as IMU sensors — to support gesture recognition and activity monitoring when worn independently.
+                      </p>
+                      <p>
+                        During AR operation, the two bands can be separated and worn on both wrists, extending the system’s ability to recognize hand gestures beyond the headset’s field of view. However, since users may not always need dual-hand tracking, the bands can magnetically attach together to form a single, watch-like wearable for daily use — maintaining a clean and familiar aesthetic without redundant hardware.
+                      </p>
+                      <ImageCarousel
+                        images={threeInOneCarouselImages}
+                        aspectClassName="aspect-video"
+                        sizes="(min-width: 1280px) 40vw, (min-width: 768px) 60vw, 95vw"
+                        ariaLabel="Three-in-one wrist band configuration carousel"
+                        containerClassName="mt-3"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <p className="text-base font-semibold text-neutral-900 dark:text-white">
+                        Strap Design and Material Choice
+                      </p>
+                      <p>
+                        The connecting edges of each band are embedded with precision magnets, enabling the two halves to snap seamlessly together.
+                      </p>
+                      <p>
+                        Inspired by Apple’s Solo Loop design, the bands are made of ultra-soft, stretchable silicone that conforms comfortably to the wrist. This buckle-free material ensures a smooth, continuous surface and makes the magnetic merging mechanism both practical and elegant — allowing the two bands to connect as one unified, minimalist form.
+                      </p>
+                      <div className="relative overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-100 shadow-inner dark:border-neutral-800 dark:bg-neutral-950">
+                        <Image
+                          src="/glassBandDesign/strap.png"
+                          alt="Close-up of the dual wrist band strap material and magnetic connection detail."
+                          width={1200}
+                          height={675}
+                          className="h-auto w-full object-cover"
+                          sizes="(min-width: 1280px) 40vw, (min-width: 768px) 60vw, 95vw"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </section>
 
             <section className={`${baseSectionClass} gap-4 ${sectionPaddingClass}`}>
               <h2 className={sectionHeadingClass}>
                 Reflection
               </h2>
-              <div className="min-h-[6rem] rounded-2xl border border-neutral-200/60 bg-white/40 dark:border-neutral-700/60 dark:bg-neutral-900/35" />
+              <div className="space-y-4 text-sm leading-relaxed">
+                <p>
+                  When I designed this concept in my freshman year, I imagined AR glasses as lightweight, personal devices that could preserve privacy through LiDAR-only sensing — a vision that now feels idealistic. As I gained more experience, I realized that depth data alone can’t replace imagery; in today’s AI-driven computer vision, visual input remains the foundation for semantic understanding, with depth merely assisting as spatial context.
+                </p>
+                <p>
+                  The recent success of products like Ray-Ban Meta reminded me that what once failed may not always stay impossible. As technology and society evolve, ideas once ahead of their time can return with new relevance.
+                </p>
+                <p>
+                  In the end, this project taught me to question assumptions. I came to realize that design isn’t only about feasibility, but about the values it upholds — and how those values quietly evolve as technology enters everyday life. Every design, in its own way, imagines a future — and reminds us of our responsibility in shaping it.
+                </p>
+              </div>
             </section>
           </article>
         </div>

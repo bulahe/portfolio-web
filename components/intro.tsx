@@ -107,14 +107,14 @@ export default function Intro() {
               </span>
             </h1>
             <div className="space-y-3 text-neutral-700 dark:text-neutral-200">
-              <p className="text-lg leading-relaxed">
+              <p className="text-base leading-relaxed">
                 A creative technologist exploring the intersection of AR/VR, sound, and
                 human–computer interaction.
               </p>
               <p className="text-base leading-relaxed">
                 I build immersive experiences, design interactive tools, and experiment with how technology can feel expressive and human.
               </p>
-              <p className="text-sm leading-relaxed">
+              <p className="text-base leading-relaxed">
                 I&apos;m currently studying{" "}
                 <span className="font-medium text-inherit">
                   Electrical and Computer Engineering (Microelectronics focus)
