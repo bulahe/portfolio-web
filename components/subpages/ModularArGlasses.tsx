@@ -333,7 +333,7 @@ export default function ModularArGlassesSubpage() {
                         Privacy-First Sensing
                       </p>
                       <ul className="list-disc space-y-1 pl-5">
-                        <li>LiDAR-only spatial mapping replaces traditional cameras to avoid capturing bystanders' images.</li>
+                        <li>LiDAR-only spatial mapping replaces traditional cameras to avoid capturing bystanders&rsquo; images.</li>
                         <li>Maintains depth perception and scene reconstruction accuracy while minimizing privacy concerns.</li>
                       </ul>
                     </div>
