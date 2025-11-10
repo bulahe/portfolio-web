@@ -148,7 +148,7 @@ export default function About() {
               <div className="relative grid h-full w-full gap-4 px-5 pt-7 pb-0 sm:gap-5 sm:px-6 sm:pt-8 sm:pb-0 md:grid-cols-[minmax(0,0.7fr)_minmax(0,0.3fr)] md:items-stretch md:px-12 md:pt-10 md:pb-0">
                 <div className="relative flex min-h-[24rem] sm:min-h-[25rem] md:min-h-[26rem] items-end justify-center">
                   <Image
-                    src="/XR.png"
+                    src="/XR.webp"
                     alt="Brian exploring XR with immersive gestures."
                     fill
                     priority
@@ -163,7 +163,7 @@ export default function About() {
                   />
 
                   <Image
-                    src="/music.png"
+                    src="/music.webp"
                     alt="Brian playing music while embracing mixed reality."
                     fill
                     sizes="(min-width: 1024px) 32vw, (min-width: 768px) 40vw, 80vw"
