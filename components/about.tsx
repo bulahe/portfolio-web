@@ -14,6 +14,7 @@ const BASE_IMAGE_STYLE: React.CSSProperties = {
   transformOrigin: "60% 85%",
 };
 
+
 export default function About() {
   const { ref } = useSectionInView("About", 0.4);
   const [activeSegment, setActiveSegment] = useState<FocusSegment>("xr");
