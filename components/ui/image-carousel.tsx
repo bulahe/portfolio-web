@@ -26,6 +26,7 @@ type ImageCarouselProps = {
   inactiveIndicatorClassName?: string;
   showIndicators?: boolean;
   showControls?: boolean;
+  imageClassName?: string;
 };
 
 const SWIPE_THRESHOLD_PX = 40;
@@ -41,6 +42,7 @@ export default function ImageCarousel({
   inactiveIndicatorClassName = "w-2 bg-neutral-300 dark:bg-neutral-600",
   showIndicators = true,
   showControls = true,
+  imageClassName = "object-cover",
 }: ImageCarouselProps) {
   const [index, setIndex] = useState(
     Math.min(Math.max(initialIndex, 0), Math.max(images.length - 1, 0))
@@ -120,7 +122,7 @@ export default function ImageCarousel({
                 alt={image.alt}
                 fill
                 sizes={sizes}
-                className="object-cover"
+                className={clsx(imageClassName)}
                 priority={image.priority}
               />
             </div>

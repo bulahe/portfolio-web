@@ -3,6 +3,7 @@ import Image from "next/image";
 import clsx from "clsx";
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 import { useSectionInView } from "@/lib/hooks";
 import SectionHeading from "./section-heading";
@@ -21,6 +22,7 @@ export default function About() {
   const [accentSegment, setAccentSegment] = useState<FocusSegment | null>("xr");
   const [mobileFocus, setMobileFocus] = useState<FocusSegment | null>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -68,7 +70,33 @@ export default function About() {
     setActiveSegment(segment);
     setMobileFocus(null);
     setAccentSegment(segment);
-    // Placeholder for future navigation hook
+
+    if (segment === "music") {
+      if (typeof window !== "undefined") {
+        try {
+          const { pathname, hash: currentHash } = window.location;
+          const aboutHash = "about";
+          const aboutTop =
+            document.getElementById(aboutHash)?.getBoundingClientRect().top ?? null;
+          const scrollPosition =
+            aboutTop !== null ? aboutTop + window.scrollY : window.scrollY;
+          const payload = {
+            path: pathname || "/",
+            hash: aboutHash,
+            scroll: scrollPosition,
+          };
+          window.sessionStorage.setItem("portfolio:return-target", JSON.stringify(payload));
+          window.sessionStorage.setItem("portfolio:return-scroll", JSON.stringify(scrollPosition));
+
+          if (!currentHash || currentHash !== `#${aboutHash}`) {
+            window.history.replaceState(null, "", `#${aboutHash}`);
+          }
+        } catch {
+          /* ignore storage failures */
+        }
+      }
+      router.push("/music");
+    }
   };
 
   return (
@@ -278,6 +306,16 @@ function InteractiveBlock({
     "opacity-100"
   );
 
+  const handleClick = () => {
+    if (variant === "music") {
+      handleActivate();
+      onLearnMore?.(variant);
+      return;
+    }
+
+    handleActivate();
+  };
+
   return (
     <div className={wrapperClassName}>
       <button
@@ -288,7 +326,7 @@ function InteractiveBlock({
         onMouseLeave={!isMobile ? onHoverEnd : undefined}
         onBlur={!isMobile ? onHoverEnd : undefined}
         onTouchStart={isMobile ? handleActivate : undefined}
-        onClick={isMobile ? handleActivate : undefined}
+        onClick={handleClick}
         className={blockClassName}
       >
         <div className="absolute inset-0">
