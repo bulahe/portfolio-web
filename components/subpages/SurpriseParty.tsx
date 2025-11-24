@@ -34,7 +34,7 @@ const projectDetails = {
 const coreLoop = [
   "Players vote on the next mini-game, teleport into its arena, compete for points, and return to the lobby to queue the next round.",
   "The fast cadence keeps the group moving through fresh spaces while preserving a shared rhythm of quick decisions and short competitions.",
-] as const;
+];
 
 const miniGames: MiniGame[] = [
   {
