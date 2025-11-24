@@ -6,7 +6,7 @@ import { brandTheme } from "@/lib/theme";
 export default function SectionDivider() {
   return (
     <motion.div
-      className="relative mx-auto my-8 h-[2px] w-full max-w-4xl overflow-hidden rounded-full sm:my-24"
+      className="relative mx-auto my-6 h-[2px] w-full max-w-4xl overflow-hidden rounded-full sm:my-14"
       style={{
         background: `linear-gradient(90deg, transparent 0%, ${brandTheme.secondary}80 35%, ${brandTheme.accent}66 65%, transparent 100%)`,
       }}

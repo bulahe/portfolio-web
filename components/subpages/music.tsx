@@ -1,3 +1,5 @@
+"use client";
+
 import PortfolioBackButton from "@/components/ui/portfolio-back-button";
 import SectionDivider from "@/components/section-divider";
 import ImageCarousel from "@/components/ui/image-carousel";
@@ -46,21 +48,30 @@ const audioTechImages = [
   { src: "/AudioTech/2.JPG", alt: "Wireless and audio rack setup backstage." },
 ] as const;
 
+const mvsImages = [
+  { src: "/MVS1/1.jpg", alt: "MVS* live band performance shot." },
+  { src: "/MVS1/2.jpg", alt: "Keyboard rig and stage lighting for MVS*." },
+  { src: "/MVS1/3.jpg", alt: "MVS* band on stage with idol group." },
+] as const;
+
 const processAxis = [
   {
     title: "Studio Production",
     description:
       "Handled everything from composition to arrangement, recording, editing, mixing, and mastering—covering the full studio workflow except lyric writing.",
+    targetId: "lu-xun-musical",
   },
   {
     title: "Live Audio Engineering",
     description:
       "Worked as both a Front-of-House Sound Engineer and a Backstage Audio Tech, managing live mixing, patching, wireless coordination, and overall system reliability during performances.",
+    targetId: "sound-engineering",
   },
   {
     title: "Live Performance Execution",
     description:
       "Performed across multiple roles—vocal, guitar, and keyboard—alongside using custom tools such as a Bluetooth MIDI looper for real-time looping and live sound control.",
+    targetId: "performance-tool",
   },
 ];
 
@@ -69,20 +80,31 @@ const genreAxis = [
     title: "Acoustic Pop & Folk",
     description:
       "Composed and performed original acoustic pop/folk songs, including commissioned theme pieces for the SJTU Arts Center, released on major Chinese streaming platforms such as QQ Music and NetEase Cloud.",
+    targetId: "music-production",
   },
   {
     title: "Musical",
     description:
       "Contributed to the musical Lu Xun as an audio editor, responsible for recording, vocal cleanup, and post-production.",
+    targetId: "lu-xun-musical",
   },
   {
     title: "Symphonic Heavy Metal",
     description:
       "Keyboardist in the live band supporting a symphonic heavy metal girl group, performing orchestral pads, leads, and cinematic textures.",
+    targetId: "mvs-sofa",
   },
 ];
 
 export default function MusicSubpage() {
+  const scrollToSection = (targetId: string) => {
+    if (typeof window === "undefined") return;
+    const el = document.getElementById(targetId);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   return (
     <main className="px-4 pb-16 pt-12 sm:px-6 lg:px-10 lg:pt-14">
       <div className="mx-auto flex max-w-6xl flex-col gap-8">
@@ -131,7 +153,16 @@ export default function MusicSubpage() {
                 {processAxis.map((item, index) => (
                   <div
                     key={item.title}
-                    className="relative rounded-xl bg-white/70 p-4 shadow-sm ring-1 ring-white/60 backdrop-blur transition hover:-translate-y-0.5 hover:shadow-lg hover:shadow-indigo-200/40 dark:bg-white/5 dark:ring-white/10 dark:hover:shadow-indigo-900/30"
+                    className="group relative cursor-pointer rounded-xl bg-white/70 p-4 shadow-sm ring-1 ring-white/60 backdrop-blur transition hover:-translate-y-0.5 hover:shadow-lg hover:shadow-indigo-200/40 dark:bg-white/5 dark:ring-white/10 dark:hover:shadow-indigo-900/30"
+                    onClick={() => scrollToSection(item.targetId)}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(event) => {
+                      if (event.key === "Enter" || event.key === " ") {
+                        event.preventDefault();
+                        scrollToSection(item.targetId);
+                      }
+                    }}
                   >
                     <div className="mb-2 flex items-center gap-2 text-base font-semibold text-slate-900 dark:text-white">
                       <span className="flex h-7 w-7 items-center justify-center rounded-full bg-indigo-100 text-xs font-semibold text-indigo-900 shadow-sm dark:bg-indigo-900/60 dark:text-indigo-50">
@@ -163,7 +194,16 @@ export default function MusicSubpage() {
                 {genreAxis.map((item, index) => (
                   <div
                     key={item.title}
-                    className="relative rounded-xl bg-white/70 p-4 shadow-sm ring-1 ring-white/60 backdrop-blur transition hover:-translate-y-0.5 hover:shadow-lg hover:shadow-amber-200/45 dark:bg-white/5 dark:ring-white/10 dark:hover:shadow-amber-900/30"
+                    className="group relative cursor-pointer rounded-xl bg-white/70 p-4 shadow-sm ring-1 ring-white/60 backdrop-blur transition hover:-translate-y-0.5 hover:shadow-lg hover:shadow-amber-200/45 dark:bg-white/5 dark:ring-white/10 dark:hover:shadow-amber-900/30"
+                    onClick={() => scrollToSection(item.targetId)}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(event) => {
+                      if (event.key === "Enter" || event.key === " ") {
+                        event.preventDefault();
+                        scrollToSection(item.targetId);
+                      }
+                    }}
                   >
                     <div className="mb-2 flex items-center gap-2 text-base font-semibold text-slate-900 dark:text-white">
                       <span className="flex h-7 w-7 items-center justify-center rounded-full bg-amber-100 text-xs font-semibold text-amber-900 shadow-sm dark:bg-amber-900/60 dark:text-amber-50">
@@ -183,13 +223,21 @@ export default function MusicSubpage() {
 
         <div className="mt-12 flex flex-col items-center gap-1">
           <SectionDivider />
-          <p className="text-lg font-semibold tracking-wide text-slate-600 dark:text-slate-200/80">
+          <p className="text-3xl font-semibold tracking-wide text-slate-600 dark:text-slate-200/80 sm:text-4xl">
             2022
           </p>
           <div className="w-full max-w-3xl overflow-hidden rounded-[1.75rem] border border-white/50 bg-white/80 p-5 shadow-lg backdrop-blur-sm dark:border-white/10 dark:bg-white/5">
+            <h3
+              className="mb-3 text-2xl font-semibold leading-tight text-transparent bg-clip-text sm:text-[1.65rem]"
+              style={{
+                backgroundImage: `linear-gradient(90deg, ${brandTheme.primary}, ${brandTheme.accent})`,
+              }}
+              id="performance-tool"
+            >
+              Building My First Performance Tool
+            </h3>
             <p className="mb-4 text-base font-medium text-slate-800 dark:text-slate-100">
-              Check out how I built a custom looper system—an ESP32-based MIDI foot pedal—to
-              power the live looping performances I've loved since high school.
+              In 2022, I built a fully custom live-looping system—an ESP32-based MIDI foot pedal designed to support my guitar and keyboard performances. It became the backbone of my early shows and marked my first deep dive into performance technology.
             </p>
             <div className="group relative aspect-[3/2] w-full overflow-hidden rounded-2xl border border-white/40 bg-neutral-200 shadow-inner dark:border-white/10 dark:bg-neutral-900">
               <img
@@ -208,7 +256,7 @@ export default function MusicSubpage() {
             </div>
           </div>
           <SectionDivider />
-          <p className="text-lg font-semibold tracking-wide text-slate-600 dark:text-slate-200/80">
+          <p className="text-3xl font-semibold tracking-wide text-slate-600 dark:text-slate-200/80 sm:text-4xl">
             2023
           </p>
           <div className="w-full max-w-5xl overflow-hidden rounded-[1.75rem] border border-white/50 bg-white/75 p-6 text-slate-900 shadow-lg backdrop-blur-sm dark:border-white/10 dark:bg-white/5 dark:text-white sm:p-7">
@@ -218,6 +266,7 @@ export default function MusicSubpage() {
                 style={{
                   backgroundImage: `linear-gradient(90deg, ${brandTheme.primary}, ${brandTheme.accent})`,
                 }}
+                id="lu-xun-musical"
               >
                 Joined the Lu Xun musical production team{" "}
                 <span className="text-base font-medium text-slate-600 dark:text-slate-200/80 text-transparent bg-clip-text">
@@ -289,8 +338,9 @@ export default function MusicSubpage() {
                 style={{
                   backgroundImage: `linear-gradient(90deg, ${brandTheme.primary}, ${brandTheme.accent})`,
                 }}
+                id="music-production"
               >
-                Joined the SJTU Art Center{" "}
+                <span>Joined the SJTU Art Center</span>{" "}
                 <span className="text-base font-medium text-slate-600 dark:text-slate-200/80 text-transparent bg-clip-text">
                   (2023–2025)
                 </span>
@@ -349,7 +399,7 @@ export default function MusicSubpage() {
                   ))}
                 </div>
                 <div className="space-y-3 sm:space-y-4">
-                  <p className="text-base font-semibold text-slate-900 dark:text-white sm:text-lg">
+                  <p className="text-base font-semibold text-slate-900 dark:text-white sm:text-lg" id="sound-engineering">
                     🎧 Sound Engineering
                   </p>
                   <p>
@@ -388,9 +438,48 @@ export default function MusicSubpage() {
             </div>
           </div>
           <SectionDivider />
-          <p className="text-lg font-semibold tracking-wide text-slate-600 dark:text-slate-200/80">
+          <p className="text-3xl font-semibold tracking-wide text-slate-600 dark:text-slate-200/80 sm:text-4xl">
             2024
           </p>
+          <div className="w-full max-w-5xl overflow-hidden rounded-[1.75rem] border border-white/50 bg-white/80 p-6 text-slate-900 shadow-lg backdrop-blur-sm dark:border-white/10 dark:bg-white/5 dark:text-white sm:p-7">
+            <div className="space-y-4 text-sm leading-relaxed text-slate-800 dark:text-slate-100">
+              <h3
+                className="text-2xl font-semibold leading-tight sm:text-[1.65rem] text-transparent bg-clip-text"
+                style={{
+                  backgroundImage: `linear-gradient(90deg, ${brandTheme.primary}, ${brandTheme.accent})`,
+                }}
+                id="mvs-sofa"
+              >
+                Joining MVS* and Founding Sofa Audio
+              </h3>
+              <p>
+                In 2024, my music work expanded from campus events into performance and small-team production. I became one of the original musicians brought together to form MVS*, the on-stage live band performing behind the idol group MVS1—now re-formed as 霜降魔法部 (“Frostfall Ministry”, an unofficial English rendering). While the group’s original songs were produced by another music producer, I served as the band’s keyboardist and on-stage audio engineer, shaping the live sound, building custom patches, and configuring the keyboard rig and monitoring setup for each show.
+              </p>
+              <p>
+                At the same time, I founded Sofa Audio, a student-run sound service that provides equipment rental, FOH mixing, and technical support for campus organizations, operating much like a small audio contractor.
+              </p>
+              <div className="mt-6 grid w-full items-start gap-6 sm:mt-7 sm:grid-cols-2">
+                <iframe
+                  data-testid="embed-iframe"
+                  style={{ borderRadius: "12px" }}
+                  src="https://open.spotify.com/embed/artist/2NSAzRrQQJdaxI9vUwnqSK?utm_source=generator"
+                  width="100%"
+                  height="352"
+                  frameBorder="0"
+                  allowFullScreen
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  loading="lazy"
+                />
+                <ImageCarousel
+                  images={mvsImages}
+                  aspectClassName="aspect-[4/3]"
+                  sizes="(min-width: 1024px) 40vw, (min-width: 640px) 45vw, 90vw"
+                  containerClassName="px-0 py-0"
+                  ariaLabel="MVS* band and stage photos"
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </main>
