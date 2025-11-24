@@ -4,6 +4,7 @@ import ImageCarousel from "@/components/ui/image-carousel";
 import Image from "next/image";
 import Link from "next/link";
 import { generateSlug } from "@/lib/slug";
+import { brandTheme } from "@/lib/theme";
 
 const looperSlug = generateSlug("ESP32 MIDI Foot Pedal for Live Looping");
 
@@ -11,12 +12,14 @@ const artCenterSongs = [
   {
     title: "Theme Song — SJTU Original Art Gala 2023",
     image: "/mySongs/WechatIMG1290.jpg",
+    label: "↓ Theme Song — Original Art Gala",
     href:
       "https://soundcloud.com/ib474qggs5ud/theme-song-for-sjtu-original-art-2023?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing&si=535b4f1ffae14d8891127dc13272134b",
   },
   {
     title: "Theme Song — SJTU Top 10 Singers 2023",
     image: "/mySongs/WechatIMG1453.jpg",
+    label: "↓ Theme Song — Top 10 Singers",
     href:
       "https://soundcloud.com/ib474qggs5ud/theme-song-for-sjtu-top-10-singers-2023?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing&si=c9b5fc0d571d4f17a0daf86d4de76a57",
   },
@@ -210,24 +213,51 @@ export default function MusicSubpage() {
           </p>
           <div className="w-full max-w-5xl overflow-hidden rounded-[1.75rem] border border-white/50 bg-white/75 p-6 text-slate-900 shadow-lg backdrop-blur-sm dark:border-white/10 dark:bg-white/5 dark:text-white sm:p-7">
             <div className="space-y-4">
-              <h3 className="text-2xl font-semibold leading-tight sm:text-[1.65rem]">
-                Joined the Lu Xun musical production team <span className="text-base font-medium text-slate-600 dark:text-slate-200/80">(2023–2024)</span>
+              <h3
+                className="text-2xl font-semibold leading-tight sm:text-[1.65rem] text-transparent bg-clip-text"
+                style={{
+                  backgroundImage: `linear-gradient(90deg, ${brandTheme.primary}, ${brandTheme.accent})`,
+                }}
+              >
+                Joined the Lu Xun musical production team{" "}
+                <span className="text-base font-medium text-slate-600 dark:text-slate-200/80 text-transparent bg-clip-text">
+                  (2023–2024)
+                </span>
               </h3>
-              <div className="space-y-3 text-left text-sm leading-relaxed text-slate-800 dark:text-slate-100">
-                <p className="font-semibold text-slate-900 dark:text-white">
-                  About Lu Xun — An Original SJTU Student Musical
-                </p>
-                <p>
-                  Lu Xun is an original student-written musical produced at Shanghai Jiao Tong University, featuring a fully student-created script, score, and stage production. The show attracted strong attention on campus for its contemporary reinterpretation of Lu Xun’s life and its unusually large, professionally organized student team. After its successful premiere, the production moved into a studio-recording phase to create an official soundtrack.
-                </p>
-                <div className="space-y-1">
-                  <p className="font-semibold text-slate-900 dark:text-white">My Role</p>
+              <div className="space-y-5 text-left text-sm leading-relaxed text-slate-800 dark:text-slate-100 sm:space-y-6">
+                <div className="space-y-3">
+                  <p className="text-base font-semibold text-slate-900 dark:text-white sm:text-lg">
+                    🎭 About Lu Xun — An Original SJTU Student Musical
+                  </p>
                   <p>
-                    After the musical’s successful premiere, I joined the production team during the transition from live performance to studio recording. This marked the beginning of my work in studio production and live audio engineering. I assisted in recording sessions, organized multi-track materials, prepared stems for mixing, and helped translate the musical’s on-stage acoustics into a polished studio sound.
+                    Lu Xun is a student-written musical with a fully student-created script, score, and stage production at Shanghai Jiao Tong University.
+                  </p>
+                  <p>
+                    It drew campus-wide attention for its contemporary reinterpretation of Lu Xun’s life and its unusually large, professionally organized team. After the premiere, the production moved into a studio-recording phase to create an official soundtrack.
                   </p>
                 </div>
+                <div className="space-y-3 sm:space-y-4">
+                  <p className="text-base font-semibold text-slate-900 dark:text-white sm:text-lg">
+                    🎼 My Role &amp; Impact
+                  </p>
+                  <p>
+                    I joined during the shift from live performance to studio recording, starting my journey in studio production and live audio engineering.
+                  </p>
+                  <div className="space-y-1">
+                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-300">
+                      Key contributions
+                    </p>
+                    <ul className="list-disc space-y-1 pl-5">
+                      <li>Cleaned and edited dialogue recordings: removing breaths, clicks, pops, and background noise</li>
+                      <li>Selected and assembled best takes based on director notes and performance consistency</li>
+                      <li>Adjusted timing, pacing, and crossfades to achieve natural and smooth line delivery</li>
+                      <li>Matched tonal balance and loudness across multiple sessions and actors</li>
+                      <li>Organized all cleaned dialogue into structured folders for mixing and final post-production</li>
+                    </ul>
+                  </div>
+                </div>
               </div>
-              <div className="mt-4 grid w-full items-start gap-6 sm:grid-cols-2">
+              <div className="mt-6 grid w-full items-start gap-6 sm:mt-7 sm:grid-cols-2">
                 <ImageCarousel
                   images={luxunImages}
                   aspectClassName="aspect-[4/3]"
@@ -250,63 +280,94 @@ export default function MusicSubpage() {
                   loading="lazy"
                 />
               </div>
-              <h3 className="text-2xl font-semibold leading-tight sm:text-[1.65rem]">
-                Joined the SJTU Art Center <span className="text-base font-medium text-slate-600 dark:text-slate-200/80">(2023–2025)</span>
+              <div
+                className="border-t"
+                style={{ borderColor: brandTheme.secondary }}
+              />
+              <h3
+                className="text-2xl font-semibold leading-tight sm:text-[1.65rem] text-transparent bg-clip-text"
+                style={{
+                  backgroundImage: `linear-gradient(90deg, ${brandTheme.primary}, ${brandTheme.accent})`,
+                }}
+              >
+                Joined the SJTU Art Center{" "}
+                <span className="text-base font-medium text-slate-600 dark:text-slate-200/80 text-transparent bg-clip-text">
+                  (2023–2025)
+                </span>
               </h3>
-              <div className="space-y-3 text-left text-sm leading-relaxed text-slate-800 dark:text-slate-100">
-                <p className="font-semibold text-slate-900 dark:text-white">
-                  About the SJTU Art Center
+              <div className="space-y-5 text-left text-sm leading-relaxed text-slate-800 dark:text-slate-100 sm:space-y-6">
+                <p className="text-base font-semibold text-slate-900 dark:text-white sm:text-lg">
+                  🏛️ About the SJTU Art Center
                 </p>
-                <p>
-                  The SJTU Art Center is the university’s central student organization responsible for producing large-scale campus events, including the Freshmen Gala, Top 10 Singers competition, Graduation Gala, Oasis Music Festival, Military Training Gala, and the Original Art Gala. It brings together students across directing, music, stagecraft, lighting, and production to create university-level performances.
-                </p>
-                <p className="font-semibold text-slate-900 dark:text-white">
-                  Role — Music Production
-                </p>
-                <p>
-                  Many of the core members of the Lu Xun musical team were long-time leaders of the SJTU Art Center. Because I had already developed full-chain music production skills during the Lu Xun project, I entered the Art Center’s music division (“Sofa Department”) as one of its most versatile members from day one. I quickly became a core contributor, taking on responsibilities across composition, arrangement, production, and technical execution.
-                </p>
-                <p>
-                  In 2023, I composed and produced two official theme songs for university galas. Aside from lyric writing and the final vocal performance, every part of the music—composition, arranging, demo recording, production, and mixing—was done by me.
-                </p>
-                <div className="grid gap-4 sm:grid-cols-2">
+                <div className="space-y-3">
+                  <p>
+                    The Art Center produces SJTU’s largest campus events—Freshmen Gala, Top 10 Singers, Graduation Gala, Oasis Music Festival, Military Training Gala, and the Original Art Gala.
+                  </p>
+                  <p>
+                    It unites directing, music, stagecraft, lighting, and production teams to run university-scale performances with professional standards.
+                  </p>
+                </div>
+                <div className="space-y-3 sm:space-y-4">
+                  <p className="text-base font-semibold text-slate-900 dark:text-white sm:text-lg">
+                    🎼 Music Production
+                  </p>
+                  <p>
+                    Joining after the Lu Xun musical, I arrived as a ready-to-ship producer—able to take tracks from composition to arrangement, demo production, and mixing.
+                  </p>
+                  <p>
+                    In 2023, I composed and produced two official gala theme songs. Aside from lyric writing and the final vocal performance, every part of the music was done by me.
+                  </p>
+                </div>
+                <div className="mt-5 grid gap-5 sm:mt-6 sm:grid-cols-2">
                   {artCenterSongs.map((song) => (
-                    <Link
-                      key={song.title}
-                      href={song.href}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="group relative overflow-hidden rounded-2xl border border-white/30 bg-white/70 shadow-sm backdrop-blur-sm transition hover:-translate-y-1 hover:shadow-lg dark:border-white/10 dark:bg-white/5"
-                    >
-                      <div className="relative h-48 w-full">
+                    <div key={song.title} className="space-y-2 sm:space-y-3">
+                      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-300">
+                        {song.label}
+                      </p>
+                      <Link
+                        href={song.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="group relative block aspect-[16/10] w-full overflow-hidden rounded-[1.5rem] border border-white/40 bg-white/70 shadow-[0_18px_45px_-25px_rgba(15,23,42,0.25)] backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:shadow-[0_26px_60px_-25px_rgba(15,23,42,0.45)] dark:border-white/10 dark:bg-white/5 dark:shadow-[0_18px_45px_-25px_rgba(0,0,0,0.6)]"
+                      >
                         <Image
                           src={song.image}
                           alt={song.title}
                           fill
                           sizes="(min-width: 1024px) 30vw, (min-width: 640px) 40vw, 90vw"
-                          className="object-cover transition duration-300 group-hover:scale-105"
+                          className="object-cover transition duration-500 group-hover:scale-[1.04]"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/15 to-transparent opacity-80 transition group-hover:opacity-100" />
-                        <div className="absolute inset-x-0 bottom-0 p-4">
-                          <p className="text-base font-semibold text-white drop-shadow">{song.title}</p>
-                          <span className="mt-2 inline-flex items-center gap-2 rounded-full bg-white/85 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-900 shadow-sm transition group-hover:-translate-y-0.5 group-hover:bg-white">
+                        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/65 via-black/25 to-transparent opacity-90 transition duration-300 group-hover:from-black/55 group-hover:via-black/20" />
+                        <div className="pointer-events-none absolute inset-x-0 bottom-0 flex flex-col gap-2 px-5 pb-5">
+                          <p className="text-lg font-semibold text-white drop-shadow">{song.title}</p>
+                          <span className="inline-flex w-fit items-center gap-2 rounded-full border border-white/50 bg-white/20 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white backdrop-blur-md transition duration-300 group-hover:-translate-y-0.5 group-hover:bg-white/30">
                             Listen on SoundCloud
                           </span>
                         </div>
-                      </div>
-                    </Link>
+                      </Link>
+                    </div>
                   ))}
                 </div>
-                <p className="font-semibold text-slate-900 dark:text-white">
-                  Role — Sound Engineering
-                </p>
-                <p>
-                  In addition to music production, I also worked extensively on the technical side of live performances. As the Art Center is responsible for producing major university events, reliable and high-quality live audio is essential. I served both as a Front-of-House (FOH) Sound Engineer and a Backstage Audio Technician, handling live mixing, system setup, and cue coordination for large-scale campus galas.
-                </p>
-                <p>
-                  I am familiar with several professional digital mixing consoles, including Yamaha, DiGiCo, and Midas, and experienced in operating audio networks and routing based on Dante, MADI, and other digital protocols. These projects gave me practical, end-to-end experience across live sound workflows—from stage inputs and microphone management to FOH mixing and backstage communication.
-                </p>
-                <div className="grid gap-4 sm:grid-cols-2">
+                <div className="space-y-3 sm:space-y-4">
+                  <p className="text-base font-semibold text-slate-900 dark:text-white sm:text-lg">
+                    🎧 Sound Engineering
+                  </p>
+                  <p>
+                    Covered both Front-of-House and backstage roles to keep large-scale galas sounding clean and on time.
+                  </p>
+                  <div className="space-y-1">
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-300">
+                    Key experiences
+                  </p>
+                  <ul className="list-disc space-y-1 pl-5">
+                      <li>FOH live mixing for multi-act campus shows and Art Center events</li>
+                      <li>Backstage audio tech for cue coordination and system reliability</li>
+                      <li>Consoles operated: Yamaha CL/QL and Rivage PM series, DiGiCo SD series, Midas M32</li>
+                      <li>Routing experience: Dante and MADI networks</li>
+                  </ul>
+                </div>
+              </div>
+              <div className="mt-5 grid gap-5 sm:mt-6 sm:grid-cols-2">
                   <ImageCarousel
                     images={soundEngineerImages}
                     aspectClassName="aspect-[4/3]"
