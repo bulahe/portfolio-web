@@ -1,4 +1,5 @@
 "use client";
+/* eslint-disable react/no-unescaped-entities */
 
 import PortfolioBackButton from "@/components/ui/portfolio-back-button";
 import SectionDivider from "@/components/section-divider";
@@ -240,10 +241,13 @@ export default function MusicSubpage() {
               In 2022, I built a fully custom live-looping system—an ESP32-based MIDI foot pedal designed to support my guitar and keyboard performances. It became the backbone of my early shows and marked my first deep dive into performance technology.
             </p>
             <div className="group relative aspect-[3/2] w-full overflow-hidden rounded-2xl border border-white/40 bg-neutral-200 shadow-inner dark:border-white/10 dark:bg-neutral-900">
-              <img
+              <Image
                 src="/Looper/LooperHero.png"
                 alt="ESP32 MIDI foot pedal looper system montage."
-                className="h-full w-full object-cover transition duration-300 group-hover:scale-[1.02]"
+                fill
+                sizes="(min-width: 1024px) 60vw, (min-width: 640px) 70vw, 95vw"
+                className="object-cover transition duration-300 group-hover:scale-[1.02]"
+                priority
               />
               <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/35 opacity-0 transition duration-200 group-hover:pointer-events-auto group-hover:opacity-100">
                 <Link
