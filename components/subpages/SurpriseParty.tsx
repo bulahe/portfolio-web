@@ -67,7 +67,7 @@ const miniGames: MiniGame[] = [
       "The floor keeps vanishing; only the ice beneath you buys a few more seconds. Hop tile to tile, grab the occasional power-up slab, and be the last player standing on the freezing void. I designed the mechanics and scene layout for this mini-game.",
     videoSrc: "/partyGame/Ice%20Platform%20Drop.mov",
   },
-] as const;
+];
 
 const renderText = (value: string | null) =>
   value ? (
