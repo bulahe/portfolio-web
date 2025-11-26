@@ -58,7 +58,7 @@ export const projectsData: ProjectCard[] = [
   {
     title: "ESP32 MIDI Foot Pedal for Live Looping",
     subtitle: "A custom Python-powered MIDI controller designed to interface with an iPad looper app, enabling hands-free multi-track recording and playback.",
-    tags: ["python", "CAD", "Creative Hardware ", "Music Technology"],
+    tags: ["python", "CAD","Arduino", "Creative Hardware ", "Music Technology"],
     image: "/Looper/LooperHero.png",
   },
 ];
