@@ -311,6 +311,11 @@ export default function SyntheticImuSubpage() {
                   </p>
                 </div>
 
+                <div
+                  className="border-t"
+                  style={{ borderColor: brandTheme.secondary }}
+                />
+
                 <div className="space-y-3">
                   <h3 className="text-base font-semibold text-neutral-800 dark:text-neutral-100">
                     ❗ Real datasets also disagree
@@ -329,6 +334,11 @@ export default function SyntheticImuSubpage() {
                     Even for the same action captured on the same body location, different IMU datasets scatter widely in embedding space rather than clustering together. This reveals strong cross-dataset domain shifts and inconsistent data distributions.
                   </p>
                 </div>
+
+                <div
+                  className="border-t"
+                  style={{ borderColor: brandTheme.secondary }}
+                />
 
                 <div className="space-y-3">
                   <h3 className="text-base font-semibold text-neutral-800 dark:text-neutral-100">
@@ -351,70 +361,96 @@ export default function SyntheticImuSubpage() {
               </div>
             </section>
 
-            <section className={`${baseSectionClass} gap-4 ${sectionPaddingClass}`}>
-              <h2 className={sectionHeadingClass}>
-                🛠 System at a Glance
-              </h2>
-                <div className="space-y-4 text-sm leading-relaxed sm:text-base">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500 dark:text-neutral-400">
-                    What IMUGPT provides vs. what I improved
-                  </p>
-                <div className="space-y-6">
-                  <div className="space-y-3">
-                    <p className="font-semibold text-neutral-900 dark:text-neutral-50">
-                      1) Text → Motion (baseline from IMUGPT)
+            <div className="w-full self-center max-w-4xl sm:max-w-5xl lg:max-w-6xl">
+              <section className={`${baseSectionClass} gap-4 ${sectionPaddingClass}`}>
+                <h2 className={sectionHeadingClass}>
+                  🛠 System at a Glance
+                </h2>
+                  <div className="space-y-4 text-sm leading-relaxed sm:text-base">
+                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500 dark:text-neutral-400">
+                      What IMUGPT provides vs. what I improved
                     </p>
-                    <div className="grid gap-3 sm:grid-cols-[1.05fr,1fr] sm:items-center">
+                  <div className="space-y-6">
+                    <div className="space-y-3">
+                      <p className="font-semibold text-neutral-900 dark:text-neutral-50">
+                        1) Text → Motion (baseline from IMUGPT)
+                      </p>
+                      <div className="space-y-3">
+                        <div className="relative overflow-hidden rounded-2xl border border-neutral-200 bg-white/40 shadow-inner dark:border-neutral-800 dark:bg-neutral-900/35">
+                          <video
+                            src="/undergraduate%20thesis/1%203.mov"
+                            muted
+                            loop
+                            autoPlay
+                            playsInline
+                            preload="metadata"
+                            className="w-full rounded-2xl object-contain"
+                          />
+                        </div>
+                        <p>
+                          Generate 3D human motion from text prompts using a T2M-GPT model trained on HumanML3D. My work: reproduced this module and fixed prompt-level ambiguities (e.g., adding a [flat on ground] token for “lying”).
+                        </p>
+                      </div>
+                    </div>
+                    <div
+                      className="border-t"
+                      style={{ borderColor: brandTheme.secondary }}
+                    />
+                    <div className="space-y-3">
+                      <p className="font-semibold text-neutral-900 dark:text-neutral-50">
+                        2) Motion → IMU (baseline from IMUGPT + light extension)
+                      </p>
+                      <div className="space-y-3">
+                        <div className="relative overflow-hidden rounded-2xl border border-neutral-200 bg-white/40 shadow-inner dark:border-neutral-800 dark:bg-neutral-900/35">
+                          <video
+                            src="/undergraduate%20thesis/2%203.mov"
+                            muted
+                            loop
+                            autoPlay
+                            playsInline
+                            preload="metadata"
+                            className="w-full rounded-2xl object-contain"
+                          />
+                        </div>
+                        <p>
+                          Convert generated motion into 6-axis IMU signals via a physics-based simulator (IMUSim). My work: enforced consistent sensor placement across datasets and corrected the IMUGPT axis-mapping mistake; added light calibration to better match real signals (not the main contribution).
+                        </p>
+                      </div>
+                    </div>
+                    <div
+                      className="border-t"
+                      style={{ borderColor: brandTheme.secondary }}
+                    />
+                    <div className="space-y-3">
+                      <p className="font-semibold text-neutral-900 dark:text-neutral-50">
+                        3) Evaluation & Filtering (my main contribution)
+                      </p>
+                      <figure className="relative w-full overflow-hidden rounded-2xl border border-neutral-200 bg-white/40 shadow-inner dark:border-neutral-800 dark:bg-neutral-900/35">
+                        <Image
+                          src="/undergraduate%20thesis/eva1.jpg"
+                          alt="Evaluation pipeline visualization showing embedding-based IMU encoder scoring."
+                          width={1400}
+                          height={880}
+                          className="h-auto w-full object-contain"
+                        />
+                      </figure>
                       <p>
-                        Generate 3D human motion from text prompts using a T2M-GPT model trained on HumanML3D. My work: reproduced this module and fixed prompt-level ambiguities (e.g., adding a [flat on ground] token for “lying”).
+                        Use an embedding-based IMU encoder (ImageBind) to score semantic consistency between text, motion, and IMU signals. Only high-quality, physically plausible synthetic samples are kept, creating the feedback-and-selection loop missing in prior work.
                       </p>
-                      <div className="relative overflow-hidden rounded-2xl border border-neutral-200 bg-white/40 shadow-inner dark:border-neutral-800 dark:bg-neutral-900/35">
-                        <video
-                          src="/undergraduate%20thesis/1%202.mov"
-                          muted
-                          loop
-                          autoPlay
-                          playsInline
-                          preload="metadata"
-                          className="w-full rounded-2xl object-contain"
+                      <figure className="relative w-full overflow-hidden rounded-2xl border border-neutral-200 bg-white/40 shadow-inner dark:border-neutral-800 dark:bg-neutral-900/35">
+                        <Image
+                          src="/undergraduate%20thesis/eva2.jpg"
+                          alt="Sample selection results illustrating high-quality synthetic IMU retention."
+                          width={1400}
+                          height={880}
+                          className="h-auto w-full object-contain"
                         />
-                      </div>
+                      </figure>
                     </div>
-                  </div>
-                  <div className="border-t border-neutral-200/70 dark:border-neutral-800" />
-                  <div className="space-y-3">
-                    <p className="font-semibold text-neutral-900 dark:text-neutral-50">
-                      2) Motion → IMU (baseline from IMUGPT + light extension)
-                    </p>
-                    <div className="grid gap-3 sm:grid-cols-[1fr,1.05fr] sm:items-center">
-                      <div className="relative order-2 overflow-hidden rounded-2xl border border-neutral-200 bg-white/40 shadow-inner sm:order-1 dark:border-neutral-800 dark:bg-neutral-900/35">
-                        <video
-                          src="/undergraduate%20thesis/2%202.mov"
-                          muted
-                          loop
-                          autoPlay
-                          playsInline
-                          preload="metadata"
-                          className="w-full rounded-2xl object-contain"
-                        />
-                      </div>
-                      <p className="order-1 sm:order-2">
-                        Convert generated motion into 6-axis IMU signals via a physics-based simulator (IMUSim). My work: enforced consistent sensor placement across datasets and corrected the IMUGPT axis-mapping mistake; added light calibration to better match real signals (not the main contribution).
-                      </p>
-                    </div>
-                  </div>
-                  <div className="border-t border-neutral-200/70 dark:border-neutral-800" />
-                  <div className="space-y-2">
-                    <p className="font-semibold text-neutral-900 dark:text-neutral-50">
-                      3) Evaluation & Filtering (my main contribution)
-                    </p>
-                    <p>
-                      Use an embedding-based IMU encoder (ImageBind) to score semantic consistency between text, motion, and IMU signals. Only high-quality, physically plausible synthetic samples are kept, creating the feedback-and-selection loop missing in prior work.
-                    </p>
                   </div>
                 </div>
-              </div>
-            </section>
+              </section>
+            </div>
 
             <section className={`${baseSectionClass} gap-4 ${sectionPaddingClass}`}>
               <h2 className={sectionHeadingClass}>
@@ -423,39 +459,89 @@ export default function SyntheticImuSubpage() {
               <div className="space-y-4 text-sm leading-relaxed sm:text-base">
                 <div className="space-y-2">
                   <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-50">Setup</h3>
-                  <p>
-                    Evaluated on USC-HAD and related IMU benchmarks using a DeepConvLSTM classifier, F1-macro as the main metric, and comparisons across R2R (real-only), V2R (virtual-only), and Mix2R (real + curated virtual) training regimes.
-                  </p>
+                  <div className="space-y-3">
+                    <p>Experiments benchmark our method against IMUGPT, the prior text-to-IMU baseline.</p>
+                    <p>Evaluations are conducted on USC-HAD, PAMAP2, and RealWorld using a standard DeepConvLSTM classifier.</p>
+                    <p>We compare three training regimes:</p>
+                    <ul className="space-y-1 pl-4">
+                      <li className="flex gap-2">
+                        <span className="select-none text-lg leading-none text-neutral-500">•</span>
+                        <span>R2R — real-only</span>
+                      </li>
+                      <li className="flex gap-2">
+                        <span className="select-none text-lg leading-none text-neutral-500">•</span>
+                        <span>V2R — virtual-only (IMUGPT vs. ours)</span>
+                      </li>
+                      <li className="flex gap-2">
+                        <span className="select-none text-lg leading-none text-neutral-500">•</span>
+                        <span>Mix2R — real + curated synthetic (IMUGPT vs. ours)</span>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-                <div className="space-y-2">
-                  <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-50">Key Findings</h3>
-                  <ul className="space-y-2 rounded-2xl bg-white/40 p-4 shadow-inner dark:bg-neutral-900/35">
+                <div
+                  className="border-t"
+                  style={{ borderColor: brandTheme.secondary }}
+                />
+                <div className="space-y-4">
+                  <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-50">
+                    📈 Experiment A — Benchmark Against IMUGPT (Across Datasets)
+                  </h3>
+                  <figure className="relative w-full overflow-hidden rounded-2xl border border-neutral-200 bg-white/40 shadow-inner dark:border-neutral-800 dark:bg-neutral-900/35">
+                    <Image
+                      src="/undergraduate%20thesis/F1%20Macronjpg.jpg"
+                      alt="F1-macro comparison chart across R2R, V2R, and Mix2R regimes."
+                      width={1400}
+                      height={880}
+                      className="h-auto w-full object-contain"
+                    />
+                  </figure>
+                  <ul className="space-y-2">
                     <li className="flex gap-2">
                       <span className="select-none text-lg leading-none text-neutral-500">•</span>
-                      <span>In low-sample settings, Mix2R significantly lifts F1-macro compared with real-only baselines.</span>
+                      <span>Our method outperforms the IMUGPT baseline on USC-HAD and PAMAP2 in both V2R and Mix2R settings.</span>
                     </li>
                     <li className="flex gap-2">
                       <span className="select-none text-lg leading-none text-neutral-500">•</span>
-                      <span>Virtual-only (V2R) yields modest gains but is less stable than the curated mix strategy.</span>
+                      <span>The biggest gains appear in Mix2R, where curated synthetic IMU improves F1-macro by +3–4%, especially when real data is limited.</span>
                     </li>
                     <li className="flex gap-2">
                       <span className="select-none text-lg leading-none text-neutral-500">•</span>
-                      <span>Calibration sharpens performance for stair-related and lying activities where raw virtual signals were most off.</span>
-                    </li>
-                    <li className="flex gap-2">
-                      <span className="select-none text-lg leading-none text-neutral-500">•</span>
-                      <span>Distribution alignment reduces intra-class variance, making cross-dataset validation less brittle.</span>
+                      <span>Even in challenging cases (e.g., RealWorld), our approach remains more stable than raw IMUGPT-generated data.</span>
                     </li>
                   </ul>
                 </div>
-                <div className="space-y-2">
-                  <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-50">Interpretation</h3>
-                  <p>
-                    Synthetic IMU serves as targeted coverage for blind spots in real wearables, improving robustness to placement and label inconsistencies without inflating privacy or data collection costs.
-                  </p>
-                  <p>
-                    Challenges remain for complex multi-channel datasets, but calibrated generation plus semantic filtering meaningfully reduces domain mismatch and accelerates model transfer across sensor setups.
-                  </p>
+                <div
+                  className="border-t"
+                  style={{ borderColor: brandTheme.secondary }}
+                />
+                <div className="space-y-4">
+                  <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-50">
+                    📉 Experiment B — Real Data Size vs. Performance (Mix2R vs. R2R)
+                  </h3>
+                  <figure className="relative w-full overflow-hidden rounded-2xl border border-neutral-200 bg-white/40 shadow-inner dark:border-neutral-800 dark:bg-neutral-900/35">
+                    <Image
+                      src="/undergraduate%20thesis/ratiojpg.jpg"
+                      alt="Performance vs real-data ratio comparing Mix2R and R2R."
+                      width={1400}
+                      height={880}
+                      className="h-auto w-full object-contain"
+                    />
+                  </figure>
+                  <ul className="space-y-2">
+                    <li className="flex gap-2">
+                      <span className="select-none text-lg leading-none text-neutral-500">•</span>
+                      <span>With the same amount of synthetic data, Mix2R significantly boosts performance when real data is scarce (6–30 minutes).</span>
+                    </li>
+                    <li className="flex gap-2">
+                      <span className="select-none text-lg leading-none text-neutral-500">•</span>
+                      <span>As more real data becomes available, the gap narrows but Mix2R never hurts performance, showing consistently stable improvements.</span>
+                    </li>
+                    <li className="flex gap-2">
+                      <span className="select-none text-lg leading-none text-neutral-500">•</span>
+                      <span>This suggests that curated synthetic IMU effectively fills coverage gaps and accelerates learning in low-sample regimes.</span>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </section>
@@ -466,80 +552,59 @@ export default function SyntheticImuSubpage() {
               </h2>
               <div className="space-y-4 text-sm leading-relaxed sm:text-base">
                 <div className="space-y-2">
-                  <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-50">What I Contributed</h3>
-                  <ul className="space-y-2 rounded-2xl bg-white/40 p-4 shadow-inner dark:bg-neutral-900/35">
+                  <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-50">Contributions</h3>
+                  <ul className="space-y-2">
                     <li className="flex gap-2">
                       <span className="select-none text-lg leading-none text-neutral-500">•</span>
-                      <span>Designed the end-to-end text-to-synthetic-IMU pipeline.</span>
+                      <span>Built the end-to-end text-to-IMU pipeline.</span>
                     </li>
                     <li className="flex gap-2">
                       <span className="select-none text-lg leading-none text-neutral-500">•</span>
-                      <span>Diagnosed and fixed axis misalignment in existing simulation workflows.</span>
+                      <span>Diagnosed and fixed the hidden axis-mapping issue in IMUGPT.</span>
                     </li>
                     <li className="flex gap-2">
                       <span className="select-none text-lg leading-none text-neutral-500">•</span>
-                      <span>Combined semantic filtering with statistical calibration for distribution alignment.</span>
-                    </li>
-                    <li className="flex gap-2">
-                      <span className="select-none text-lg leading-none text-neutral-500">•</span>
-                      <span>Ran cross-dataset experiments to quantify virtual-real gaps and improvements.</span>
-                    </li>
-                    <li className="flex gap-2">
-                      <span className="select-none text-lg leading-none text-neutral-500">•</span>
-                      <span>Packaged the pipeline into a reusable workflow for downstream HAR tasks.</span>
+                      <span>Added a semantic evaluator to filter unreliable synthetic signals and stabilize Mix2R.</span>
                     </li>
                   </ul>
                 </div>
+                <div
+                  className="border-t"
+                  style={{ borderColor: brandTheme.secondary }}
+                />
                 <div className="space-y-2">
                   <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-50">Limitations</h3>
-                  <ul className="space-y-2 rounded-2xl bg-white/40 p-4 shadow-inner dark:bg-neutral-900/35">
+                  <ul className="space-y-2">
                     <li className="flex gap-2">
                       <span className="select-none text-lg leading-none text-neutral-500">•</span>
-                      <span>Calibration still leans on dataset-specific heuristics and may not generalize to all sensors.</span>
+                      <span>Quality still bounded by the underlying motion generator and simulator fidelity.</span>
                     </li>
                     <li className="flex gap-2">
                       <span className="select-none text-lg leading-none text-neutral-500">•</span>
-                      <span>Multi-sensor, multi-location scenarios remain challenging for stable synthesis.</span>
-                    </li>
-                    <li className="flex gap-2">
-                      <span className="select-none text-lg leading-none text-neutral-500">•</span>
-                      <span>Generation quality is bounded by the underlying motion model and simulator fidelity.</span>
+                      <span>Multi-sensor, multi-location setups remain challenging for reliable synthesis.</span>
                     </li>
                   </ul>
                 </div>
-              </div>
-            </section>
-
-            <section className={`${baseSectionClass} gap-4 ${sectionPaddingClass}`}>
-              <h2 className={sectionHeadingClass}>
-                Future Directions & Personal Reflection
-              </h2>
-              <div className="space-y-4 text-sm leading-relaxed sm:text-base">
+                <div
+                  className="border-t"
+                  style={{ borderColor: brandTheme.secondary }}
+                />
                 <div className="space-y-2">
                   <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-50">Future Directions</h3>
-                  <ul className="space-y-2 rounded-2xl bg-white/40 p-4 shadow-inner dark:bg-neutral-900/35">
+                  <ul className="space-y-2">
                     <li className="flex gap-2">
                       <span className="select-none text-lg leading-none text-neutral-500">•</span>
-                      <span>Automate prompt generation and refinement to cover edge-case activities systematically.</span>
+                      <span>Expand the evaluator for more nuanced semantic checks.</span>
                     </li>
                     <li className="flex gap-2">
                       <span className="select-none text-lg leading-none text-neutral-500">•</span>
-                      <span>Explore self-supervised alignment objectives that adapt calibration without labels.</span>
+                      <span>Automate prompt refinement for edge-case activities.</span>
                     </li>
                     <li className="flex gap-2">
                       <span className="select-none text-lg leading-none text-neutral-500">•</span>
-                      <span>Advance multi-sensor modeling to capture inter-sensor correlations and timing offsets.</span>
+                      <span>Explore self-supervised alignment to reduce domain gaps without labels.</span>
                     </li>
                   </ul>
-                </div>
-                <div className="space-y-2">
-                  <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-50">Personal Reflection</h3>
-                  <p>
-                    This project stretched my understanding of multimodal representation learning, generative modeling, and sensor simulation, forcing me to reason from language semantics down to signal-level fidelity.
-                  </p>
-                  <p>
-                    It also clarified how these skills map to future work in AR, wearable sensing, and human understanding, where trustworthy synthetic data can accelerate iteration without sacrificing privacy.
-                  </p>
                 </div>
               </div>
             </section>
