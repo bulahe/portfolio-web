@@ -6,6 +6,7 @@ import SectionDivider from "@/components/section-divider";
 import ImageCarousel from "@/components/ui/image-carousel";
 import Image from "next/image";
 import Link from "next/link";
+import SubDivider from "@/components/sub-divider";
 import { generateSlug } from "@/lib/slug";
 import { brandTheme } from "@/lib/theme";
 
@@ -333,10 +334,7 @@ export default function MusicSubpage() {
                   loading="lazy"
                 />
               </div>
-              <div
-                className="border-t"
-                style={{ borderColor: brandTheme.secondary }}
-              />
+              <SubDivider />
               <h3
                 className="text-2xl font-semibold leading-tight sm:text-[1.65rem] text-transparent bg-clip-text"
                 style={{

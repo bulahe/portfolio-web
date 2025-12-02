@@ -4,6 +4,7 @@ import { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import PortfolioBackButton from "@/components/ui/portfolio-back-button";
+import SubDivider from "@/components/sub-divider";
 import { brandTheme } from "@/lib/theme";
 
 type ProjectDetails = {
@@ -280,10 +281,7 @@ export default function SurprisePartySubpage() {
                       </div>
                     ) : null}
                     {index < miniGames.length - 1 ? (
-                      <div
-                        className="mt-4 border-t pt-4 sm:mt-5 sm:pt-5"
-                        style={{ borderColor: brandTheme.secondary }}
-                      />
+                      <SubDivider className="my-5 sm:my-6" />
                     ) : null}
                   </div>
                 ))}

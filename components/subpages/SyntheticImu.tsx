@@ -3,6 +3,7 @@
 import { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import PortfolioBackButton from "@/components/ui/portfolio-back-button";
+import SubDivider from "@/components/sub-divider";
 import { brandTheme } from "@/lib/theme";
 
 type ProjectDetails = {
@@ -163,10 +164,7 @@ export default function SyntheticImuSubpage() {
                 <p>
                   An IMU (Inertial Measurement Unit) captures body motion as six-channel time-series signals — 3-axis acceleration and 3-axis angular velocity. This modality is privacy-preserving, low-power, and ideal for always-on sensing without cameras. It is the same sensor that enables smartwatches to recognize activities such as walking, running, or cycling.
                 </p>
-                <div
-                  className="mt-6 border-t pb-1 pt-3 sm:mt-8 sm:pb-2 sm:pt-4"
-                  style={{ borderColor: brandTheme.secondary }}
-                />
+                <SubDivider className="mt-6 mb-3 sm:mt-8 sm:mb-4" />
                 <p className="text-xs font-semibold uppercase tracking-[0.14em] text-neutral-500 dark:text-neutral-400">
                   ⚠️ Real IMU dataset cons
                 </p>
@@ -187,10 +185,7 @@ export default function SyntheticImuSubpage() {
                 <p>
                   Real IMU datasets are fragmented: sensors sit on different body locations, activity labels vary, and domain gaps across collections leave models brittle and poorly generalized.
                 </p>
-                <div
-                  className="mt-6 border-t pb-1 pt-3 sm:mt-8 sm:pb-2 sm:pt-4"
-                  style={{ borderColor: brandTheme.secondary }}
-                />
+                <SubDivider className="mt-6 mb-3 sm:mt-8 sm:mb-4" />
                 <p className="text-xs font-semibold uppercase tracking-[0.14em] text-neutral-500 dark:text-neutral-400">
                   ✨ Synthetic IMU pros
                 </p>
@@ -246,10 +241,7 @@ export default function SyntheticImuSubpage() {
                 </figure>
               </div>
 
-                <div
-                  className="mt-6 border-t pb-2 pt-4 sm:mt-8 sm:pb-3 sm:pt-5"
-                  style={{ borderColor: brandTheme.secondary }}
-                />
+                <SubDivider className="mt-6 mb-4 sm:mt-8 sm:mb-5" />
 
                 <div className="space-y-3">
                   <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-50">
@@ -311,10 +303,7 @@ export default function SyntheticImuSubpage() {
                   </p>
                 </div>
 
-                <div
-                  className="border-t"
-                  style={{ borderColor: brandTheme.secondary }}
-                />
+                <SubDivider />
 
                 <div className="space-y-3">
                   <h3 className="text-base font-semibold text-neutral-800 dark:text-neutral-100">
@@ -335,10 +324,7 @@ export default function SyntheticImuSubpage() {
                   </p>
                 </div>
 
-                <div
-                  className="border-t"
-                  style={{ borderColor: brandTheme.secondary }}
-                />
+                <SubDivider />
 
                 <div className="space-y-3">
                   <h3 className="text-base font-semibold text-neutral-800 dark:text-neutral-100">
@@ -392,10 +378,7 @@ export default function SyntheticImuSubpage() {
                         </p>
                       </div>
                     </div>
-                    <div
-                      className="border-t"
-                      style={{ borderColor: brandTheme.secondary }}
-                    />
+                    <SubDivider />
                     <div className="space-y-3">
                       <p className="font-semibold text-neutral-900 dark:text-neutral-50">
                         2) Motion → IMU (baseline from IMUGPT + light extension)
@@ -417,10 +400,7 @@ export default function SyntheticImuSubpage() {
                         </p>
                       </div>
                     </div>
-                    <div
-                      className="border-t"
-                      style={{ borderColor: brandTheme.secondary }}
-                    />
+                    <SubDivider />
                     <div className="space-y-3">
                       <p className="font-semibold text-neutral-900 dark:text-neutral-50">
                         3) Evaluation & Filtering (my main contribution)
@@ -479,10 +459,7 @@ export default function SyntheticImuSubpage() {
                     </ul>
                   </div>
                 </div>
-                <div
-                  className="border-t"
-                  style={{ borderColor: brandTheme.secondary }}
-                />
+                <SubDivider />
                 <div className="space-y-4">
                   <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-50">
                     📈 Experiment A — Benchmark Against IMUGPT (Across Datasets)
@@ -511,10 +488,7 @@ export default function SyntheticImuSubpage() {
                     </li>
                   </ul>
                 </div>
-                <div
-                  className="border-t"
-                  style={{ borderColor: brandTheme.secondary }}
-                />
+                <SubDivider />
                 <div className="space-y-4">
                   <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-50">
                     📉 Experiment B — Real Data Size vs. Performance (Mix2R vs. R2R)
@@ -568,10 +542,7 @@ export default function SyntheticImuSubpage() {
                     </li>
                   </ul>
                 </div>
-                <div
-                  className="border-t"
-                  style={{ borderColor: brandTheme.secondary }}
-                />
+                <SubDivider />
                 <div className="space-y-2">
                   <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-50">Limitations</h3>
                   <ul className="space-y-2">
@@ -585,10 +556,7 @@ export default function SyntheticImuSubpage() {
                     </li>
                   </ul>
                 </div>
-                <div
-                  className="border-t"
-                  style={{ borderColor: brandTheme.secondary }}
-                />
+                <SubDivider />
                 <div className="space-y-2">
                   <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-50">Future Directions</h3>
                   <ul className="space-y-2">

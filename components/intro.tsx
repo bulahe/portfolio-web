@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { FiMail } from "react-icons/fi";
 import { useSectionInView } from "@/lib/hooks";
 import { brandVarStyles } from "@/lib/theme";
+import SubDivider from "@/components/sub-divider";
 import { introHighlights, introSkills } from "@/lib/data";
 
 export default function Intro() {
@@ -127,10 +128,8 @@ export default function Intro() {
               </p>
             </div>
 
-            <div
-              className="border-t pt-6"
-              style={{ borderColor: "var(--brand-secondary)" }}
-            >
+            <div className="space-y-6">
+              <SubDivider />
               <div className="grid gap-4 sm:grid-cols-2">
                 {introHighlights.map((item, index) => {
                   const Icon = item.icon;
@@ -159,10 +158,8 @@ export default function Intro() {
               </div>
             </div>
 
-            <div
-              className="border-t pt-6"
-              style={{ borderColor: "var(--brand-secondary)" }}
-            >
+            <div className="space-y-6">
+              <SubDivider />
               <div className="flex flex-wrap gap-2">
                 {introSkills.map((skill, index) => (
                     <motion.span
