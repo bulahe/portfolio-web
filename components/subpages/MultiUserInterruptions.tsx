@@ -94,6 +94,10 @@ export default function MultiUserInterruptionsSubpage() {
         <div className="mx-auto flex w-full max-w-3xl flex-col gap-4 lg:max-w-[54%]">
           <article className="flex flex-col gap-4">
             <header className="flex flex-col gap-5 rounded-[2.5rem] border border-neutral-200/70 bg-neutral-50/60 p-6 text-neutral-900 shadow-xl backdrop-blur-sm dark:border-neutral-700/60 dark:bg-neutral-900/40 dark:text-neutral-100">
+              <h1 className="text-2xl font-semibold leading-tight sm:text-3xl">
+                Multi-User Robot Interruption Study
+              </h1>
+
               <div className="relative mx-auto aspect-[4/3] w-full overflow-hidden rounded-3xl border border-neutral-200 bg-neutral-100 shadow-inner dark:border-neutral-800 dark:bg-neutral-950">
                 <Image
                   src="/XRobot/XRobotHero.png"
@@ -318,8 +322,8 @@ export default function MultiUserInterruptionsSubpage() {
                         <span>
                           Multiple <strong>Ximmerse Rhino X Pro headsets</strong> connect to the same Wi-Fi LAN. We use a{" "}
                           <strong>custom event-based protocol</strong> where clients send small, reliable messages that describe{" "}
-                          <strong>semantic events</strong> (e.g., "start Action A/B", "robot reached Player A", "turn
-                          to Player B", "play follow-up") instead of streaming raw poses every frame. Two headsets are assigned as{" "}
+                          <strong>semantic events</strong> (e.g., &quot;start Action A/B&quot;, &quot;robot reached Player A&quot;, &quot;turn
+                          to Player B&quot;, &quot;play follow-up&quot;) instead of streaming raw poses every frame. Two headsets are assigned as{" "}
                           <strong>Player A/B</strong>; any additional headsets can join as <strong>observers</strong> that receive all events but do not control the robot.
                         </span>
                       </li>
@@ -341,8 +345,8 @@ export default function MultiUserInterruptionsSubpage() {
                         <span>
                           Architecturally, we use a <strong>per-role / per-object authority model</strong>
                           rather than a single heavy server or a fully decentralized consensus protocol.
-                          This means, for example, that <strong>Player A</strong> is authoritative for "robot moves toward
-                          A", <strong>Player B</strong> is <strong>authoritative</strong> when the robot turns toward B, and each UI owner
+                          This means, for example, that <strong>Player A</strong> is authoritative for &quot;robot moves toward
+                          A&quot;, <strong>Player B</strong> is <strong>authoritative</strong> when the robot turns toward B, and each UI owner
                           is authoritative for its own controls. This keeps computation distributed across
                           devices (no overloaded server) while keeping the consistency model simple enough
                           to implement and debug.
@@ -430,15 +434,15 @@ export default function MultiUserInterruptionsSubpage() {
                     <ul className="space-y-2 pl-1">
                       <li className="flex gap-2">
                         <span className="select-none text-lg leading-none text-neutral-400 dark:text-neutral-500">•</span>
-                        <span><strong>Task-relevant interruptions</strong> — service-related requests (e.g., "Could you bring me water as well?")</span>
+                        <span><strong>Task-relevant interruptions</strong> — service-related requests (e.g., &quot;Could you bring me water as well?&quot;)</span>
                       </li>
                       <li className="flex gap-2">
                         <span className="select-none text-lg leading-none text-neutral-400 dark:text-neutral-500">•</span>
-                        <span><strong>Task-irrelevant interruptions</strong> — casual remarks or curiosity-driven comments (e.g., "Why are you so cute?")</span>
+                        <span><strong>Task-irrelevant interruptions</strong> — casual remarks or curiosity-driven comments (e.g., &quot;Why are you so cute?&quot;)</span>
                       </li>
                     </ul>
                     <p>
-                      This distinction strongly influences what users consider a <strong>'fair'</strong> or <strong>'appropriate'</strong> robot response.
+                      This distinction strongly influences what users consider a <strong>&apos;fair&apos;</strong> or <strong>&apos;appropriate&apos;</strong> robot response.
                     </p>
                   </div>
                 </div>
