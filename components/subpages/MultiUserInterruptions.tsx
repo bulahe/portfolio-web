@@ -362,10 +362,24 @@ export default function MultiUserInterruptionsSubpage() {
                   <p className="text-base font-semibold text-neutral-900 dark:text-white">
                     📊 3.1 Study Design
                   </p>
-                  <div className="min-h-[4rem] rounded-2xl border border-dashed border-neutral-200/70 bg-white/60 dark:border-neutral-700/60 dark:bg-neutral-900/35 p-4">
-                    <p className="text-xs text-neutral-500 dark:text-neutral-400 italic">
-                      （within-subject，24 participants，12 conditions）
+                  <div className="space-y-4 text-sm leading-relaxed text-neutral-800 dark:text-neutral-200">
+                    <p>
+                      We conducted a controlled AR experiment using a <strong>within-subject design</strong>, where each participant experienced all conditions across two user roles.
                     </p>
+                    <ul className="space-y-2 pl-1">
+                      <li className="flex gap-2">
+                        <span className="select-none text-lg leading-none text-neutral-400 dark:text-neutral-500">•</span>
+                        <span>24 participants (12 pairs)</span>
+                      </li>
+                      <li className="flex gap-2">
+                        <span className="select-none text-lg leading-none text-neutral-400 dark:text-neutral-500">•</span>
+                        <span>12 conditions (2 robot types × 2 interruption relevance × 3 response modes)</span>
+                      </li>
+                      <li className="flex gap-2">
+                        <span className="select-none text-lg leading-none text-neutral-400 dark:text-neutral-500">•</span>
+                        <span>Each participant acted as both the <strong>primary</strong> and <strong>secondary user</strong></span>
+                      </li>
+                    </ul>
                   </div>
                 </div>
                 <SubDivider />
@@ -373,19 +387,33 @@ export default function MultiUserInterruptionsSubpage() {
                   <p className="text-base font-semibold text-neutral-900 dark:text-white">
                     🤖 3.2 Robot Types & Scenarios
                   </p>
-                  <div className="space-y-2">
+                  <div className="overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-100 shadow-inner dark:border-neutral-800 dark:bg-neutral-950">
+                    <Image
+                      src="/XRobot/mode.png"
+                      alt="Robot Types & Scenarios diagram."
+                      width={1304}
+                      height={520}
+                      sizes="(min-width: 1280px) 60vw, (min-width: 768px) 70vw, 90vw"
+                      className="h-auto w-full object-cover"
+                      priority
+                    />
+                  </div>
+                  <div className="space-y-4 text-sm leading-relaxed text-neutral-800 dark:text-neutral-200">
+                    <p>
+                      The study simulated two common service robots in a café environment:
+                    </p>
                     <ul className="space-y-2 pl-1">
                       <li className="flex gap-2">
-                        <span className="select-none text-lg leading-none text-neutral-500">•</span>
-                        <span>Speech-oriented robot</span>
+                        <span className="select-none text-lg leading-none text-neutral-400 dark:text-neutral-500">•</span>
+                        <span><strong>Speech-oriented robot</strong> — introduces the menu and answers customer questions at the counter</span>
                       </li>
                       <li className="flex gap-2">
-                        <span className="select-none text-lg leading-none text-neutral-500">•</span>
-                        <span>Motion-oriented robot</span>
+                        <span className="select-none text-lg leading-none text-neutral-400 dark:text-neutral-500">•</span>
+                        <span><strong>Motion-oriented robot</strong> — delivers drinks while navigating between tables</span>
                       </li>
                     </ul>
-                    <p className="text-xs text-neutral-500 dark:text-neutral-400 italic mt-2">
-                      （引用展示流程的 Figure 4）
+                    <p>
+                      These scenarios allowed us to test how users expect different robot modalities to handle social interruptions.
                     </p>
                   </div>
                 </div>
