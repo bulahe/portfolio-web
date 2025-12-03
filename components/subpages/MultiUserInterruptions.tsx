@@ -223,54 +223,53 @@ export default function MultiUserInterruptionsSubpage() {
               <div className="space-y-6 text-sm leading-relaxed sm:text-base">
                 <div className="space-y-3">
                   <p className="text-base font-semibold text-neutral-900 dark:text-white">
-                    🏗️ 2.1 Multi-User MR Framework Architecture
+                    🏗️ 2.1 Multiuser MR Framework Architecture
                   </p>
-                  <div className="min-h-[4rem] rounded-2xl border border-dashed border-neutral-200/70 bg-white/60 dark:border-neutral-700/60 dark:bg-neutral-900/35 p-4">
-                    <p className="text-xs text-neutral-500 dark:text-neutral-400 italic">
-                      （解释你搭的系统总体结构：同步、状态管理、空间对齐）
-                    </p>
+                  <div className="overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-100 shadow-inner dark:border-neutral-800 dark:bg-neutral-950">
+                    <Image
+                      src="/XRobot/task.png"
+                      alt="Multiuser MR Framework Architecture diagram."
+                      width={1304}
+                      height={520}
+                      sizes="(min-width: 1280px) 60vw, (min-width: 768px) 70vw, 90vw"
+                      className="h-auto w-full object-cover"
+                      priority
+                    />
                   </div>
-                </div>
-                <SubDivider />
-                <div className="space-y-3">
-                  <p className="text-base font-semibold text-neutral-900 dark:text-white">
-                    📍 2.2 Spatial Alignment & Environment Calibration
-                  </p>
-                  <div className="min-h-[4rem] rounded-2xl border border-dashed border-neutral-200/70 bg-white/60 dark:border-neutral-700/60 dark:bg-neutral-900/35 p-4">
-                    <p className="text-xs text-neutral-500 dark:text-neutral-400 italic">
-                      （真实咖啡馆空间 + 多 AR 头显一致的坐标系）
-                    </p>
-                  </div>
-                </div>
-                <SubDivider />
-                <div className="space-y-3">
-                  <p className="text-base font-semibold text-neutral-900 dark:text-white">
-                    ⚡ 2.3 Real-Time Synchronization Across Devices
-                  </p>
-                  <div className="min-h-[4rem] rounded-2xl border border-dashed border-neutral-200/70 bg-white/60 dark:border-neutral-700/60 dark:bg-neutral-900/35 p-4">
-                    <p className="text-xs text-neutral-500 dark:text-neutral-400 italic">
-                      （你用 TI-NET / 自定义网络协议同步机器人位置、朝向、语音、动作）
-                    </p>
-                  </div>
-                </div>
-                <SubDivider />
-                <div className="space-y-3">
-                  <p className="text-base font-semibold text-neutral-900 dark:text-white">
-                    🎛️ 2.4 Robot Behavior Controller
-                  </p>
-                  <div className="space-y-2">
+                  <div className="space-y-2 text-neutral-800 dark:text-neutral-200">
                     <ul className="space-y-2 pl-1">
                       <li className="flex gap-2">
-                        <span className="select-none text-lg leading-none text-neutral-500">•</span>
-                        <span>12 个实验条件（2 robot types × 2 relevance × 3 response modes）</span>
+                        <span className="select-none text-lg leading-none text-neutral-400 dark:text-neutral-500">
+                          •
+                        </span>
+                        <span>
+                          Two-user MR experiment with a physical social robot; a central controller
+                          tracks the phase (<strong>RoleSelection → Action / Speaking → TrialEnd</strong>)
+                          and which experimental condition (test type, interruption strategy) is active.
+                        </span>
                       </li>
                       <li className="flex gap-2">
-                        <span className="select-none text-lg leading-none text-neutral-500">•</span>
-                        <span>动作、语音、注视方向、导航</span>
+                        <span className="select-none text-lg leading-none text-neutral-400 dark:text-neutral-500">
+                          •
+                        </span>
+                        <span>
+                          Players claim <strong>Role A / Role B</strong> through shared UI toggles. Once
+                          both roles are assigned, a networked Start button launches a trial and the
+                          controller switches to either the Action or Speaking scenario.
+                        </span>
                       </li>
                       <li className="flex gap-2">
-                        <span className="select-none text-lg leading-none text-neutral-500">•</span>
-                        <span>所有反应模式图示（Figure 3）由你的实现支撑</span>
+                        <span className="select-none text-lg leading-none text-neutral-400 dark:text-neutral-500">
+                          •
+                        </span>
+                        <span>
+                          Robot behavior is split into two controllers: <strong>Action mode</strong>
+                          (navigation, mid-path interruption, follow-up, reset) and{" "}
+                          <strong>Speaking mode</strong> (multi-sentence speech, interruption handling,
+                          turn to Player B, follow-up speech). XR buttons, long-press, and controller
+                          inputs map directly to Action A/B and Follow-up, with haptic feedback and
+                          subtitles for user feedback.
+                        </span>
                       </li>
                     </ul>
                   </div>
@@ -278,12 +277,77 @@ export default function MultiUserInterruptionsSubpage() {
                 <SubDivider />
                 <div className="space-y-3">
                   <p className="text-base font-semibold text-neutral-900 dark:text-white">
-                    🎬 2.5 Interruption Trigger & Participant Prompt System
+                    📍 2.2 Spatial Alignment & Environment Calibration
                   </p>
-                  <div className="min-h-[4rem] rounded-2xl border border-dashed border-neutral-200/70 bg-white/60 dark:border-neutral-700/60 dark:bg-neutral-900/35 p-4">
-                    <p className="text-xs text-neutral-500 dark:text-neutral-400 italic">
-                      （次用户打断何时发生、如何保证实验一致性）
-                    </p>
+                  <div className="space-y-2 text-neutral-800 dark:text-neutral-200">
+                    <ul className="space-y-2 pl-1">
+                      <li className="flex gap-2">
+                        <span className="select-none text-lg leading-none text-neutral-400 dark:text-neutral-500">
+                          •
+                        </span>
+                        <span>
+                          We use Ximmerse Rhino X Pro headsets together with an infrared beacon as the
+                          shared world anchor.
+                        </span>
+                      </li>
+                      <li className="flex gap-2">
+                        <span className="select-none text-lg leading-none text-neutral-400 dark:text-neutral-500">
+                          •
+                        </span>
+                        <span>
+                          A brief “look at the beacon” step at startup aligns each headset to that
+                          anchor, so the physical robot and all virtual content appear in almost the
+                          same real-world location for every user.
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <SubDivider />
+                <div className="space-y-3">
+                  <p className="text-base font-semibold text-neutral-900 dark:text-white">
+                    ⚡ 2.3 Real-Time Synchronization Across Devices
+                  </p>
+                  <div className="space-y-2 text-neutral-800 dark:text-neutral-200">
+                    <ul className="space-y-2 pl-1">
+                      <li className="flex gap-2">
+                        <span className="select-none text-lg leading-none text-neutral-400 dark:text-neutral-500">
+                          •
+                        </span>
+                        <span>
+                          Multiple <strong>Ximmerse Rhino X Pro headsets</strong> connect to the same Wi-Fi LAN. We use a{" "}
+                          <strong>custom event-based protocol</strong> where clients send small, reliable messages that describe{" "}
+                          <strong>semantic events</strong> (e.g., "start Action A/B", "robot reached Player A", "turn
+                          to Player B", "play follow-up") instead of streaming raw poses every frame. Two headsets are assigned as{" "}
+                          <strong>Player A/B</strong>; any additional headsets can join as <strong>observers</strong> that receive all events but do not control the robot.
+                        </span>
+                      </li>
+                      <li className="flex gap-2">
+                        <span className="select-none text-lg leading-none text-neutral-400 dark:text-neutral-500">
+                          •
+                        </span>
+                        <span>
+                          The <strong>messaging layer</strong> synchronizes experiment state: who is <strong>Role A/B</strong>, which{" "}
+                          <strong>test mode</strong> and <strong>interruption strategy</strong> are active, and the current states of key
+                          UI widgets (toggles, dropdowns, confirm button). Messages carry <strong>timestamps</strong> so older updates cannot overwrite newer ones, and
+                          late-joining devices request the latest snapshot when they connect.
+                        </span>
+                      </li>
+                      <li className="flex gap-2">
+                        <span className="select-none text-lg leading-none text-neutral-400 dark:text-neutral-500">
+                          •
+                        </span>
+                        <span>
+                          Architecturally, we use a <strong>per-role / per-object authority model</strong>
+                          rather than a single heavy server or a fully decentralized consensus protocol.
+                          This means, for example, that <strong>Player A</strong> is authoritative for "robot moves toward
+                          A", <strong>Player B</strong> is <strong>authoritative</strong> when the robot turns toward B, and each UI owner
+                          is authoritative for its own controls. This keeps computation distributed across
+                          devices (no overloaded server) while keeping the consistency model simple enough
+                          to implement and debug.
+                        </span>
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </div>
