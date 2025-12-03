@@ -1,6 +1,6 @@
 'use client';
 
-import { useLayoutEffect, useRef } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
 import PortfolioBackButton from "@/components/ui/portfolio-back-button";
 import SubDivider from "@/components/sub-divider";
@@ -62,6 +62,8 @@ export default function MultiUserInterruptionsSubpage() {
   const beaconVideoRef = useRef<HTMLVideoElement | null>(null);
   const sync1VideoRef = useRef<HTMLVideoElement | null>(null);
   const sync2VideoRef = useRef<HTMLVideoElement | null>(null);
+  const [sync2Error, setSync2Error] = useState(false);
+  const [sync2Loading, setSync2Loading] = useState(true);
 
   useLayoutEffect(() => {
     const root = document.documentElement;
@@ -435,37 +437,73 @@ export default function MultiUserInterruptionsSubpage() {
                       <span className="text-[0.65rem] text-neutral-500 dark:text-neutral-500">Hover to play</span>
                     </div>
                     <div className="relative w-full">
-                      <video
-                        ref={sync2VideoRef}
-                        src="/XRobot/sync2.mp4"
-                        loop
-                        muted
-                        playsInline
-                        preload="metadata"
-                        className="h-auto w-full"
-                        onMouseEnter={() => void sync2VideoRef.current?.play()}
-                        onFocus={() => void sync2VideoRef.current?.play()}
-                        onMouseLeave={() => {
-                          const vid = sync2VideoRef.current;
-                          if (vid) {
-                            vid.pause();
-                            vid.currentTime = 0;
-                          }
-                        }}
-                        onBlur={() => {
-                          const vid = sync2VideoRef.current;
-                          if (vid) {
-                            vid.pause();
-                            vid.currentTime = 0;
-                          }
-                        }}
-                      />
-                      <div className="absolute left-4 top-4 rounded-md bg-black/60 px-3 py-1.5 text-sm font-semibold text-white backdrop-blur-sm">
-                        User A
-                      </div>
-                      <div className="absolute right-4 top-4 rounded-md bg-black/60 px-3 py-1.5 text-sm font-semibold text-white backdrop-blur-sm">
-                        User B
-                      </div>
+                      {sync2Error ? (
+                        <div className="flex min-h-[200px] items-center justify-center bg-neutral-100 dark:bg-neutral-900">
+                          <p className="text-sm text-neutral-500 dark:text-neutral-400">
+                            Video failed to load. Please refresh the page.
+                          </p>
+                        </div>
+                      ) : (
+                        <>
+                          {sync2Loading && (
+                            <div className="absolute inset-0 z-10 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900">
+                              <div className="h-8 w-8 animate-spin rounded-full border-2 border-neutral-300 border-t-neutral-600 dark:border-neutral-700 dark:border-t-neutral-400" />
+                            </div>
+                          )}
+                          <video
+                            ref={sync2VideoRef}
+                            src="/XRobot/Sync2.mp4"
+                            loop
+                            muted
+                            playsInline
+                            preload="auto"
+                            className="h-auto w-full"
+                            onLoadedData={() => setSync2Loading(false)}
+                            onCanPlay={() => setSync2Loading(false)}
+                            onError={(e) => {
+                              console.error("Sync2 video error:", e);
+                              setSync2Error(true);
+                              setSync2Loading(false);
+                            }}
+                            onMouseEnter={() => {
+                              const vid = sync2VideoRef.current;
+                              if (vid && !sync2Error) {
+                                vid.play().catch((err) => {
+                                  console.error("Play error:", err);
+                                });
+                              }
+                            }}
+                            onFocus={() => {
+                              const vid = sync2VideoRef.current;
+                              if (vid && !sync2Error) {
+                                vid.play().catch((err) => {
+                                  console.error("Play error:", err);
+                                });
+                              }
+                            }}
+                            onMouseLeave={() => {
+                              const vid = sync2VideoRef.current;
+                              if (vid) {
+                                vid.pause();
+                                vid.currentTime = 0;
+                              }
+                            }}
+                            onBlur={() => {
+                              const vid = sync2VideoRef.current;
+                              if (vid) {
+                                vid.pause();
+                                vid.currentTime = 0;
+                              }
+                            }}
+                          />
+                          <div className="absolute left-4 top-4 rounded-md bg-black/60 px-3 py-1.5 text-sm font-semibold text-white backdrop-blur-sm">
+                            User A
+                          </div>
+                          <div className="absolute right-4 top-4 rounded-md bg-black/60 px-3 py-1.5 text-sm font-semibold text-white backdrop-blur-sm">
+                            User B
+                          </div>
+                        </>
+                      )}
                     </div>
                   </div>
                   <div className="space-y-2 text-neutral-800 dark:text-neutral-200">
