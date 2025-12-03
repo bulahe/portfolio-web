@@ -4,6 +4,7 @@ import { useLayoutEffect } from "react";
 import Image from "next/image";
 import PortfolioBackButton from "@/components/ui/portfolio-back-button";
 import SubDivider from "@/components/sub-divider";
+import { brandTheme } from "@/lib/theme";
 
 type ProjectDetails = {
   overview: readonly string[];
@@ -422,9 +423,22 @@ export default function MultiUserInterruptionsSubpage() {
                   <p className="text-base font-semibold text-neutral-900 dark:text-white">
                     ⚖️ 3.3 Task-Relevant vs. Task-Irrelevant Interruptions
                   </p>
-                  <div className="min-h-[4rem] rounded-2xl border border-dashed border-neutral-200/70 bg-white/60 dark:border-neutral-700/60 dark:bg-neutral-900/35 p-4">
-                    <p className="text-xs text-neutral-500 dark:text-neutral-400 italic">
-                      （解释两类中断）
+                  <div className="space-y-4 text-sm leading-relaxed text-neutral-800 dark:text-neutral-200">
+                    <p>
+                      Interruptions were categorized into two types to capture different social expectations.
+                    </p>
+                    <ul className="space-y-2 pl-1">
+                      <li className="flex gap-2">
+                        <span className="select-none text-lg leading-none text-neutral-400 dark:text-neutral-500">•</span>
+                        <span><strong>Task-relevant interruptions</strong> — service-related requests (e.g., "Could you bring me water as well?")</span>
+                      </li>
+                      <li className="flex gap-2">
+                        <span className="select-none text-lg leading-none text-neutral-400 dark:text-neutral-500">•</span>
+                        <span><strong>Task-irrelevant interruptions</strong> — casual remarks or curiosity-driven comments (e.g., "Why are you so cute?")</span>
+                      </li>
+                    </ul>
+                    <p>
+                      This distinction strongly influences what users consider a <strong>'fair'</strong> or <strong>'appropriate'</strong> robot response.
                     </p>
                   </div>
                 </div>
@@ -433,9 +447,82 @@ export default function MultiUserInterruptionsSubpage() {
                   <p className="text-base font-semibold text-neutral-900 dark:text-white">
                     📋 3.4 Procedure
                   </p>
-                  <div className="min-h-[4rem] rounded-2xl border border-dashed border-neutral-200/70 bg-white/60 dark:border-neutral-700/60 dark:bg-neutral-900/35 p-4">
-                    <p className="text-xs text-neutral-500 dark:text-neutral-400 italic">
-                      （用户站位、触发流程、交互顺序）
+                  <div className="overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-100 shadow-inner dark:border-neutral-800 dark:bg-neutral-950">
+                    <Image
+                      src="/XRobot/sequence.png"
+                      alt="Procedure sequence diagram."
+                      width={1304}
+                      height={520}
+                      sizes="(min-width: 1280px) 60vw, (min-width: 768px) 70vw, 90vw"
+                      className="h-auto w-full object-cover"
+                      priority
+                    />
+                  </div>
+                  <div className="space-y-4 text-sm leading-relaxed text-neutral-800 dark:text-neutral-200">
+                    <p>
+                      Each condition followed a consistent scripted sequence to ensure timing, roles, and robot behavior were fully controlled:
+                    </p>
+                    <ol className="space-y-2 pl-1">
+                      <li className="flex gap-2">
+                        <span className="select-none text-lg leading-none text-neutral-400 dark:text-neutral-500">1.</span>
+                        <span><strong>Primary user initiates a service request</strong></span>
+                      </li>
+                      <li className="flex gap-2">
+                        <span className="select-none text-lg leading-none text-neutral-400 dark:text-neutral-500">2.</span>
+                        <span><strong>Robot begins its task</strong> (explaining menu or navigating with an item)</span>
+                      </li>
+                      <li className="flex gap-2">
+                        <span className="select-none text-lg leading-none text-neutral-400 dark:text-neutral-500">3.</span>
+                        <span><strong>Secondary user delivers a timed interruption</strong> (2–4 seconds after task starts)</span>
+                      </li>
+                      <li className="flex gap-2">
+                        <span className="select-none text-lg leading-none text-neutral-400 dark:text-neutral-500">4.</span>
+                        <span><strong>Robot responds with one of the assigned response modes</strong></span>
+                      </li>
+                      <li className="flex gap-2">
+                        <span className="select-none text-lg leading-none text-neutral-400 dark:text-neutral-500">5.</span>
+                        <span><strong>Robot finishes serving the primary user and then turns to assist the secondary user</strong></span>
+                      </li>
+                    </ol>
+                    <p>
+                      This procedure ensured every participant experienced identical interaction timing across devices.
+                    </p>
+                  </div>
+                </div>
+                <SubDivider />
+                <div className="space-y-3">
+                  <p className="text-base font-semibold text-neutral-900 dark:text-white">
+                    📊 3.5 Study Findings (Short Summary)
+                  </p>
+                  <div className="space-y-4 text-sm leading-relaxed text-neutral-800 dark:text-neutral-200">
+                    <p className="italic text-neutral-600 dark:text-neutral-400">
+                      What the controlled experiment revealed
+                    </p>
+                    <p>
+                      Our controlled multi-user AR study showed clear and consistent social expectations:
+                    </p>
+                    <ul className="space-y-2 pl-1">
+                      <li className="flex gap-2">
+                        <span className="select-none text-lg leading-none text-neutral-400 dark:text-neutral-500">•</span>
+                        <span>
+                          Primary users <strong>strongly prefer uninterrupted task flow</strong>, favoring Maintain-and-Respond or Ignore-for-irrelevant responses.
+                        </span>
+                      </li>
+                      <li className="flex gap-2">
+                        <span className="select-none text-lg leading-none text-neutral-400 dark:text-neutral-500">•</span>
+                        <span>
+                          Secondary users <strong>expect immediate acknowledgment</strong>, especially when their request is task-relevant.
+                        </span>
+                      </li>
+                      <li className="flex gap-2">
+                        <span className="select-none text-lg leading-none text-neutral-400 dark:text-neutral-500">•</span>
+                        <span>
+                          Maintain-and-Respond emerged as the <strong>best compromise</strong> across roles and tasks.
+                        </span>
+                      </li>
+                    </ul>
+                    <p>
+                      These findings validate the importance of designing robots that can <strong>balance continuity with social awareness</strong>, and they demonstrate how the MR system enabled precise, repeatable measurement of multi-user interaction preferences.
                     </p>
                   </div>
                 </div>
@@ -444,134 +531,127 @@ export default function MultiUserInterruptionsSubpage() {
 
             <section className={`${baseSectionClass} gap-4 ${sectionPaddingClass}`}>
               <h2 className={sectionHeadingClass}>
-                4. KEY FINDINGS
+                4. WHAT I BUILT — Core Technical System
               </h2>
               <div className="space-y-6 text-sm leading-relaxed sm:text-base">
-                <div className="space-y-3">
-                  <p className="text-base font-semibold text-neutral-900 dark:text-white">
-                    👤 4.1 Primary users prioritize continuity
+                <div className="space-y-4 text-neutral-800 dark:text-neutral-200">
+                  <p>
+                    I independently built the full multi-user MR experiment system—from networking and spatial alignment to robot control logic and trial automation. Every subsystem was implemented by me except for the robot&apos;s animation assets, which were authored by a collaborator.
                   </p>
-                  <div className="min-h-[4rem] rounded-2xl border border-dashed border-neutral-200/70 bg-white/60 dark:border-neutral-700/60 dark:bg-neutral-900/35 p-4">
-                    <p className="text-xs text-neutral-500 dark:text-neutral-400 italic">
-                      （prefer Maintain-and-Respond / Ignore for irrelevant interruptions）
-                    </p>
-                  </div>
-                </div>
-                <SubDivider />
-                <div className="space-y-3">
                   <p className="text-base font-semibold text-neutral-900 dark:text-white">
-                    👥 4.2 Secondary users prioritize acknowledgment
+                    The platform integrates several key components:
                   </p>
-                  <div className="min-h-[4rem] rounded-2xl border border-dashed border-neutral-200/70 bg-white/60 dark:border-neutral-700/60 dark:bg-neutral-900/35 p-4">
-                    <p className="text-xs text-neutral-500 dark:text-neutral-400 italic">
-                      （prefer Interrupt-and-Respond especially for relevant interruptions）
-                    </p>
-                  </div>
-                </div>
-                <SubDivider />
-                <div className="space-y-3">
-                  <p className="text-base font-semibold text-neutral-900 dark:text-white">
-                    ⚖️ 4.3 Maintain-and-Respond is the best compromise
-                  </p>
-                  <div className="min-h-[4rem] rounded-2xl border border-dashed border-neutral-200/70 bg-white/60 dark:border-neutral-700/60 dark:bg-neutral-900/35 p-4">
-                    <p className="text-xs text-neutral-500 dark:text-neutral-400 italic">
-                      （跨角色与任务类型）
-                    </p>
-                  </div>
-                </div>
-                <SubDivider />
-                <div className="space-y-3">
-                  <p className="text-base font-semibold text-neutral-900 dark:text-white">
-                    🤖 4.4 Robot modality affects expectations
-                  </p>
-                  <div className="min-h-[4rem] rounded-2xl border border-dashed border-neutral-200/70 bg-white/60 dark:border-neutral-700/60 dark:bg-neutral-900/35 p-4">
-                    <p className="text-xs text-neutral-500 dark:text-neutral-400 italic">
-                      （speech vs motion robot — maintain vs interrupt）
-                    </p>
-                  </div>
+                  <ul className="space-y-2 pl-1">
+                    <li className="flex gap-2">
+                      <span className="select-none text-lg leading-none text-neutral-400 dark:text-neutral-500">•</span>
+                      <span>
+                        <strong>Event-based multi-device networking</strong>, synchronizing robot actions and experiment events across AR headsets.
+                      </span>
+                    </li>
+                    <li className="flex gap-2">
+                      <span className="select-none text-lg leading-none text-neutral-400 dark:text-neutral-500">•</span>
+                      <span>
+                        <strong>Distributed authority model</strong>, where each role owns only its relevant states for predictable and debuggable consistency.
+                      </span>
+                    </li>
+                    <li className="flex gap-2">
+                      <span className="select-none text-lg leading-none text-neutral-400 dark:text-neutral-500">•</span>
+                      <span>
+                        <strong>Shared spatial coordinate system</strong> using Ximmerse beacons for aligning the physical robot and virtual content.
+                      </span>
+                    </li>
+                    <li className="flex gap-2">
+                      <span className="select-none text-lg leading-none text-neutral-400 dark:text-neutral-500">•</span>
+                      <span>
+                        <strong>Unified robot behavior state machine</strong> covering both speech-mode and motion-mode scenarios.
+                      </span>
+                    </li>
+                    <li className="flex gap-2">
+                      <span className="select-none text-lg leading-none text-neutral-400 dark:text-neutral-500">•</span>
+                      <span>
+                        <strong>Deterministic interruption timing</strong>, ensuring each trial reproduces identical service-interruption sequences.
+                      </span>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </section>
 
             <section className={`${baseSectionClass} gap-4 ${sectionPaddingClass}`}>
               <h2 className={sectionHeadingClass}>
-                5. DESIGN GUIDELINES
+                5. WHAT I LEARNED
               </h2>
               <div className="space-y-6 text-sm leading-relaxed sm:text-base">
                 <div className="space-y-3">
                   <p className="text-base font-semibold text-neutral-900 dark:text-white">
-                    👥 5.1 Different roles → different priorities
+                    📍 5.1 Why Beacon Anchors Fail to Scale — In Space and Across Spaces
                   </p>
-                  <div className="min-h-[4rem] rounded-2xl border border-dashed border-neutral-200/70 bg-white/60 dark:border-neutral-700/60 dark:bg-neutral-900/35 p-4">
-                    <p className="text-xs text-neutral-500 dark:text-neutral-400 italic">
-                      （primary wants flow, secondary wants acknowledgment）
-                    </p>
+                  <div className="space-y-4 text-sm leading-relaxed text-neutral-800 dark:text-neutral-200">
+                    <ul className="space-y-2 pl-1">
+                      <li className="flex gap-2">
+                        <span className="select-none text-lg leading-none text-neutral-400 dark:text-neutral-500">•</span>
+                        <span>
+                          Beacon-based spatial alignment performs well only within a small ~3-5 m interaction zone; beyond that, accuracy deteriorates quickly due to occlusion, head-angle variation, and weak IR signal.
+                        </span>
+                      </li>
+                      <li className="flex gap-2">
+                        <span className="select-none text-lg leading-none text-neutral-400 dark:text-neutral-500">•</span>
+                        <span>
+                          Because the beacon is a <strong>physical anchor</strong>, it cannot be replicated or persisted across rooms, sessions, or locations. Even small physical shifts invalidate the entire coordinate frame.
+                        </span>
+                      </li>
+                      <li className="flex gap-2">
+                        <span className="select-none text-lg leading-none text-neutral-400 dark:text-neutral-500">•</span>
+                        <span>
+                          These constraints limit beacon systems to controlled lab environments and make them fundamentally unsuitable for real-world, scalable multi-user AR.
+                        </span>
+                      </li>
+                      <li className="flex gap-2">
+                        <span className="select-none text-lg leading-none text-neutral-400 dark:text-neutral-500">•</span>
+                        <span>
+                          <span style={{ color: brandTheme.secondary }}><strong>Future direction:</strong></span> Move toward a Vision Pro-style <strong>SLAM world memory pipeline</strong>—devices scan scenes, upload feature maps, and relocalize against a shared cloud anchor graph. This eliminates physical setup and enables persistent, multi-room, multi-user AR.
+                        </span>
+                      </li>
+                    </ul>
                   </div>
                 </div>
                 <SubDivider />
                 <div className="space-y-3">
                   <p className="text-base font-semibold text-neutral-900 dark:text-white">
-                    🔄 5.2 Adapt response modes to interruption relevance
+                    ⚡ 5.2 Why Event-Based Sync Gets Harder With More Users
                   </p>
-                  <div className="min-h-[4rem] rounded-2xl border border-dashed border-neutral-200/70 bg-white/60 dark:border-neutral-700/60 dark:bg-neutral-900/35 p-4">
-                    <p className="text-xs text-neutral-500 dark:text-neutral-400 italic">
-                      （relevant → respond; irrelevant → minimal）
-                    </p>
-                  </div>
-                </div>
-                <SubDivider />
-                <div className="space-y-3">
-                  <p className="text-base font-semibold text-neutral-900 dark:text-white">
-                    🎯 5.3 Match behavior strategy to robot modality
-                  </p>
-                  <div className="min-h-[4rem] rounded-2xl border border-dashed border-neutral-200/70 bg-white/60 dark:border-neutral-700/60 dark:bg-neutral-900/35 p-4">
-                    <p className="text-xs text-neutral-500 dark:text-neutral-400 italic">
-                      （motion robot适合 maintain；speech robot适合 quick interrupt）
-                    </p>
+                  <div className="space-y-4 text-sm leading-relaxed text-neutral-800 dark:text-neutral-200">
+                    <ul className="space-y-2 pl-1">
+                      <li className="flex gap-2">
+                        <span className="select-none text-lg leading-none text-neutral-400 dark:text-neutral-500">•</span>
+                        <span>
+                          My system uses a <strong>semi-decentralized authority model</strong>, where two users alternate ownership of robot state while the other device syncs. This works for two participants but does not scale cleanly.
+                        </span>
+                      </li>
+                      <li className="flex gap-2">
+                        <span className="select-none text-lg leading-none text-neutral-400 dark:text-neutral-500">•</span>
+                        <span>
+                          As more users join, authority switching introduces race conditions, timestamp ordering issues, and conflicting updates—without a single source of truth, global consistency becomes unstable.
+                        </span>
+                      </li>
+                      <li className="flex gap-2">
+                        <span className="select-none text-lg leading-none text-neutral-400 dark:text-neutral-500">•</span>
+                        <span>
+                          Late joiners require snapshot reconstruction, and event streams alone cannot guarantee that all devices converge to the same world state.
+                        </span>
+                      </li>
+                      <li className="flex gap-2">
+                        <span className="select-none text-lg leading-none text-neutral-400 dark:text-neutral-500">•</span>
+                        <span>
+                          <span style={{ color: brandTheme.secondary }}><strong>Future direction:</strong></span> Evolve toward a <strong>server-authoritative architecture</strong> that maintains a canonical shared state graph, resolves conflicts deterministically, and provides authoritative snapshots. This model scales far better for multi-user AR.
+                        </span>
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </div>
             </section>
 
-            <section className={`${baseSectionClass} gap-4 ${sectionPaddingClass}`}>
-              <h2 className={sectionHeadingClass}>
-                6. KEY LEARNINGS
-              </h2>
-              <div className="space-y-6 text-sm leading-relaxed sm:text-base">
-                <div className="space-y-3">
-                  <p className="text-base font-semibold text-neutral-900 dark:text-white">
-                    🏗️ 6.1 Built a scalable multi-user MR system from scratch
-                  </p>
-                  <div className="min-h-[4rem] rounded-2xl border border-dashed border-neutral-200/70 bg-white/60 dark:border-neutral-700/60 dark:bg-neutral-900/35 p-4">
-                    <p className="text-xs text-neutral-500 dark:text-neutral-400 italic">
-                      （同步、空间对齐、交互控制）
-                    </p>
-                  </div>
-                </div>
-                <SubDivider />
-                <div className="space-y-3">
-                  <p className="text-base font-semibold text-neutral-900 dark:text-white">
-                    ✨ 6.2 Learned precision in HRI interaction design
-                  </p>
-                  <div className="min-h-[4rem] rounded-2xl border border-dashed border-neutral-200/70 bg-white/60 dark:border-neutral-700/60 dark:bg-neutral-900/35 p-4">
-                    <p className="text-xs text-neutral-500 dark:text-neutral-400 italic">
-                      （timing, gesture, gaze, latency）
-                    </p>
-                  </div>
-                </div>
-                <SubDivider />
-                <div className="space-y-3">
-                  <p className="text-base font-semibold text-neutral-900 dark:text-white">
-                    🌐 6.3 Deep understanding of multi-user coordination
-                  </p>
-                  <div className="min-h-[4rem] rounded-2xl border border-dashed border-neutral-200/70 bg-white/60 dark:border-neutral-700/60 dark:bg-neutral-900/35 p-4">
-                    <p className="text-xs text-neutral-500 dark:text-neutral-400 italic">
-                      （为你未来 world-scale AR ambition 做铺垫）
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </section>
           </article>
         </div>
       </div>
