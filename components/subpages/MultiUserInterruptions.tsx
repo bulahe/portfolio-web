@@ -1,6 +1,6 @@
 'use client';
 
-import { useLayoutEffect } from "react";
+import { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import PortfolioBackButton from "@/components/ui/portfolio-back-button";
 import SubDivider from "@/components/sub-divider";
@@ -59,6 +59,10 @@ const sectionHeadingClass =
   "text-sm font-semibold uppercase tracking-[0.2em] text-neutral-500 dark:text-neutral-400 sm:text-base";
 
 export default function MultiUserInterruptionsSubpage() {
+  const beaconVideoRef = useRef<HTMLVideoElement | null>(null);
+  const sync1VideoRef = useRef<HTMLVideoElement | null>(null);
+  const sync2VideoRef = useRef<HTMLVideoElement | null>(null);
+
   useLayoutEffect(() => {
     const root = document.documentElement;
     const hadSmoothClass = root.classList.contains("!scroll-smooth");
@@ -300,12 +304,52 @@ export default function MultiUserInterruptionsSubpage() {
                           •
                         </span>
                         <span>
-                          A brief “look at the beacon” step at startup aligns each headset to that
+                          A brief "look at the beacon" step at startup aligns each headset to that
                           anchor, so the physical robot and all virtual content appear in almost the
                           same real-world location for every user.
                         </span>
                       </li>
                     </ul>
+                  </div>
+                  <div className="group relative mt-4 overflow-hidden rounded-2xl border border-neutral-200/60 bg-white/60 shadow-inner transition hover:-translate-y-0.5 hover:shadow-lg hover:shadow-sky-200/40 dark:border-neutral-700/60 dark:bg-neutral-900/35 dark:hover:shadow-sky-900/25">
+                    <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-gradient-to-tr from-sky-100/40 to-transparent dark:from-sky-500/10" />
+                    <div className="flex items-center justify-between px-4 pt-3 text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500 dark:text-neutral-400">
+                      <span>Beacon UI Sync</span>
+                      <span className="text-[0.65rem] text-neutral-500 dark:text-neutral-500">Hover to play</span>
+                    </div>
+                    <div className="relative w-full">
+                      <video
+                        ref={beaconVideoRef}
+                        src="/XRobot/Becon UI Sync .mp4"
+                        loop
+                        muted
+                        playsInline
+                        preload="metadata"
+                        className="h-auto w-full"
+                        onMouseEnter={() => void beaconVideoRef.current?.play()}
+                        onFocus={() => void beaconVideoRef.current?.play()}
+                        onMouseLeave={() => {
+                          const vid = beaconVideoRef.current;
+                          if (vid) {
+                            vid.pause();
+                            vid.currentTime = 0;
+                          }
+                        }}
+                        onBlur={() => {
+                          const vid = beaconVideoRef.current;
+                          if (vid) {
+                            vid.pause();
+                            vid.currentTime = 0;
+                          }
+                        }}
+                      />
+                      <div className="absolute left-4 top-4 rounded-md bg-black/60 px-3 py-1.5 text-sm font-semibold text-white backdrop-blur-sm">
+                        User A
+                      </div>
+                      <div className="absolute right-4 top-4 rounded-md bg-black/60 px-3 py-1.5 text-sm font-semibold text-white backdrop-blur-sm">
+                        User B
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <SubDivider />
@@ -327,6 +371,50 @@ export default function MultiUserInterruptionsSubpage() {
                           <strong>Player A/B</strong>; any additional headsets can join as <strong>observers</strong> that receive all events but do not control the robot.
                         </span>
                       </li>
+                    </ul>
+                  </div>
+                  <div className="group relative mt-4 overflow-hidden rounded-2xl border border-neutral-200/60 bg-white/60 shadow-inner transition hover:-translate-y-0.5 hover:shadow-lg hover:shadow-sky-200/40 dark:border-neutral-700/60 dark:bg-neutral-900/35 dark:hover:shadow-sky-900/25">
+                    <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-gradient-to-tr from-sky-100/40 to-transparent dark:from-sky-500/10" />
+                    <div className="flex items-center justify-between px-4 pt-3 text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500 dark:text-neutral-400">
+                      <span>Sync Demo 1</span>
+                      <span className="text-[0.65rem] text-neutral-500 dark:text-neutral-500">Hover to play</span>
+                    </div>
+                    <div className="relative w-full">
+                      <video
+                        ref={sync1VideoRef}
+                        src="/XRobot/sync1.mp4"
+                        loop
+                        muted
+                        playsInline
+                        preload="metadata"
+                        className="h-auto w-full"
+                        onMouseEnter={() => void sync1VideoRef.current?.play()}
+                        onFocus={() => void sync1VideoRef.current?.play()}
+                        onMouseLeave={() => {
+                          const vid = sync1VideoRef.current;
+                          if (vid) {
+                            vid.pause();
+                            vid.currentTime = 0;
+                          }
+                        }}
+                        onBlur={() => {
+                          const vid = sync1VideoRef.current;
+                          if (vid) {
+                            vid.pause();
+                            vid.currentTime = 0;
+                          }
+                        }}
+                      />
+                      <div className="absolute left-4 top-4 rounded-md bg-black/60 px-3 py-1.5 text-sm font-semibold text-white backdrop-blur-sm">
+                        User A
+                      </div>
+                      <div className="absolute right-4 top-4 rounded-md bg-black/60 px-3 py-1.5 text-sm font-semibold text-white backdrop-blur-sm">
+                        User B
+                      </div>
+                    </div>
+                  </div>
+                  <div className="space-y-2 text-neutral-800 dark:text-neutral-200">
+                    <ul className="space-y-2 pl-1">
                       <li className="flex gap-2">
                         <span className="select-none text-lg leading-none text-neutral-400 dark:text-neutral-500">
                           •
@@ -338,6 +426,50 @@ export default function MultiUserInterruptionsSubpage() {
                           late-joining devices request the latest snapshot when they connect.
                         </span>
                       </li>
+                    </ul>
+                  </div>
+                  <div className="group relative mt-4 overflow-hidden rounded-2xl border border-neutral-200/60 bg-white/60 shadow-inner transition hover:-translate-y-0.5 hover:shadow-lg hover:shadow-sky-200/40 dark:border-neutral-700/60 dark:bg-neutral-900/35 dark:hover:shadow-sky-900/25">
+                    <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-gradient-to-tr from-sky-100/40 to-transparent dark:from-sky-500/10" />
+                    <div className="flex items-center justify-between px-4 pt-3 text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500 dark:text-neutral-400">
+                      <span>Sync Demo 2</span>
+                      <span className="text-[0.65rem] text-neutral-500 dark:text-neutral-500">Hover to play</span>
+                    </div>
+                    <div className="relative w-full">
+                      <video
+                        ref={sync2VideoRef}
+                        src="/XRobot/sync2.mp4"
+                        loop
+                        muted
+                        playsInline
+                        preload="metadata"
+                        className="h-auto w-full"
+                        onMouseEnter={() => void sync2VideoRef.current?.play()}
+                        onFocus={() => void sync2VideoRef.current?.play()}
+                        onMouseLeave={() => {
+                          const vid = sync2VideoRef.current;
+                          if (vid) {
+                            vid.pause();
+                            vid.currentTime = 0;
+                          }
+                        }}
+                        onBlur={() => {
+                          const vid = sync2VideoRef.current;
+                          if (vid) {
+                            vid.pause();
+                            vid.currentTime = 0;
+                          }
+                        }}
+                      />
+                      <div className="absolute left-4 top-4 rounded-md bg-black/60 px-3 py-1.5 text-sm font-semibold text-white backdrop-blur-sm">
+                        User A
+                      </div>
+                      <div className="absolute right-4 top-4 rounded-md bg-black/60 px-3 py-1.5 text-sm font-semibold text-white backdrop-blur-sm">
+                        User B
+                      </div>
+                    </div>
+                  </div>
+                  <div className="space-y-2 text-neutral-800 dark:text-neutral-200">
+                    <ul className="space-y-2 pl-1">
                       <li className="flex gap-2">
                         <span className="select-none text-lg leading-none text-neutral-400 dark:text-neutral-500">
                           •
