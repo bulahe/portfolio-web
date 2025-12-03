@@ -304,7 +304,7 @@ export default function MultiUserInterruptionsSubpage() {
                           •
                         </span>
                         <span>
-                          A brief "look at the beacon" step at startup aligns each headset to that
+                          A brief &quot;look at the beacon&quot; step at startup aligns each headset to that
                           anchor, so the physical robot and all virtual content appear in almost the
                           same real-world location for every user.
                         </span>
