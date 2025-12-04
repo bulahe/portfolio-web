@@ -513,7 +513,7 @@ export default function MultiUserInterruptionsSubpage() {
                           •
                         </span>
                         <span>
-                          Architecturally, we use a <strong>per-role / per-object authority model</strong>
+                          Architecturally, we use a <strong>per-role / per-object authority model </strong>
                           rather than a single heavy server or a fully decentralized consensus protocol.
                           This means, for example, that <strong>Player A</strong> is authoritative for &quot;robot moves toward
                           A&quot;, <strong>Player B</strong> is <strong>authoritative</strong> when the robot turns toward B, and each UI owner
