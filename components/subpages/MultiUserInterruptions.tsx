@@ -420,7 +420,7 @@ export default function MultiUserInterruptionsSubpage() {
                     <div className="relative w-full">
                       <video
                         ref={sync2VideoRef}
-                        src="/XRobot/sync2.mp4"
+                        src="/XRobot/Sync2.mp4"
                         loop
                         muted
                         playsInline
