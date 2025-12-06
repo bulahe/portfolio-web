@@ -186,7 +186,7 @@ export default function ModularArGlassesSubpage() {
                     />
                   </div>
                   <Link
-                    href="https://www.youtube.com/watch?v=AvzgDoDgXzE"
+                    href="https://www.youtube.com/watch?v=Rz00fHQP5GI"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="absolute inset-0 flex items-center justify-center bg-neutral-950/60 opacity-0 transition-opacity duration-300 group-hover:opacity-100"

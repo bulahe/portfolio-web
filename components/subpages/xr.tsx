@@ -1,6 +1,8 @@
 "use client";
 
 import { useLayoutEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
 import PortfolioBackButton from "@/components/ui/portfolio-back-button";
 import SectionDivider from "@/components/section-divider";
 import { brandTheme } from "@/lib/theme";
@@ -10,7 +12,8 @@ const timelineStages = [
     number: "01",
     title: "The Moment the Vision Took Shape",
     content:
-      "In high school, I saw a concept video of Apple's AR glasses and immediately recognized a future I wanted to help build—a persistent digital layer woven into the physical world. My path since then has centered on understanding the systems required to make that layer real.",
+      "Growing up, games shaped the way I understood interaction. Their spatial interfaces, guiding markers, and diegetic UI taught me that information didn't have to live on a flat screen—it could live *in the world*.\n\nDuring my final year of high school, I came across a series of fan-made \"Apple Glass\" concept videos. They turned that early intuition into a concrete vision: a future where digital systems could coexist with physical space in meaningful, everyday ways.\n\nThat moment crystallized the direction I would spend the next years pursuing—understanding what it would take to build a persistent digital layer woven into the real world.",
+    hasVideoLink: true,
   },
   {
     number: "02",
@@ -138,12 +141,53 @@ export default function XRSubpage() {
                     </div>
                   </div>
                   <div className="space-y-4 text-sm leading-relaxed text-slate-800 dark:text-slate-100 sm:space-y-5">
-                    {stage.content.split("\n\n").map((paragraph, pIndex) => (
-                      <p key={pIndex} className="text-base">
-                        {paragraph}
-                      </p>
-                    ))}
+                    {stage.content.split("\n\n").map((paragraph, pIndex) => {
+                      // Handle italic text for "*in the world*"
+                      const parts = paragraph.split(/(\*[^*]+\*)/);
+                      return (
+                        <p key={pIndex} className="text-base">
+                          {parts.map((part, partIndex) => {
+                            if (part.startsWith("*") && part.endsWith("*")) {
+                              return (
+                                <em key={partIndex} className="not-italic font-medium">
+                                  {part.slice(1, -1)}
+                                </em>
+                              );
+                            }
+                            return <span key={partIndex}>{part}</span>;
+                          })}
+                        </p>
+                      );
+                    })}
                   </div>
+                  {(stage as typeof stage & { hasVideoLink?: boolean }).hasVideoLink && (
+                    <div className="mt-6 flex flex-col items-center space-y-2">
+                      <div className="group relative mx-auto w-1/2 overflow-hidden rounded-3xl border border-neutral-200/70 bg-neutral-100 shadow-sm dark:border-neutral-700/60 dark:bg-neutral-900/35">
+                        <div className="relative aspect-video">
+                          <Image
+                            src="/glassBandDesign/appleGlassYT.png"
+                            alt="Fan-made Apple Glass concept video thumbnail."
+                            fill
+                            sizes="(min-width: 1280px) 20vw, (min-width: 768px) 27.5vw, 45vw"
+                            className="object-cover transition duration-300 group-hover:scale-[1.02]"
+                          />
+                        </div>
+                        <Link
+                          href="https://www.youtube.com/watch?v=Rz00fHQP5GI"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="absolute inset-0 flex items-center justify-center bg-neutral-950/60 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                        >
+                          <span className="rounded-full bg-white/90 px-5 py-2 text-sm font-semibold uppercase tracking-wide text-neutral-900 shadow-md dark:bg-neutral-900/90 dark:text-white">
+                            View on YouTube
+                          </span>
+                        </Link>
+                      </div>
+                      <p className="text-center text-xs italic text-neutral-500 dark:text-neutral-400 max-w-2xl">
+                        I watched this (and many similar) fan-made &quot;Apple Glass&quot; concept videos around 2020; collectively they inspired my interest in AR glasses.
+                      </p>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
