@@ -455,7 +455,7 @@ export default function MusicSubpage() {
                 Joining MVS* and Founding Sofa Audio
               </h3>
               <p>
-                In 2024, my music work expanded from campus events into performance and small-team production. I became one of the original musicians brought together to form MVS*, the on-stage live band performing behind the idol group MVS1—now re-formed as 霜降魔法部 (“Frostfall Ministry”, an unofficial English rendering). While the group’s original songs were produced by another music producer, I served as the band’s keyboardist and on-stage audio engineer, shaping the live sound, building custom patches, and configuring the keyboard rig and monitoring setup for each show.
+                In 2024, my music work expanded from campus events into performance and small-team production. I became one of the original musicians brought together to form MVS*, the on-stage live band performing behind the idol group MVS1—now re-formed as 霜降魔法部 (“Frostfall Magic Ministry”, an unofficial English rendering). While the group’s original songs were produced by another music producer, I served as the band’s keyboardist and on-stage audio engineer, shaping the live sound, building custom patches, and configuring the keyboard rig and monitoring setup for each show.
               </p>
               <p>
                 At the same time, I founded Sofa Audio, a student-run sound service that provides equipment rental, FOH mixing, and technical support for campus organizations, operating much like a small audio contractor.

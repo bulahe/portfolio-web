@@ -109,22 +109,10 @@ export default function Intro() {
             </h1>
             <div className="space-y-3 text-neutral-700 dark:text-neutral-200">
               <p className="text-base leading-relaxed">
-                A creative technologist exploring the intersection of AR/VR, sound, and
-                human–computer interaction.
+                I&apos;m working toward a world-scale spatial computing layer — a persistent system that lets digital objects, anchors, and interactions maintain shared meaning across people, devices, and environments.
               </p>
               <p className="text-base leading-relaxed">
-                I build immersive experiences, design interactive tools, and experiment with how technology can feel expressive and human.
-              </p>
-              <p className="text-base leading-relaxed">
-                I&apos;m currently studying{" "}
-                <span className="font-medium text-inherit">
-                  Electrical and Computer Engineering (Microelectronics focus)
-                </span>{" "}
-                at{" "}
-                <span className="font-medium text-inherit">
-                  Shanghai Jiao Tong University
-                </span>
-                .
+                Every project I build—whether AR systems, multimodal sensing, or performance technology—is a step toward this long-term goal of creating the foundational infrastructure for future spatial computing.
               </p>
             </div>
 

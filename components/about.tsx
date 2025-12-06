@@ -71,31 +71,34 @@ export default function About() {
     setMobileFocus(null);
     setAccentSegment(segment);
 
-    if (segment === "music") {
-      if (typeof window !== "undefined") {
-        try {
-          const { pathname, hash: currentHash } = window.location;
-          const aboutHash = "about";
-          const aboutTop =
-            document.getElementById(aboutHash)?.getBoundingClientRect().top ?? null;
-          const scrollPosition =
-            aboutTop !== null ? aboutTop + window.scrollY : window.scrollY;
-          const payload = {
-            path: pathname || "/",
-            hash: aboutHash,
-            scroll: scrollPosition,
-          };
-          window.sessionStorage.setItem("portfolio:return-target", JSON.stringify(payload));
-          window.sessionStorage.setItem("portfolio:return-scroll", JSON.stringify(scrollPosition));
+    if (typeof window !== "undefined") {
+      try {
+        const { pathname, hash: currentHash } = window.location;
+        const aboutHash = "about";
+        const aboutTop =
+          document.getElementById(aboutHash)?.getBoundingClientRect().top ?? null;
+        const scrollPosition =
+          aboutTop !== null ? aboutTop + window.scrollY : window.scrollY;
+        const payload = {
+          path: pathname || "/",
+          hash: aboutHash,
+          scroll: scrollPosition,
+        };
+        window.sessionStorage.setItem("portfolio:return-target", JSON.stringify(payload));
+        window.sessionStorage.setItem("portfolio:return-scroll", JSON.stringify(scrollPosition));
 
-          if (!currentHash || currentHash !== `#${aboutHash}`) {
-            window.history.replaceState(null, "", `#${aboutHash}`);
-          }
-        } catch {
-          /* ignore storage failures */
+        if (!currentHash || currentHash !== `#${aboutHash}`) {
+          window.history.replaceState(null, "", `#${aboutHash}`);
         }
+      } catch {
+        /* ignore storage failures */
       }
+    }
+
+    if (segment === "music") {
       router.push("/music");
+    } else if (segment === "xr") {
+      router.push("/xr");
     }
   };
 
@@ -307,12 +310,14 @@ function InteractiveBlock({
   );
 
   const handleClick = () => {
-    if (variant === "music") {
+    if (!isMobile) {
+      // Desktop: click directly navigates to subpage
       handleActivate();
       onLearnMore?.(variant);
       return;
     }
 
+    // Mobile: click activates the block to show learn more button
     handleActivate();
   };
 
