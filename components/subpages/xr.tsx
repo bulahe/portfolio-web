@@ -280,7 +280,7 @@ export default function XRSubpage() {
                                 During peak hours, students often wandered through the cafeteria searching for open seats, despite the problem involving hundreds of tables and no existing solution.
                               </p>
                               <p>
-                                Inspired by AR and game-style spatial markers, I envisioned a system that could one day overlay seat availability directly into a user's view. But for this project, we focused on the foundational layer: detecting empty seats using ceiling-mounted cameras.
+                                Inspired by AR and game-style spatial markers, I envisioned a system that could one day overlay seat availability directly into a user&apos;s view. But for this project, we focused on the foundational layer: detecting empty seats using ceiling-mounted cameras.
                               </p>
                               <p>
                                 Since full AR rendering was far beyond scope, we concentrated on real-time computer vision and surfaced the results through a simple mobile interface—validating the core idea and paving the way for potential AR extensions.
@@ -332,7 +332,7 @@ export default function XRSubpage() {
                                 </div>
                               </div>
                               <p>
-                                The system follows a simple pipeline: a ceiling-mounted camera captures each table's surface, OpenCV routines calibrate the tabletop regions and detect changes that signal occupancy, and a Raspberry Pi serves the results through a real-time web interface.
+                                The system follows a simple pipeline: a ceiling-mounted camera captures each table&apos;s surface, OpenCV routines calibrate the tabletop regions and detect changes that signal occupancy, and a Raspberry Pi serves the results through a real-time web interface.
                               </p>
 
                               <SubDivider className="my-4" />
@@ -403,7 +403,7 @@ export default function XRSubpage() {
                                 </h3>
                                 <div className="mt-3 space-y-3">
                                   <p>
-                                    Because we couldn't test directly in the cafeteria, I designed and built a simple ceiling-style camera mount so we could emulate the installation height and angle in the lab and run repeatable tests.
+                                    Because we couldn&apos;t test directly in the cafeteria, I designed and built a simple ceiling-style camera mount so we could emulate the installation height and angle in the lab and run repeatable tests.
                                   </p>
                                   <div className="relative mx-auto w-full max-w-md overflow-hidden rounded-2xl border border-neutral-200/60 bg-neutral-100 shadow-sm dark:border-neutral-700/60 dark:bg-neutral-900/35">
                                     <Image
