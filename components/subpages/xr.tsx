@@ -6,6 +6,7 @@ import Link from "next/link";
 import PortfolioBackButton from "@/components/ui/portfolio-back-button";
 import SectionDivider from "@/components/section-divider";
 import SubDivider from "@/components/sub-divider";
+import { generateSlug } from "@/lib/slug";
 import { brandTheme } from "@/lib/theme";
 
 const timelineStages = [
@@ -107,6 +108,8 @@ const cafeteriaProjectScope = "(2021) Course project —— Engineering Practice
 const cafeteriaProjectRole = ["Team Lead", "Proposal", "CV Dev", "CAD"] as const;
 const cafeteriaProjectTeam = "YU-CHEN CHUNG ,Hongxi Chen ,Ke Xu ,Ziwen Xu";
 
+const modularArGlassesSlug = generateSlug("Modular AR Glasses with Magnetic Hand-Tracking Bands");
+
 export default function XRSubpage() {
   const [isProjectExpanded, setIsProjectExpanded] = useState(false);
   const prototypeTestingVideoRef = useRef<HTMLVideoElement | null>(null);
@@ -136,6 +139,26 @@ export default function XRSubpage() {
         root.style.removeProperty("scroll-behavior");
       }
     };
+  }, []);
+
+  // Handle URL hash navigation to scroll to the button
+  useLayoutEffect(() => {
+    if (window.location.hash === "#cafeteria-seat-finding-system") {
+      const element = document.getElementById("cafeteria-seat-finding-system");
+      if (element) {
+        // Small delay to ensure the page is fully rendered
+        setTimeout(() => {
+          const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+          const offsetPosition = elementPosition - 120; // Add 120px padding from top
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth"
+          });
+          // Also expand the project section if it's collapsed
+          setIsProjectExpanded(true);
+        }, 100);
+      }
+    }
   }, []);
 
   return (
@@ -220,6 +243,7 @@ export default function XRSubpage() {
                   {stage.number === "02" && (
                     <div className="mt-6 space-y-3">
                       <button
+                        id="cafeteria-seat-finding-system"
                         onClick={() => setIsProjectExpanded(!isProjectExpanded)}
                         className="flex w-full items-center justify-between rounded-xl border border-neutral-200/70 bg-white/60 px-4 py-3 text-left transition-all hover:bg-white/80 dark:border-neutral-700/60 dark:bg-neutral-900/40 dark:hover:bg-neutral-900/60"
                       >
@@ -545,6 +569,45 @@ export default function XRSubpage() {
                           </section>
                         </div>
                       )}
+                      <div className="mt-6 space-y-3 text-sm leading-relaxed">
+                        <p>
+                          After this early experiment in grounding AR ideas through computer vision, I became increasingly interested in the hardware side of spatial interfaces—how future AR devices might be worn, assembled, or adapted to different contexts.
+                        </p>
+                        <p>
+                          During the summer studio between my freshman and sophomore years, I took a design course where I explored these questions through a modular AR glasses concept. This became my first attempt to think about AR not only as an interaction system, but also as an industrial and wearable form.
+                        </p>
+                      </div>
+                      <div className="mt-6 w-full max-w-3xl overflow-hidden rounded-[1.75rem] border border-white/50 bg-white/80 p-5 shadow-lg backdrop-blur-sm dark:border-white/10 dark:bg-white/5">
+                        <h3
+                          className="mb-3 text-2xl font-semibold leading-tight text-transparent bg-clip-text sm:text-[1.65rem]"
+                          style={{
+                            backgroundImage: `linear-gradient(90deg, ${brandTheme.primary}, ${brandTheme.accent})`,
+                          }}
+                        >
+                          Exploring Modular AR Hardware Design
+                        </h3>
+                        <p className="mb-4 text-base font-medium text-slate-800 dark:text-slate-100">
+                          A conceptual design envisioning lightweight AR eyewear with magnetic, detachable dual bands for full-range hand tracking.
+                        </p>
+                        <div className="group relative aspect-[3/2] w-full overflow-hidden rounded-2xl border border-white/40 bg-neutral-200 shadow-inner dark:border-white/10 dark:bg-neutral-900">
+                          <Image
+                            src="/glassBandDesign/glassBandDesignHero.png"
+                            alt="Modular AR glasses with magnetic hand-tracking bands concept design."
+                            fill
+                            sizes="(min-width: 1024px) 60vw, (min-width: 640px) 70vw, 95vw"
+                            className="object-cover transition duration-300 group-hover:scale-[1.02]"
+                            priority
+                          />
+                          <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/35 opacity-0 transition duration-200 group-hover:pointer-events-auto group-hover:opacity-100">
+                            <Link
+                              href={`/projects/${modularArGlassesSlug}`}
+                              className="inline-flex items-center gap-2 rounded-full bg-white/90 px-5 py-3 text-sm font-semibold uppercase tracking-wide text-slate-900 shadow-lg transition hover:-translate-y-0.5 hover:bg-white"
+                            >
+                              View project details
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   )}
                   {(stage as typeof stage & { hasVideoLink?: boolean }).hasVideoLink && (
