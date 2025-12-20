@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useState, useRef } from "react";
+import { useLayoutEffect, useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import PortfolioBackButton from "@/components/ui/portfolio-back-button";
@@ -8,6 +8,8 @@ import SectionDivider from "@/components/section-divider";
 import SubDivider from "@/components/sub-divider";
 import { generateSlug } from "@/lib/slug";
 import { brandTheme } from "@/lib/theme";
+import { useInView } from "react-intersection-observer";
+import clsx from "clsx";
 
 const timelineStages = [
   {
@@ -113,6 +115,11 @@ const modularArGlassesSlug = generateSlug("Modular AR Glasses with Magnetic Hand
 export default function XRSubpage() {
   const [isProjectExpanded, setIsProjectExpanded] = useState(false);
   const prototypeTestingVideoRef = useRef<HTMLVideoElement | null>(null);
+  const [activeStageIndex, setActiveStageIndex] = useState<number | null>(null);
+  const [hoveredStageIndex, setHoveredStageIndex] = useState<number | null>(null);
+  
+  // Create refs for each timeline stage
+  const stageRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useLayoutEffect(() => {
     const root = document.documentElement;
@@ -161,8 +168,190 @@ export default function XRSubpage() {
     }
   }, []);
 
+  // Track which stage is currently in view using Intersection Observer
+  useEffect(() => {
+    const observers: IntersectionObserver[] = [];
+    const visibleStages = new Map<number, number>(); // Map of index -> intersection ratio
+
+    const updateActiveStage = () => {
+      if (visibleStages.size === 0) return;
+
+      // Find the stage with the highest intersection ratio
+      let maxRatio = 0;
+      let activeIndex: number | null = null;
+
+      visibleStages.forEach((ratio, index) => {
+        if (ratio > maxRatio) {
+          maxRatio = ratio;
+          activeIndex = index;
+        }
+      });
+
+      if (activeIndex !== null && maxRatio > 0.2) {
+        setActiveStageIndex(activeIndex);
+      }
+    };
+
+    stageRefs.current.forEach((ref, index) => {
+      if (!ref) return;
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              visibleStages.set(index, entry.intersectionRatio);
+            } else {
+              visibleStages.delete(index);
+            }
+            updateActiveStage();
+          });
+        },
+        {
+          threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+          rootMargin: "-10% 0px -10% 0px", // Trigger when element is in center 80% of viewport
+        }
+      );
+
+      observer.observe(ref);
+      observers.push(observer);
+    });
+
+    return () => {
+      observers.forEach((observer) => observer.disconnect());
+      visibleStages.clear();
+    };
+  }, []);
+
+  // Handle clicking on timeline indicator dots to scroll to section
+  const scrollToStage = (index: number) => {
+    const ref = stageRefs.current[index];
+    if (ref) {
+      const elementPosition = ref.getBoundingClientRect().top + window.pageYOffset;
+      const offsetPosition = elementPosition - 120; // Add 120px padding from top
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  // Calculate scale for dock-like effect with two levels
+  const getDotScale = (index: number): number => {
+    const isContainerHovered = hoveredStageIndex !== null && hoveredStageIndex !== -1;
+    const isDotHovered = hoveredStageIndex === index;
+    
+    // Base scale when container is hovered (but no specific dot)
+    if (hoveredStageIndex === -1) return 1.1;
+    
+    // Base scale when container is hovered
+    const baseScale = isContainerHovered ? 1.1 : 1;
+    
+    // Additional scale when specific dot is hovered
+    if (!isContainerHovered) return 1;
+    
+    const distance = Math.abs(index - hoveredStageIndex);
+    
+    // Hovered dot: additional 1.4x (total 1.1 * 1.4 = 1.54x)
+    if (distance === 0) return baseScale * 1.4;
+    // Adjacent dots: additional 1.2x (total 1.1 * 1.2 = 1.32x)
+    if (distance === 1) return baseScale * 1.2;
+    // Two dots away: additional 1.1x (total 1.1 * 1.1 = 1.21x)
+    if (distance === 2) return baseScale * 1.1;
+    // Further away: just base scale
+    return baseScale;
+  };
+
+  // Calculate text scale
+  const getTextScale = (index: number): number => {
+    const isContainerHovered = hoveredStageIndex !== null && hoveredStageIndex !== -1;
+    
+    // Base scale when container is hovered (but no specific dot)
+    if (hoveredStageIndex === -1) return 1;
+    
+    if (!isContainerHovered) return 1;
+    
+    const distance = Math.abs(index - hoveredStageIndex);
+    
+    // Hovered dot's text: 1.2x
+    if (distance === 0) return 1.2;
+    // Adjacent dots' text: 1.1x
+    if (distance === 1) return 1.1;
+    // Further away: no additional scale
+    return 1;
+  };
+
   return (
-    <main className="px-4 pb-16 pt-12 sm:px-6 lg:px-10 lg:pt-14">
+    <main className="relative px-4 pb-16 pt-12 sm:px-6 lg:px-10 lg:pt-14">
+      {/* Vertical Timeline Indicator */}
+      <div 
+        className="fixed left-6 top-1/2 z-10 hidden -translate-y-1/2 lg:block"
+        onMouseLeave={() => setHoveredStageIndex(null)}
+      >
+        <div 
+          className={clsx(
+            "relative flex flex-row items-center gap-6 rounded-[1.75rem] border border-white/50 bg-white/80 p-6 shadow-lg backdrop-blur-sm dark:border-white/10 dark:bg-white/5 transition-transform duration-300 ease-out",
+            hoveredStageIndex !== null ? "scale-105" : "scale-100"
+          )}
+          onMouseEnter={() => {
+            if (hoveredStageIndex === null) {
+              // Set to a dummy value to trigger container hover
+              setHoveredStageIndex(-1);
+            }
+          }}
+        >
+          {/* Dots container */}
+          <div className="flex flex-col items-center gap-4">
+            {timelineStages.map((stage, index) => (
+              <button
+                key={stage.number}
+                type="button"
+                onClick={() => scrollToStage(index)}
+                onMouseEnter={() => setHoveredStageIndex(index)}
+                style={{
+                  transform: `scale(${getDotScale(index)})`,
+                }}
+                className={clsx(
+                  "w-3 rounded-full transition-all duration-300 ease-out",
+                  activeStageIndex === index
+                    ? "h-12 bg-neutral-900 dark:bg-white"
+                    : "h-3 bg-neutral-300 dark:bg-neutral-600"
+                )}
+                aria-label={`Go to stage ${stage.number}: ${stage.title}`}
+                aria-current={activeStageIndex === index}
+              />
+            ))}
+          </div>
+
+          {/* Text container */}
+          {hoveredStageIndex !== null && (
+            <div className="flex flex-col gap-4 min-w-[256px]">
+              {timelineStages.map((stage, index) => {
+                // Calculate the height to match the dot's visual center
+                const dotHeight = activeStageIndex === index ? 48 : 12; // h-12 or h-3
+                return (
+                  <div
+                    key={stage.number}
+                    style={{
+                      transform: `scale(${getTextScale(index)})`,
+                      transformOrigin: "left center",
+                      height: `${dotHeight}px`,
+                    }}
+                    className={clsx(
+                      "transition-all duration-300 ease-out text-xs font-medium line-clamp-2 break-words flex items-center",
+                      activeStageIndex === index
+                        ? "text-neutral-900 dark:text-white"
+                        : "text-neutral-500 dark:text-neutral-400"
+                    )}
+                  >
+                    {stage.title}
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      </div>
+
       <div className="mx-auto flex max-w-6xl flex-col gap-8">
         <PortfolioBackButton label="Back" />
 
@@ -201,7 +390,14 @@ export default function XRSubpage() {
 
         <div className="mt-12 flex flex-col items-center gap-8">
           {timelineStages.map((stage, index) => (
-            <div key={stage.number} className="w-full flex flex-col items-center">
+            <div
+              key={stage.number}
+              ref={(el) => {
+                stageRefs.current[index] = el;
+              }}
+              id={`timeline-stage-${stage.number}`}
+              className="w-full flex flex-col items-center"
+            >
               <SectionDivider />
               <div className="w-full max-w-5xl overflow-hidden rounded-[1.75rem] border border-white/50 bg-white/80 p-6 text-slate-900 shadow-lg backdrop-blur-sm dark:border-white/10 dark:bg-white/5 dark:text-white sm:p-7">
                 <div className="space-y-4">
