@@ -5,6 +5,7 @@ import ModularArGlassesSubpage from "@/components/subpages/ModularArGlasses";
 import MultiUserInterruptionsSubpage from "@/components/subpages/MultiUserInterruptions";
 import SurprisePartySubpage from "@/components/subpages/SurpriseParty";
 import SyntheticImuSubpage from "@/components/subpages/SyntheticImu";
+import Where2EatSubpage from "@/components/subpages/where2eat";
 import { generateSlug } from "@/lib/slug";
 
 type ProjectPageProps = {
@@ -20,6 +21,7 @@ export default function ProjectDetailPage({ params }: ProjectPageProps) {
     [generateSlug("GAME: Surprise Party")]: <SurprisePartySubpage />,
     [generateSlug("Modular AR Glasses with Magnetic Hand-Tracking Bands")]:  <ModularArGlassesSubpage />,
     [generateSlug("ESP32 MIDI Foot Pedal for Live Looping")]: <LooperSubpage />,
+    [generateSlug("Cafeteria Seat-Finding System")]: <Where2EatSubpage />,
   };
 
   const page = pages[params.slug];

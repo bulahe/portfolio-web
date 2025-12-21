@@ -61,6 +61,12 @@ export const projectsData: ProjectCard[] = [
     tags: ["python", "CAD","Arduino", "Creative Hardware ", "Music Technology"],
     image: "/Looper/LooperHero.png",
   },
+  {
+    title: "Cafeteria Seat-Finding System",
+    subtitle: "An AR-Inspired Approach to Real-World Occupancy Mapping",
+    tags: ["Computer Vision", "OpenCV", "Raspberry Pi", "AR", "Python"],
+    image: "/Where2eat/where2eatHero.png",
+  },
 ];
 
 export type IntroHighlight = {
