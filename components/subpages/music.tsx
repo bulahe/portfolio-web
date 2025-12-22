@@ -1,12 +1,14 @@
 "use client";
 /* eslint-disable react/no-unescaped-entities */
 
+import { useRef } from "react";
 import PortfolioBackButton from "@/components/ui/portfolio-back-button";
 import SectionDivider from "@/components/section-divider";
 import ImageCarousel from "@/components/ui/image-carousel";
 import Image from "next/image";
 import Link from "next/link";
 import SubDivider from "@/components/sub-divider";
+import SectionIndicator from "@/components/ui/section-indicator";
 import { generateSlug } from "@/lib/slug";
 import { brandTheme } from "@/lib/theme";
 
@@ -99,6 +101,15 @@ const genreAxis = [
 ];
 
 export default function MusicSubpage() {
+  const sectionRefs = useRef<(HTMLElement | null)[]>([]);
+
+  const musicStages = [
+    { number: "01", title: "Overview" },
+    { number: "02", title: "2022" },
+    { number: "03", title: "2023" },
+    { number: "04", title: "2024" },
+  ];
+
   const scrollToSection = (targetId: string) => {
     if (typeof window === "undefined") return;
     const el = document.getElementById(targetId);
@@ -108,11 +119,17 @@ export default function MusicSubpage() {
   };
 
   return (
-    <main className="px-4 pb-16 pt-12 sm:px-6 lg:px-10 lg:pt-14">
+    <main className="relative px-4 pb-16 pt-12 sm:px-6 lg:px-10 lg:pt-14">
+      <SectionIndicator stages={musicStages} sectionRefs={sectionRefs} />
       <div className="mx-auto flex max-w-6xl flex-col gap-8">
         <PortfolioBackButton label="Back" />
 
-        <section className="relative overflow-hidden rounded-[2.4rem] border border-white/40 bg-gradient-to-br from-indigo-50 via-white to-amber-50 p-6 shadow-[0_25px_80px_-40px_rgba(46,16,101,0.35)] backdrop-blur-md sm:p-8 md:p-10 dark:border-white/10 dark:from-slate-900 dark:via-slate-950 dark:to-amber-950/20 dark:shadow-[0_25px_80px_-40px_rgba(0,0,0,0.7)]">
+        <section
+          ref={(el) => {
+            sectionRefs.current[0] = el;
+          }}
+          className="relative overflow-hidden rounded-[2.4rem] border border-white/40 bg-gradient-to-br from-indigo-50 via-white to-amber-50 p-6 shadow-[0_25px_80px_-40px_rgba(46,16,101,0.35)] backdrop-blur-md sm:p-8 md:p-10 dark:border-white/10 dark:from-slate-900 dark:via-slate-950 dark:to-amber-950/20 dark:shadow-[0_25px_80px_-40px_rgba(0,0,0,0.7)]"
+        >
           <div className="pointer-events-none absolute -left-24 -top-28 h-72 w-72 rounded-full bg-gradient-to-br from-indigo-300/35 via-purple-300/30 to-transparent blur-3xl dark:from-indigo-400/25 dark:via-purple-500/15" />
           <div className="pointer-events-none absolute -right-16 top-20 h-64 w-64 rounded-full bg-gradient-to-tr from-amber-300/35 via-orange-200/30 to-transparent blur-3xl dark:from-amber-400/25 dark:via-orange-500/15" />
           <div className="pointer-events-none absolute inset-x-16 bottom-[-18rem] h-96 rounded-full bg-gradient-to-t from-sky-200/40 via-transparent to-transparent blur-3xl dark:from-sky-500/15" />
@@ -228,7 +245,12 @@ export default function MusicSubpage() {
           <p className="text-3xl font-semibold tracking-wide text-slate-600 dark:text-slate-200/80 sm:text-4xl">
             2022
           </p>
-          <div className="w-full max-w-3xl overflow-hidden rounded-[1.75rem] border border-white/50 bg-white/80 p-5 shadow-lg backdrop-blur-sm dark:border-white/10 dark:bg-white/5">
+          <div
+            ref={(el) => {
+              sectionRefs.current[1] = el;
+            }}
+            className="w-full max-w-3xl overflow-hidden rounded-[1.75rem] border border-white/50 bg-white/80 p-5 shadow-lg backdrop-blur-sm dark:border-white/10 dark:bg-white/5"
+          >
             <h3
               className="mb-3 text-2xl font-semibold leading-tight text-transparent bg-clip-text sm:text-[1.65rem]"
               style={{
@@ -264,7 +286,12 @@ export default function MusicSubpage() {
           <p className="text-3xl font-semibold tracking-wide text-slate-600 dark:text-slate-200/80 sm:text-4xl">
             2023
           </p>
-          <div className="w-full max-w-5xl overflow-hidden rounded-[1.75rem] border border-white/50 bg-white/75 p-6 text-slate-900 shadow-lg backdrop-blur-sm dark:border-white/10 dark:bg-white/5 dark:text-white sm:p-7">
+          <div
+            ref={(el) => {
+              sectionRefs.current[2] = el;
+            }}
+            className="w-full max-w-5xl overflow-hidden rounded-[1.75rem] border border-white/50 bg-white/75 p-6 text-slate-900 shadow-lg backdrop-blur-sm dark:border-white/10 dark:bg-white/5 dark:text-white sm:p-7"
+          >
             <div className="space-y-4">
               <h3
                 className="text-2xl font-semibold leading-tight sm:text-[1.65rem] text-transparent bg-clip-text"
@@ -443,7 +470,12 @@ export default function MusicSubpage() {
           <p className="text-3xl font-semibold tracking-wide text-slate-600 dark:text-slate-200/80 sm:text-4xl">
             2024
           </p>
-          <div className="w-full max-w-5xl overflow-hidden rounded-[1.75rem] border border-white/50 bg-white/80 p-6 text-slate-900 shadow-lg backdrop-blur-sm dark:border-white/10 dark:bg-white/5 dark:text-white sm:p-7">
+          <div
+            ref={(el) => {
+              sectionRefs.current[3] = el;
+            }}
+            className="w-full max-w-5xl overflow-hidden rounded-[1.75rem] border border-white/50 bg-white/80 p-6 text-slate-900 shadow-lg backdrop-blur-sm dark:border-white/10 dark:bg-white/5 dark:text-white sm:p-7"
+          >
             <div className="space-y-4 text-sm leading-relaxed text-slate-800 dark:text-slate-100">
               <h3
                 className="text-2xl font-semibold leading-tight sm:text-[1.65rem] text-transparent bg-clip-text"

@@ -4,6 +4,7 @@ import { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import PortfolioBackButton from "@/components/ui/portfolio-back-button";
+import SectionIndicator from "@/components/ui/section-indicator";
 import SubDivider from "@/components/sub-divider";
 
 const projectDetails = {
@@ -45,6 +46,14 @@ const sectionHeadingClass =
 
 export default function Where2EatSubpage() {
   const prototypeTestingVideoRef = useRef<HTMLVideoElement | null>(null);
+  const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  const where2eatStages = [
+    { number: "01", title: "Overview" },
+    { number: "02", title: "Problem & Concept" },
+    { number: "03", title: "System Design" },
+    { number: "04", title: "Outcome" },
+  ];
 
   useLayoutEffect(() => {
     const root = document.documentElement;
@@ -75,6 +84,7 @@ export default function Where2EatSubpage() {
 
   return (
     <main className="relative flex w-full justify-center px-4 pb-24 pt-16 sm:px-6 lg:px-8">
+      <SectionIndicator stages={where2eatStages} sectionRefs={sectionRefs} />
       <div className="relative w-full">
         <PortfolioBackButton />
 
@@ -89,7 +99,12 @@ export default function Where2EatSubpage() {
               </p>
             </header>
 
-            <section className={`${baseSectionClass} gap-3 ${sectionPaddingClass}`}>
+            <section
+              ref={(el) => {
+                sectionRefs.current[0] = el;
+              }}
+              className={`${baseSectionClass} gap-3 ${sectionPaddingClass}`}
+            >
               <h2 className={sectionHeadingClass}>Overview</h2>
               {renderOverviewPoints(projectDetails.overview)}
               <div className="mt-6 grid gap-6 sm:grid-cols-3">
@@ -114,7 +129,12 @@ export default function Where2EatSubpage() {
               </div>
             </section>
 
-            <section className={`${baseSectionClass} gap-3 ${sectionPaddingClass}`}>
+            <section
+              ref={(el) => {
+                sectionRefs.current[1] = el;
+              }}
+              className={`${baseSectionClass} gap-3 ${sectionPaddingClass}`}
+            >
               <h2 className={sectionHeadingClass}>PROBLEM & CONCEPT</h2>
               <div className="space-y-3 text-sm leading-relaxed">
                 <p>
@@ -156,7 +176,12 @@ export default function Where2EatSubpage() {
               </div>
             </section>
 
-            <section className={`${baseSectionClass} gap-3 ${sectionPaddingClass}`}>
+            <section
+              ref={(el) => {
+                sectionRefs.current[2] = el;
+              }}
+              className={`${baseSectionClass} gap-3 ${sectionPaddingClass}`}
+            >
               <h2 className={sectionHeadingClass}>SYSTEM DESIGN & IMPLEMENTATION</h2>
               <div className="space-y-4 text-sm leading-relaxed">
                 <div className="relative mx-auto w-full max-w-2xl overflow-hidden rounded-2xl border border-neutral-200/60 bg-neutral-100 shadow-sm dark:border-neutral-700/60 dark:bg-neutral-900/35">
@@ -259,7 +284,12 @@ export default function Where2EatSubpage() {
               </div>
             </section>
 
-            <section className={`${baseSectionClass} gap-4 ${sectionPaddingClass}`}>
+            <section
+              ref={(el) => {
+                sectionRefs.current[3] = el;
+              }}
+              className={`${baseSectionClass} gap-4 ${sectionPaddingClass}`}
+            >
               <h2 className={sectionHeadingClass}>OUTCOME & TAKEAWAYS</h2>
               <div className="space-y-4 text-sm leading-relaxed">
                 <div>

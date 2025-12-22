@@ -3,6 +3,7 @@
 import { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import PortfolioBackButton from "@/components/ui/portfolio-back-button";
+import SectionIndicator from "@/components/ui/section-indicator";
 import SubDivider from "@/components/sub-divider";
 import { brandTheme } from "@/lib/theme";
 
@@ -62,6 +63,16 @@ export default function MultiUserInterruptionsSubpage() {
   const beaconVideoRef = useRef<HTMLVideoElement | null>(null);
   const sync1VideoRef = useRef<HTMLVideoElement | null>(null);
   const sync2VideoRef = useRef<HTMLVideoElement | null>(null);
+  const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  const multiUserStages = [
+    { number: "01", title: "Overview" },
+    { number: "02", title: "The Problem" },
+    { number: "03", title: "System Design" },
+    { number: "04", title: "Experiment Setup" },
+    { number: "05", title: "What I Built" },
+    { number: "06", title: "What I Learned" },
+  ];
 
   useLayoutEffect(() => {
     const root = document.documentElement;
@@ -92,6 +103,7 @@ export default function MultiUserInterruptionsSubpage() {
 
   return (
     <main className="relative flex w-full justify-center px-4 pb-24 pt-16 sm:px-6 lg:px-8">
+      <SectionIndicator stages={multiUserStages} sectionRefs={sectionRefs} />
       <div className="relative w-full">
         <PortfolioBackButton />
 
@@ -114,7 +126,12 @@ export default function MultiUserInterruptionsSubpage() {
               </div>
             </header>
 
-            <section className={`${baseSectionClass} gap-3 ${sectionPaddingClass}`}>
+            <section
+              ref={(el) => {
+                sectionRefs.current[0] = el;
+              }}
+              className={`${baseSectionClass} gap-3 ${sectionPaddingClass}`}
+            >
               <h2 className={sectionHeadingClass}>
                 Overview
               </h2>
@@ -141,7 +158,12 @@ export default function MultiUserInterruptionsSubpage() {
               </div>
             </section>
 
-            <section className={`${baseSectionClass} gap-4 ${sectionPaddingClass}`}>
+            <section
+              ref={(el) => {
+                sectionRefs.current[1] = el;
+              }}
+              className={`${baseSectionClass} gap-4 ${sectionPaddingClass}`}
+            >
               <h2 className={sectionHeadingClass}>
                 1. THE PROBLEM
               </h2>
@@ -225,7 +247,12 @@ export default function MultiUserInterruptionsSubpage() {
               </div>
             </section>
 
-            <section className={`${baseSectionClass} gap-4 ${sectionPaddingClass}`}>
+            <section
+              ref={(el) => {
+                sectionRefs.current[2] = el;
+              }}
+              className={`${baseSectionClass} gap-4 ${sectionPaddingClass}`}
+            >
               <h2 className={sectionHeadingClass}>
                 2. SYSTEM DESIGN
               </h2>
@@ -473,7 +500,12 @@ export default function MultiUserInterruptionsSubpage() {
               </div>
             </section>
 
-            <section className={`${baseSectionClass} gap-4 ${sectionPaddingClass}`}>
+            <section
+              ref={(el) => {
+                sectionRefs.current[3] = el;
+              }}
+              className={`${baseSectionClass} gap-4 ${sectionPaddingClass}`}
+            >
               <h2 className={sectionHeadingClass}>
                 3. EXPERIMENT SETUP
               </h2>
@@ -648,7 +680,12 @@ export default function MultiUserInterruptionsSubpage() {
               </div>
             </section>
 
-            <section className={`${baseSectionClass} gap-4 ${sectionPaddingClass}`}>
+            <section
+              ref={(el) => {
+                sectionRefs.current[4] = el;
+              }}
+              className={`${baseSectionClass} gap-4 ${sectionPaddingClass}`}
+            >
               <h2 className={sectionHeadingClass}>
                 4. WHAT I BUILT — Core Technical System
               </h2>
@@ -696,7 +733,12 @@ export default function MultiUserInterruptionsSubpage() {
               </div>
             </section>
 
-            <section className={`${baseSectionClass} gap-4 ${sectionPaddingClass}`}>
+            <section
+              ref={(el) => {
+                sectionRefs.current[5] = el;
+              }}
+              className={`${baseSectionClass} gap-4 ${sectionPaddingClass}`}
+            >
               <h2 className={sectionHeadingClass}>
                 5. WHAT I LEARNED
               </h2>

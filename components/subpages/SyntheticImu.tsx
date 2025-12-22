@@ -3,6 +3,7 @@
 import { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import PortfolioBackButton from "@/components/ui/portfolio-back-button";
+import SectionIndicator from "@/components/ui/section-indicator";
 import SubDivider from "@/components/sub-divider";
 import { brandTheme } from "@/lib/theme";
 
@@ -63,6 +64,17 @@ const sectionHeadingClass =
 
 export default function SyntheticImuSubpage() {
   const directionVideoRef = useRef<HTMLVideoElement | null>(null);
+  const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  const syntheticImuStages = [
+    { number: "01", title: "Overview" },
+    { number: "02", title: "Background" },
+    { number: "03", title: "Goals & Approach" },
+    { number: "04", title: "Understanding Gap" },
+    { number: "05", title: "System" },
+    { number: "06", title: "Experiments" },
+    { number: "07", title: "Contributions" },
+  ];
 
   useLayoutEffect(() => {
     const root = document.documentElement;
@@ -93,6 +105,7 @@ export default function SyntheticImuSubpage() {
 
   return (
     <main className="relative flex w-full justify-center px-4 pb-24 pt-16 sm:px-6 lg:px-8">
+      <SectionIndicator stages={syntheticImuStages} sectionRefs={sectionRefs} />
       <div className="relative w-full">
         <PortfolioBackButton />
 
@@ -115,7 +128,12 @@ export default function SyntheticImuSubpage() {
               </div>
             </header>
 
-            <section className={`${baseSectionClass} gap-3 ${sectionPaddingClass}`}>
+            <section
+              ref={(el) => {
+                sectionRefs.current[0] = el;
+              }}
+              className={`${baseSectionClass} gap-3 ${sectionPaddingClass}`}
+            >
               <h2 className={sectionHeadingClass}>
                 OVERVIEW
               </h2>
@@ -142,7 +160,12 @@ export default function SyntheticImuSubpage() {
               </div>
             </section>
 
-            <section className={`${baseSectionClass} gap-3 ${sectionPaddingClass}`}>
+            <section
+              ref={(el) => {
+                sectionRefs.current[1] = el;
+              }}
+              className={`${baseSectionClass} gap-3 ${sectionPaddingClass}`}
+            >
               <h2 className={sectionHeadingClass}>
                 Background & Motivation
               </h2>
@@ -206,7 +229,12 @@ export default function SyntheticImuSubpage() {
               </div>
             </section>
 
-            <section className={`${baseSectionClass} gap-3 ${sectionPaddingClass}`}>
+            <section
+              ref={(el) => {
+                sectionRefs.current[2] = el;
+              }}
+              className={`${baseSectionClass} gap-3 ${sectionPaddingClass}`}
+            >
               <h2 className={sectionHeadingClass}>
                 Goals & Overall Approach
               </h2>
@@ -277,7 +305,12 @@ export default function SyntheticImuSubpage() {
               </div>
             </section>
 
-            <section className={`${baseSectionClass} gap-4 ${sectionPaddingClass}`}>
+            <section
+              ref={(el) => {
+                sectionRefs.current[3] = el;
+              }}
+              className={`${baseSectionClass} gap-4 ${sectionPaddingClass}`}
+            >
               <h2 className={sectionHeadingClass}>
                 🔍 Understanding the Gap: Virtual vs. Real IMU
               </h2>
@@ -348,7 +381,12 @@ export default function SyntheticImuSubpage() {
             </section>
 
             <div className="w-full self-center max-w-4xl sm:max-w-5xl lg:max-w-6xl">
-              <section className={`${baseSectionClass} gap-4 ${sectionPaddingClass}`}>
+              <section
+                ref={(el) => {
+                  sectionRefs.current[4] = el;
+                }}
+                className={`${baseSectionClass} gap-4 ${sectionPaddingClass}`}
+              >
                 <h2 className={sectionHeadingClass}>
                   🛠 System at a Glance
                 </h2>
@@ -432,7 +470,12 @@ export default function SyntheticImuSubpage() {
               </section>
             </div>
 
-            <section className={`${baseSectionClass} gap-4 ${sectionPaddingClass}`}>
+            <section
+              ref={(el) => {
+                sectionRefs.current[5] = el;
+              }}
+              className={`${baseSectionClass} gap-4 ${sectionPaddingClass}`}
+            >
               <h2 className={sectionHeadingClass}>
                 Experiments & Results
               </h2>
@@ -520,7 +563,12 @@ export default function SyntheticImuSubpage() {
               </div>
             </section>
 
-            <section className={`${baseSectionClass} gap-4 ${sectionPaddingClass}`}>
+            <section
+              ref={(el) => {
+                sectionRefs.current[6] = el;
+              }}
+              className={`${baseSectionClass} gap-4 ${sectionPaddingClass}`}
+            >
               <h2 className={sectionHeadingClass}>
                 Contributions & Limitations
               </h2>

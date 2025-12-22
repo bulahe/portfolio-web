@@ -4,6 +4,7 @@ import { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import PortfolioBackButton from "@/components/ui/portfolio-back-button";
+import SectionIndicator from "@/components/ui/section-indicator";
 import SubDivider from "@/components/sub-divider";
 import { brandTheme } from "@/lib/theme";
 
@@ -111,6 +112,16 @@ const sectionHeadingClass =
 export default function SurprisePartySubpage() {
   const loopVideoRef = useRef<HTMLVideoElement | null>(null);
   const gameVideoRefs = useRef<Record<string, HTMLVideoElement | null>>({});
+  const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  const surprisePartyStages = [
+    { number: "01", title: "Overview" },
+    { number: "02", title: "Core Game Loop" },
+    { number: "03", title: "Mini-Games" },
+    { number: "04", title: "Art Direction" },
+    { number: "05", title: "My Role" },
+    { number: "06", title: "Showcase" },
+  ];
 
   useLayoutEffect(() => {
     const root = document.documentElement;
@@ -141,6 +152,7 @@ export default function SurprisePartySubpage() {
 
   return (
     <main className="relative flex w-full justify-center px-4 pb-24 pt-16 sm:px-6 lg:px-8">
+      <SectionIndicator stages={surprisePartyStages} sectionRefs={sectionRefs} />
       <div className="relative w-full">
         <PortfolioBackButton />
 
@@ -163,7 +175,12 @@ export default function SurprisePartySubpage() {
               </div>
             </header>
 
-            <section className={`${baseSectionClass} gap-3 ${sectionPaddingClass}`}>
+            <section
+              ref={(el) => {
+                sectionRefs.current[0] = el;
+              }}
+              className={`${baseSectionClass} gap-3 ${sectionPaddingClass}`}
+            >
               <h2 className={sectionHeadingClass}>
                 Overview
               </h2>
@@ -190,7 +207,12 @@ export default function SurprisePartySubpage() {
               </div>
             </section>
 
-            <section className={`${baseSectionClass} gap-3 ${sectionPaddingClass}`}>
+            <section
+              ref={(el) => {
+                sectionRefs.current[1] = el;
+              }}
+              className={`${baseSectionClass} gap-3 ${sectionPaddingClass}`}
+            >
               <h2 className={sectionHeadingClass}>
                 Core Game Loop
               </h2>
@@ -233,7 +255,12 @@ export default function SurprisePartySubpage() {
               </div>
             </section>
 
-            <section className={`${baseSectionClass} gap-3 ${sectionPaddingClass}`}>
+            <section
+              ref={(el) => {
+                sectionRefs.current[2] = el;
+              }}
+              className={`${baseSectionClass} gap-3 ${sectionPaddingClass}`}
+            >
               <h2 className={sectionHeadingClass}>
                 Mini-Games Collection
               </h2>
@@ -288,7 +315,12 @@ export default function SurprisePartySubpage() {
               </div>
             </section>
 
-            <section className={`${baseSectionClass} gap-3 ${sectionPaddingClass}`}>
+            <section
+              ref={(el) => {
+                sectionRefs.current[3] = el;
+              }}
+              className={`${baseSectionClass} gap-3 ${sectionPaddingClass}`}
+            >
               <h2 className={sectionHeadingClass}>
                 Art Direction
               </h2>
@@ -324,7 +356,12 @@ export default function SurprisePartySubpage() {
               </div>
             </section>
 
-            <section className={`${baseSectionClass} gap-4 ${sectionPaddingClass}`}>
+            <section
+              ref={(el) => {
+                sectionRefs.current[4] = el;
+              }}
+              className={`${baseSectionClass} gap-4 ${sectionPaddingClass}`}
+            >
               <h2 className={sectionHeadingClass}>
                 My Role
               </h2>
@@ -344,7 +381,12 @@ export default function SurprisePartySubpage() {
               </ul>
             </section>
 
-            <section className={`${baseSectionClass} gap-4 ${sectionPaddingClass}`}>
+            <section
+              ref={(el) => {
+                sectionRefs.current[5] = el;
+              }}
+              className={`${baseSectionClass} gap-4 ${sectionPaddingClass}`}
+            >
               <h2 className={sectionHeadingClass}>Quick Showcase</h2>
               <p className="text-sm leading-relaxed">
                 A short one-minute clip capturing the highlights of the project.

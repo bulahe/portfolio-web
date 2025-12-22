@@ -1,9 +1,10 @@
 'use client';
 
-import { useLayoutEffect } from "react";
+import { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import PortfolioBackButton from "@/components/ui/portfolio-back-button";
+import SectionIndicator from "@/components/ui/section-indicator";
 import ImageCarousel from "@/components/ui/image-carousel";
 
 type ProjectDetails = {
@@ -89,6 +90,16 @@ const sectionHeadingClass =
   "text-sm font-semibold uppercase tracking-[0.2em] text-neutral-500 dark:text-neutral-400 sm:text-base";
 
 export default function ModularArGlassesSubpage() {
+  const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  const arGlassesStages = [
+    { number: "01", title: "Overview" },
+    { number: "02", title: "Inspiration" },
+    { number: "03", title: "Design Concept" },
+    { number: "04", title: "3D Modeling", minThreshold: 0.01 }, // Lower threshold for this long section
+    { number: "05", title: "Reflection" },
+  ];
+
   useLayoutEffect(() => {
     const root = document.documentElement;
     const hadSmoothClass = root.classList.contains("!scroll-smooth");
@@ -118,6 +129,7 @@ export default function ModularArGlassesSubpage() {
 
   return (
     <main className="relative flex w-full justify-center px-4 pb-24 pt-16 sm:px-6 lg:px-8">
+      <SectionIndicator stages={arGlassesStages} sectionRefs={sectionRefs} />
       <div className="relative w-full">
         <PortfolioBackButton />
 
@@ -140,7 +152,12 @@ export default function ModularArGlassesSubpage() {
               </div>
             </header>
 
-            <section className={`${baseSectionClass} gap-3 ${sectionPaddingClass}`}>
+            <section
+              ref={(el) => {
+                sectionRefs.current[0] = el;
+              }}
+              className={`${baseSectionClass} gap-3 ${sectionPaddingClass}`}
+            >
               <h2 className={sectionHeadingClass}>
                 Overview
               </h2>
@@ -167,7 +184,12 @@ export default function ModularArGlassesSubpage() {
               </div>
             </section>
 
-            <section className={`${baseSectionClass} gap-3 ${sectionPaddingClass}`}>
+            <section
+              ref={(el) => {
+                sectionRefs.current[1] = el;
+              }}
+              className={`${baseSectionClass} gap-3 ${sectionPaddingClass}`}
+            >
               <h2 className={sectionHeadingClass}>
                 Inspiration
               </h2>
@@ -202,7 +224,12 @@ export default function ModularArGlassesSubpage() {
               </div>
             </section>
 
-            <section className={`${baseSectionClass} gap-3 ${sectionPaddingClass}`}>
+            <section
+              ref={(el) => {
+                sectionRefs.current[2] = el;
+              }}
+              className={`${baseSectionClass} gap-3 ${sectionPaddingClass}`}
+            >
               <h2 className={sectionHeadingClass}>
                 Design Concept
               </h2>
@@ -308,7 +335,12 @@ export default function ModularArGlassesSubpage() {
               </div>
             </section>
 
-            <section className={`${baseSectionClass} gap-3 ${sectionPaddingClass}`}>
+            <section
+              ref={(el) => {
+                sectionRefs.current[3] = el;
+              }}
+              className={`${baseSectionClass} gap-3 ${sectionPaddingClass}`}
+            >
               <h2 className={sectionHeadingClass}>
                 3D Modeling
               </h2>
@@ -427,7 +459,12 @@ export default function ModularArGlassesSubpage() {
               </div>
             </section>
 
-            <section className={`${baseSectionClass} gap-4 ${sectionPaddingClass}`}>
+            <section
+              ref={(el) => {
+                sectionRefs.current[4] = el;
+              }}
+              className={`${baseSectionClass} gap-4 ${sectionPaddingClass}`}
+            >
               <h2 className={sectionHeadingClass}>
                 Reflection
               </h2>

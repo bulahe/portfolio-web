@@ -1,9 +1,10 @@
 'use client';
 
-import { useLayoutEffect } from "react";
+import { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import ImageCarousel from "@/components/ui/image-carousel";
 import PortfolioBackButton from "@/components/ui/portfolio-back-button";
+import SectionIndicator from "@/components/ui/section-indicator";
 import Link from "next/link";
 
 const looperDetails = {
@@ -91,6 +92,15 @@ const sectionHeadingClass =
   "text-sm font-semibold uppercase tracking-[0.2em] text-neutral-500 dark:text-neutral-400 sm:text-base";
 
 export default function LooperSubpage() {
+  const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  const looperStages = [
+    { number: "01", title: "Overview" },
+    { number: "02", title: "The Problem" },
+    { number: "03", title: "The Solution" },
+    { number: "04", title: "The Outcome" },
+  ];
+
   useLayoutEffect(() => {
     const root = document.documentElement;
     const hadSmoothClass = root.classList.contains("!scroll-smooth");
@@ -120,6 +130,7 @@ export default function LooperSubpage() {
 
   return (
     <main className="relative flex w-full justify-center px-4 pb-24 pt-16 sm:px-6 lg:px-8">
+      <SectionIndicator stages={looperStages} sectionRefs={sectionRefs} />
       <div className="relative w-full">
         <PortfolioBackButton />
 
@@ -144,7 +155,12 @@ export default function LooperSubpage() {
             </header>
 
             {/* Overview部分 */}
-            <section className={`${baseSectionClass} gap-3 ${sectionPaddingClass}`}>
+            <section
+              ref={(el) => {
+                sectionRefs.current[0] = el;
+              }}
+              className={`${baseSectionClass} gap-3 ${sectionPaddingClass}`}
+            >
               <h2 className={sectionHeadingClass}>
                 Overview
               </h2>
@@ -173,7 +189,12 @@ export default function LooperSubpage() {
 
 
             {/* Problem部分 */}
-            <section className={`${baseSectionClass} gap-3 ${sectionPaddingClass}`}>
+            <section
+              ref={(el) => {
+                sectionRefs.current[1] = el;
+              }}
+              className={`${baseSectionClass} gap-3 ${sectionPaddingClass}`}
+            >
               <h2 className={sectionHeadingClass}>
                 The Problem
               </h2>
@@ -224,7 +245,12 @@ export default function LooperSubpage() {
             </section>
 
             {/* Solution部分 */}
-            <section className={`${baseSectionClass} gap-3 ${sectionPaddingClass}`}>
+            <section
+              ref={(el) => {
+                sectionRefs.current[2] = el;
+              }}
+              className={`${baseSectionClass} gap-3 ${sectionPaddingClass}`}
+            >
               <h2 className={sectionHeadingClass}>
                 The Solution
               </h2>
@@ -312,7 +338,12 @@ export default function LooperSubpage() {
 
 
             {/* Key Learnings部分 */}
-            <section className={`${baseSectionClass} gap-4 ${sectionPaddingClass}`}>
+            <section
+              ref={(el) => {
+                sectionRefs.current[3] = el;
+              }}
+              className={`${baseSectionClass} gap-4 ${sectionPaddingClass}`}
+            >
               <h2 className={sectionHeadingClass}>
                 The Outcome
               </h2>
