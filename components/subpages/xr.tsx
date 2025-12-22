@@ -22,14 +22,12 @@ const timelineStages = [
   {
     number: "02",
     title: "Early Work",
-    content:
-      "My early university work focused on turning a long-term AR vision into things I could actually build.\n\nI led a cafeteria seat-finding system that combined AR-inspired interaction logic with real-time computer vision, then explored AR as a wearable form through a modular AR glasses concept developed in a summer design studio.\n\nIn parallel, I built a Roblox game (\"Surprise Party\") to strengthen my real-time 3D instincts—interaction design, feedback loops, and building experiences that feel coherent inside a spatial world.",
+      content: "",
   },
   {
     number: "03",
     title: "Later Projects",
-    content:
-      "In my later years, my work shifted from prototypes to complete XR systems—projects where architecture, reliability, and consistency mattered as much as the interaction itself.\n\nMy senior thesis was the first time I designed and delivered an XR system end-to-end, integrating the full pipeline from technical implementation to an experience that could actually be run and evaluated.\n\nBuilding on that foundation, I became the sole Unity system developer for a multi-user MR service-robot interaction study, where I worked on shared state, synchronized behaviors, and stable spatial alignment across devices.",
+    content: "",
   },
   {
     number: "04",
@@ -84,6 +82,73 @@ const sectionHeadingClass =
   "text-sm font-semibold uppercase tracking-[0.2em] text-neutral-500 dark:text-neutral-400 sm:text-base";
 
 const modularArGlassesSlug = generateSlug("Modular AR Glasses with Magnetic Hand-Tracking Bands");
+
+// Helper function to render project card with unified format (title/subtitle centered, content/image horizontal)
+const renderProjectCard = (
+  title: string,
+  subtitle: string,
+  imageSrc: string,
+  imageAlt: string,
+  href: string,
+  index: number, // 0-based index for determining layout (odd: text left/image right, even: text right/image left)
+  content?: string, // Optional content text
+  id?: string,
+  refCallback?: (el: HTMLDivElement | null) => void
+) => {
+  const isOdd = index % 2 === 0; // 0, 2, 4 are odd positions (1st, 3rd, 5th)
+  const textOrder = isOdd ? "order-1" : "order-2";
+  const imageOrder = isOdd ? "order-2" : "order-1";
+
+  return (
+    <div
+      id={id}
+      ref={refCallback}
+      className="mx-auto mt-6 w-full max-w-5xl overflow-hidden rounded-[1.75rem] border border-white/50 bg-white/80 p-6 shadow-lg backdrop-blur-sm dark:border-white/10 dark:bg-white/5 sm:p-7"
+    >
+      {/* Title and subtitle - centered at top */}
+      <div className="mb-6 text-center">
+        <h3 className="mb-2 text-2xl font-semibold leading-tight text-neutral-900 dark:text-white sm:text-[1.65rem]">
+          {title}
+        </h3>
+        <p className="text-sm font-medium text-slate-600 dark:text-slate-300">
+          {subtitle}
+        </p>
+      </div>
+      {/* Content and image - horizontal layout */}
+      <div className="flex flex-col gap-6 md:flex-row md:items-center md:gap-8">
+        {/* Text content */}
+        <div className={`flex flex-1 flex-col ${textOrder} md:w-1/2`}>
+          {content && (
+            <div className="space-y-3 text-base leading-relaxed text-slate-700 dark:text-slate-200">
+              {content.split("\n\n").map((paragraph, pIndex) => (
+                <p key={pIndex}>{paragraph}</p>
+              ))}
+            </div>
+          )}
+        </div>
+        {/* Image */}
+        <div className={`group relative aspect-[3/2] w-full overflow-hidden rounded-2xl border border-white/40 bg-neutral-200 shadow-inner dark:border-white/10 dark:bg-neutral-900 ${imageOrder} md:w-1/2`}>
+          <Image
+            src={imageSrc}
+            alt={imageAlt}
+            fill
+            sizes="(min-width: 1024px) 50vw, (min-width: 640px) 50vw, 90vw"
+            className="object-cover transition duration-300 group-hover:scale-[1.02]"
+            priority
+          />
+          <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/35 opacity-0 transition duration-200 group-hover:pointer-events-auto group-hover:opacity-100">
+            <Link
+              href={href}
+              className="inline-flex items-center gap-2 rounded-full bg-white/90 px-5 py-3 text-sm font-semibold uppercase tracking-wide text-slate-900 shadow-lg transition hover:-translate-y-0.5 hover:bg-white"
+            >
+              View project details
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default function XRSubpage() {
   const [activeStageIndex, setActiveStageIndex] = useState<number | null>(null);
@@ -198,9 +263,9 @@ export default function XRSubpage() {
     const ref = stageRefs.current[index];
     if (ref) {
       const elementPosition = ref.getBoundingClientRect().top + window.pageYOffset;
-      const offsetPosition = elementPosition - 120; // Add 120px padding from top
-      window.scrollTo({
-        top: offsetPosition,
+          const offsetPosition = elementPosition - 120; // Add 120px padding from top
+          window.scrollTo({
+            top: offsetPosition,
         behavior: "smooth",
       });
     }
@@ -262,7 +327,7 @@ export default function XRSubpage() {
 
           {/* Text container - Only show when hovered */}
           {hoveredStageIndex !== null && (
-            <div className="flex flex-col gap-4 min-w-[256px]">
+            <div className="flex flex-col gap-4 min-w-[120px] max-w-[200px]">
               {timelineStages.map((stage, index) => {
                 // Calculate the height to match the dot's visual center
                 const dotHeight = activeStageIndex === index ? 48 : 12; // h-12 or h-3
@@ -356,92 +421,121 @@ export default function XRSubpage() {
                       </h2>
                     </div>
                   </div>
-                  <div className="space-y-4 text-sm leading-relaxed text-slate-800 dark:text-slate-100 sm:space-y-5">
-                    {stage.content.split("\n\n").map((paragraph, pIndex) => {
-                      // Handle italic text for "*in the world*"
-                      const parts = paragraph.split(/(\*[^*]+\*)/);
-                      return (
-                        <p key={pIndex} className="text-base">
-                          {parts.map((part, partIndex) => {
-                            if (part.startsWith("*") && part.endsWith("*")) {
-                              return (
-                                <em key={partIndex} className="not-italic font-medium">
-                                  {part.slice(1, -1)}
-                                </em>
-                              );
-                            }
-                            return <span key={partIndex}>{part}</span>;
-                          })}
-                        </p>
-                      );
-                    })}
-                  </div>
+                  {stage.content && (
+                    <div className="space-y-4 text-sm leading-relaxed text-slate-800 dark:text-slate-100 sm:space-y-5">
+                      {stage.content.split("\n\n").map((paragraph, pIndex) => {
+                        // Handle italic text for "*in the world*"
+                        const parts = paragraph.split(/(\*[^*]+\*)/);
+                        return (
+                          <p key={pIndex} className="text-base">
+                            {parts.map((part, partIndex) => {
+                              if (part.startsWith("*") && part.endsWith("*")) {
+                                return (
+                                  <em key={partIndex} className="not-italic font-medium">
+                                    {part.slice(1, -1)}
+                                  </em>
+                                );
+                              }
+                              return <span key={partIndex}>{part}</span>;
+                            })}
+                          </p>
+                        );
+                      })}
+                    </div>
+                  )}
                   {stage.number === "02" && (
-                    <div className="mt-6 space-y-3">
-                      <div 
+                    <div className="mt-6 space-y-6">
+                      <div
                         id="cafeteria-seat-finding-system"
                         ref={cafeteriaProjectRef}
-                        className="mx-auto mt-6 w-full max-w-3xl overflow-hidden rounded-[1.75rem] border border-white/50 bg-white/80 p-5 shadow-lg backdrop-blur-sm dark:border-white/10 dark:bg-white/5"
+                        className="mx-auto mt-6 w-full max-w-5xl overflow-hidden rounded-[1.75rem] border border-white/50 bg-white/80 p-6 shadow-lg backdrop-blur-sm dark:border-white/10 dark:bg-white/5 sm:p-7"
                       >
-                        <h3 className="mb-3 text-center text-2xl font-semibold leading-tight text-neutral-900 dark:text-white sm:text-[1.65rem]">
-                          Cafeteria Seat-Finding System
-                        </h3>
-                        <p className="mb-4 text-center text-base font-medium text-slate-800 dark:text-slate-100">
-                          An AR-Inspired Approach to Real-World Occupancy Mapping
-                        </p>
-                        <div className="group relative aspect-[3/2] w-full overflow-hidden rounded-2xl border border-white/40 bg-neutral-200 shadow-inner dark:border-white/10 dark:bg-neutral-900">
-                          <Image
-                            src="/Where2eat/where2eatHero.png"
-                            alt="Cafeteria Seat-Finding System"
-                            fill
-                            sizes="(min-width: 1024px) 60vw, (min-width: 640px) 70vw, 95vw"
-                            className="object-cover transition duration-300 group-hover:scale-[1.02]"
-                            priority
-                          />
-                          <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/35 opacity-0 transition duration-200 group-hover:pointer-events-auto group-hover:opacity-100">
-                            <Link
-                              href={`/projects/${generateSlug("Cafeteria Seat-Finding System")}`}
-                              className="inline-flex items-center gap-2 rounded-full bg-white/90 px-5 py-3 text-sm font-semibold uppercase tracking-wide text-slate-900 shadow-lg transition hover:-translate-y-0.5 hover:bg-white"
-                            >
-                              View project details
-                            </Link>
+                        {/* Title and subtitle - centered at top */}
+                        <div className="mb-6 text-center">
+                          <h3 className="mb-2 text-2xl font-semibold leading-tight text-neutral-900 dark:text-white sm:text-[1.65rem]">
+                            Cafeteria Seat-Finding System
+                          </h3>
+                          <p className="text-sm font-medium text-slate-600 dark:text-slate-300">
+                            An AR-Inspired Approach to Real-World Occupancy Mapping
+                          </p>
+                        </div>
+                        {/* Content and image - horizontal layout */}
+                        <div className="flex flex-col gap-6 md:flex-row md:items-center md:gap-8">
+                          {/* Text content - Left */}
+                          <div className="flex flex-1 flex-col md:w-1/2">
+                            <div className="space-y-3 text-base leading-relaxed text-slate-700 dark:text-slate-200">
+                              <p>
+                                Peak-hour seat searching in a large campus cafeteria was frustrating. I wondered if AR-style spatial awareness could make finding available seats more intuitive, so I proposed the idea in class and led a team to build it.
+                              </p>
+                              <p>
+                                We used ceiling-mounted cameras to detect seat occupancy in real time and presented results through a web interface, grounding an AR-inspired idea in deployable infrastructure.
+                              </p>
+                            </div>
+                          </div>
+                          {/* Image - Right */}
+                          <div className="group relative aspect-[3/2] w-full overflow-hidden rounded-2xl border border-white/40 bg-neutral-200 shadow-inner dark:border-white/10 dark:bg-neutral-900 md:w-1/2">
+                            <Image
+                              src="/Where2eat/where2eatHero.png"
+                              alt="Cafeteria Seat-Finding System"
+                              fill
+                              sizes="(min-width: 1024px) 50vw, (min-width: 640px) 50vw, 90vw"
+                              className="object-cover transition duration-300 group-hover:scale-[1.02]"
+                              priority
+                            />
+                            <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/35 opacity-0 transition duration-200 group-hover:pointer-events-auto group-hover:opacity-100">
+                              <Link
+                                href={`/projects/${generateSlug("Cafeteria Seat-Finding System")}`}
+                                className="inline-flex items-center gap-2 rounded-full bg-white/90 px-5 py-3 text-sm font-semibold uppercase tracking-wide text-slate-900 shadow-lg transition hover:-translate-y-0.5 hover:bg-white"
+                              >
+                                View project details
+                              </Link>
+                            </div>
                           </div>
                         </div>
                       </div>
-                      <div className="mt-6 space-y-3 text-sm leading-relaxed">
-                        <p>
-                          After this early experiment in grounding AR ideas through computer vision, I became increasingly interested in the hardware side of spatial interfaces—how future AR devices might be worn, assembled, or adapted to different contexts.
-                        </p>
-                        <p>
-                          During the summer studio between my freshman and sophomore years, I took a design course where I explored these questions through a modular AR glasses concept. This became my first attempt to think about AR not only as an interaction system, but also as an industrial and wearable form.
-                        </p>
-                      </div>
-                      <div className="mx-auto mt-6 w-full max-w-3xl overflow-hidden rounded-[1.75rem] border border-white/50 bg-white/80 p-5 shadow-lg backdrop-blur-sm dark:border-white/10 dark:bg-white/5">
-                        <h3 className="mb-3 text-center text-2xl font-semibold leading-tight text-neutral-900 dark:text-white sm:text-[1.65rem]">
-                          Exploring Modular AR Hardware Design
-                        </h3>
-                        <p className="mb-4 text-center text-base font-medium text-slate-800 dark:text-slate-100">
-                          A conceptual design envisioning lightweight AR eyewear with magnetic, detachable dual bands for full-range hand tracking.
-                        </p>
-                        <div className="group relative aspect-[3/2] w-full overflow-hidden rounded-2xl border border-white/40 bg-neutral-200 shadow-inner dark:border-white/10 dark:bg-neutral-900">
-                          <Image
-                            src="/glassBandDesign/glassBandDesignHero.png"
-                            alt="Modular AR glasses with magnetic hand-tracking bands concept design."
-                            fill
-                            sizes="(min-width: 1024px) 60vw, (min-width: 640px) 70vw, 95vw"
-                            className="object-cover transition duration-300 group-hover:scale-[1.02]"
-                            priority
-                          />
-                          <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/35 opacity-0 transition duration-200 group-hover:pointer-events-auto group-hover:opacity-100">
-                            <Link
-                              href={`/projects/${modularArGlassesSlug}`}
-                              className="inline-flex items-center gap-2 rounded-full bg-white/90 px-5 py-3 text-sm font-semibold uppercase tracking-wide text-slate-900 shadow-lg transition hover:-translate-y-0.5 hover:bg-white"
-                            >
-                              View project details
-                            </Link>
+                      <SubDivider />
+                      {renderProjectCard(
+                        "Exploring Modular AR Hardware Design",
+                        "A conceptual design envisioning lightweight AR eyewear with magnetic, detachable dual bands for full-range hand tracking.",
+                        "/glassBandDesign/glassBandDesignHero.png",
+                        "Modular AR glasses with magnetic hand-tracking bands concept design.",
+                        `/projects/${modularArGlassesSlug}`,
+                        1, // Even position: text right, image left
+                        "This project began with a set of questions about why current wearable AR systems struggle to move beyond prototypes.\n\nI framed the design around recurring constraints—computation, energy, sensing, and interaction—and how they shape everyday usability.\n\nAs my technical understanding deepened in later years, I revisited these early assumptions and learned how idealistic AR visions must evolve alongside real-world constraints."
+                      )}
+                      <SubDivider />
+                      {renderProjectCard(
+                        "GAME: Surprise Party",
+                        "A Roblox-based multiplayer party game that won a campus game design award.",
+                        "/partyGame/partyGameHero.png",
+                        "GAME: Surprise Party",
+                        `/projects/${generateSlug("GAME: Surprise Party")}`,
+                        2, // Odd position: text left, image right
+                        "As a team member, I contributed to interaction design and real-time behavior in a shared 3D environment.\n\nWhile not an XR project, this experience helped strengthen the spatial and interaction instincts that continue to inform how I approach VR and AR systems."
+                      )}
                           </div>
-                        </div>
-                      </div>
+                  )}
+                  {stage.number === "03" && (
+                    <div className="mt-6 space-y-6">
+                      {renderProjectCard(
+                        "Enhancing Synthetic IMU Generation for Human Activity Recognition",
+                        "Bachelor thesis proposing a closed-loop framework for controllable virtual IMU data generation and evaluation, improving model generalization across datasets.",
+                        "/undergraduate thesis/undergraduate thesisHero.jpeg",
+                        "Enhancing Synthetic IMU Generation for Human Activity Recognition",
+                        `/projects/${generateSlug("Enhancing Synthetic IMU Generation for Human Activity Recognition")}`,
+                        0, // Odd position: text left, image right
+                        "For my undergraduate thesis in Microelectronics, I chose a topic aligned with human pose recognition—a foundational problem underlying many AR and XR systems.\n\nWorking within the constraints of my department, I used this project to engage with multimodal data fusion and contemporary AI methods.\n\nThe experience deepened my understanding of how sensing, learning, and system design intersect in embodied, real-world applications."
+                      )}
+                      <SubDivider />
+                      {renderProjectCard(
+                        "Managing Multi-User Interruptions in Human–Robot Interaction",
+                        "An AR-simulated study of real-world service robot interactions in multi-user environments, reviewed at CHI 2026 and currently undergoing revision for resubmission.",
+                        "/XRobot/XRobotHero.png",
+                        "Managing Multi-User Interruptions in Human–Robot Interaction",
+                        `/projects/${generateSlug("Managing Multi-User Interruptions in Human–Robot Interaction")}`,
+                        1, // Even position: text right, image left
+                        "After finishing my undergraduate thesis, I sought out collaboration with the Software School's Digital Art Lab to work on a project aligned with my long-term AR vision.\n\nThrough developing a multi-user AR system for service robot interaction research, I began engaging with challenges of shared state, coordination, and system-level consistency across users."
+                      )}
                     </div>
                   )}
                   {(stage as typeof stage & { hasVideoLink?: boolean }).hasVideoLink && (
