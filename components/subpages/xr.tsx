@@ -83,6 +83,22 @@ const sectionHeadingClass =
 
 const modularArGlassesSlug = generateSlug("Modular AR Glasses with Magnetic Hand-Tracking Bands");
 
+// Helper function to save return target for navigation
+const rememberReturnTarget = (hash?: string) => {
+  if (typeof window === "undefined") return;
+  try {
+    const { pathname } = window.location;
+    const payload = JSON.stringify({
+      path: pathname || "/xr",
+      hash: hash || "",
+      scroll: window.scrollY,
+    });
+    window.sessionStorage.setItem("portfolio:return-target", payload);
+  } catch {
+    /* ignore storage failure */
+  }
+};
+
 // Helper function to render project card with unified format (title/subtitle centered, content/image horizontal)
 const renderProjectCard = (
   title: string,
@@ -127,7 +143,11 @@ const renderProjectCard = (
           )}
         </div>
         {/* Image */}
-        <div className={`group relative aspect-[3/2] w-full overflow-hidden rounded-2xl border border-white/40 bg-neutral-200 shadow-inner dark:border-white/10 dark:bg-neutral-900 ${imageOrder} md:w-1/2`}>
+        <Link
+          href={href}
+          onClick={() => rememberReturnTarget(id)}
+          className={`group relative aspect-[3/2] w-full overflow-hidden rounded-2xl border border-white/40 bg-neutral-200 shadow-inner dark:border-white/10 dark:bg-neutral-900 ${imageOrder} md:w-1/2 block cursor-pointer`}
+        >
           <Image
             src={imageSrc}
             alt={imageAlt}
@@ -136,15 +156,12 @@ const renderProjectCard = (
             className="object-cover transition duration-300 group-hover:scale-[1.02]"
             priority
           />
-          <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/35 opacity-0 transition duration-200 group-hover:pointer-events-auto group-hover:opacity-100">
-            <Link
-              href={href}
-              className="inline-flex items-center gap-2 rounded-full bg-white/90 px-5 py-3 text-sm font-semibold uppercase tracking-wide text-slate-900 shadow-lg transition hover:-translate-y-0.5 hover:bg-white"
-            >
+          <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/35 opacity-0 transition duration-200 group-hover:opacity-100">
+            <span className="inline-flex items-center gap-2 rounded-full bg-white/90 px-5 py-3 text-sm font-semibold uppercase tracking-wide text-slate-900 shadow-lg">
               View project details
-            </Link>
+            </span>
           </div>
-        </div>
+        </Link>
       </div>
     </div>
   );
@@ -157,6 +174,118 @@ export default function XRSubpage() {
   // Create refs for each timeline stage
   const stageRefs = useRef<(HTMLDivElement | null)[]>([]);
   const cafeteriaProjectRef = useRef<HTMLDivElement | null>(null);
+
+  // Restore scroll position when returning from project pages
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const restoreScrollPosition = () => {
+      // Check if we have a return target and if it's from XR page (meaning we came from a project page)
+      let shouldRestore = false;
+      try {
+        const raw = window.sessionStorage.getItem("portfolio:return-target");
+        if (raw) {
+          const data = JSON.parse(raw) as {
+            path?: string;
+            hash?: string;
+            scroll?: number;
+          };
+          // Only restore if the return target path is "/xr" (meaning we came from a project page back to XR)
+          if (data.path === "/xr") {
+            shouldRestore = true;
+          }
+        }
+      } catch {
+        /* ignore */
+      }
+
+      // If no return target from XR page, check if there's a hash in URL (for direct links like /xr#cafeteria-seat-finding-system)
+      if (!shouldRestore) {
+        const hash = window.location.hash;
+        if (hash) {
+          const target = document.getElementById(hash.slice(1));
+          if (target) {
+            const desiredTop = target.getBoundingClientRect().top + window.scrollY - 120;
+            requestAnimationFrame(() => {
+              window.scrollTo({
+                top: Math.max(0, desiredTop),
+                behavior: "smooth",
+              });
+            });
+          }
+        }
+        return;
+      }
+
+      let desiredTop: number | null = null;
+      const hash = window.location.hash;
+
+      // First, try to scroll to hash if present
+      if (hash) {
+        const target = document.getElementById(hash.slice(1));
+        if (target) {
+          desiredTop = target.getBoundingClientRect().top + window.scrollY - 120;
+        }
+      }
+
+      // If no hash or hash target not found, try stored scroll position
+      if (desiredTop === null) {
+        try {
+          const rawScroll = window.sessionStorage.getItem("portfolio:return-scroll");
+          if (rawScroll !== null) {
+            const parsed = JSON.parse(rawScroll);
+            if (typeof parsed === "number") {
+              desiredTop = parsed;
+            }
+          }
+          window.sessionStorage.removeItem("portfolio:return-scroll");
+        } catch {
+          /* ignore */
+        }
+      }
+
+      if (desiredTop === null) {
+        return;
+      }
+
+      requestAnimationFrame(() => {
+        const root = document.documentElement;
+        const hadSmoothClass = root.classList.contains("!scroll-smooth");
+        const previousBehavior = root.style.getPropertyValue("scroll-behavior");
+        const previousPriority = root.style.getPropertyPriority("scroll-behavior");
+
+        if (hadSmoothClass) {
+          root.classList.remove("!scroll-smooth");
+        }
+        root.style.setProperty("scroll-behavior", "auto", "important");
+
+        window.scrollTo({
+          top: Math.max(0, desiredTop as number),
+          behavior: "auto",
+        });
+
+        requestAnimationFrame(() => {
+          if (previousBehavior) {
+            root.style.setProperty(
+              "scroll-behavior",
+              previousBehavior,
+              previousPriority || undefined
+            );
+          } else {
+            root.style.removeProperty("scroll-behavior");
+          }
+
+          if (hadSmoothClass) {
+            root.classList.add("!scroll-smooth");
+          }
+        });
+      });
+    };
+
+    // Small delay to ensure DOM is ready
+    const timeoutId = setTimeout(restoreScrollPosition, 100);
+    return () => clearTimeout(timeoutId);
+  }, []);
 
   // Handle URL hash navigation to scroll to cafeteria project
   useLayoutEffect(() => {
@@ -360,12 +489,6 @@ export default function XRSubpage() {
       <div className="mx-auto flex max-w-6xl flex-col gap-8">
         <PortfolioBackButton label="Back" />
 
-        <div className="rounded-2xl border-2 border-amber-300/60 bg-amber-50/80 p-4 text-center shadow-sm dark:border-amber-500/40 dark:bg-amber-950/30">
-          <p className="text-sm font-medium text-amber-800 dark:text-amber-200">
-            ⚠️ This page is currently under construction and not yet complete.
-          </p>
-        </div>
-
         <section className="relative overflow-hidden rounded-[2.4rem] border border-white/40 bg-gradient-to-br from-purple-50 via-white to-orange-50 p-6 shadow-[0_25px_80px_-40px_rgba(139,92,246,0.35)] backdrop-blur-md sm:p-8 md:p-10 dark:border-white/10 dark:from-slate-900 dark:via-slate-950 dark:to-orange-950/20 dark:shadow-[0_25px_80px_-40px_rgba(0,0,0,0.7)]">
           <div className="pointer-events-none absolute -left-24 -top-28 h-72 w-72 rounded-full bg-gradient-to-br from-purple-300/35 via-pink-300/30 to-transparent blur-3xl dark:from-purple-400/25 dark:via-pink-500/15" />
           <div className="pointer-events-none absolute -right-16 top-20 h-64 w-64 rounded-full bg-gradient-to-tr from-orange-300/35 via-amber-200/30 to-transparent blur-3xl dark:from-orange-400/25 dark:via-amber-500/15" />
@@ -473,7 +596,11 @@ export default function XRSubpage() {
                             </div>
                           </div>
                           {/* Image - Right */}
-                          <div className="group relative aspect-[3/2] w-full overflow-hidden rounded-2xl border border-white/40 bg-neutral-200 shadow-inner dark:border-white/10 dark:bg-neutral-900 md:w-1/2">
+                          <Link
+                            href={`/projects/${generateSlug("Cafeteria Seat-Finding System")}`}
+                            onClick={() => rememberReturnTarget("cafeteria-seat-finding-system")}
+                            className="group relative aspect-[3/2] w-full overflow-hidden rounded-2xl border border-white/40 bg-neutral-200 shadow-inner dark:border-white/10 dark:bg-neutral-900 md:w-1/2 block cursor-pointer"
+                          >
                             <Image
                               src="/Where2eat/where2eatHero.png"
                               alt="Cafeteria Seat-Finding System"
@@ -482,15 +609,12 @@ export default function XRSubpage() {
                               className="object-cover transition duration-300 group-hover:scale-[1.02]"
                               priority
                             />
-                            <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/35 opacity-0 transition duration-200 group-hover:pointer-events-auto group-hover:opacity-100">
-                              <Link
-                                href={`/projects/${generateSlug("Cafeteria Seat-Finding System")}`}
-                                className="inline-flex items-center gap-2 rounded-full bg-white/90 px-5 py-3 text-sm font-semibold uppercase tracking-wide text-slate-900 shadow-lg transition hover:-translate-y-0.5 hover:bg-white"
-                              >
+                            <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/35 opacity-0 transition duration-200 group-hover:opacity-100">
+                              <span className="inline-flex items-center gap-2 rounded-full bg-white/90 px-5 py-3 text-sm font-semibold uppercase tracking-wide text-slate-900 shadow-lg">
                                 View project details
-                              </Link>
+                              </span>
                             </div>
-                          </div>
+                          </Link>
                         </div>
                       </div>
                       <SubDivider />
@@ -501,7 +625,8 @@ export default function XRSubpage() {
                         "Modular AR glasses with magnetic hand-tracking bands concept design.",
                         `/projects/${modularArGlassesSlug}`,
                         1, // Even position: text right, image left
-                        "This project began with a set of questions about why current wearable AR systems struggle to move beyond prototypes.\n\nI framed the design around recurring constraints—computation, energy, sensing, and interaction—and how they shape everyday usability.\n\nAs my technical understanding deepened in later years, I revisited these early assumptions and learned how idealistic AR visions must evolve alongside real-world constraints."
+                        "This project began with a set of questions about why current wearable AR systems struggle to move beyond prototypes.\n\nI framed the design around recurring constraints—computation, energy, sensing, and interaction—and how they shape everyday usability.\n\nAs my technical understanding deepened in later years, I revisited these early assumptions and learned how idealistic AR visions must evolve alongside real-world constraints.",
+                        generateSlug("Exploring Modular AR Hardware Design")
                       )}
                       <SubDivider />
                       {renderProjectCard(
@@ -511,7 +636,8 @@ export default function XRSubpage() {
                         "GAME: Surprise Party",
                         `/projects/${generateSlug("GAME: Surprise Party")}`,
                         2, // Odd position: text left, image right
-                        "As a team member, I contributed to interaction design and real-time behavior in a shared 3D environment.\n\nWhile not an XR project, this experience helped strengthen the spatial and interaction instincts that continue to inform how I approach VR and AR systems."
+                        "As a team member, I contributed to interaction design and real-time behavior in a shared 3D environment.\n\nWhile not an XR project, this experience helped strengthen the spatial and interaction instincts that continue to inform how I approach VR and AR systems.",
+                        generateSlug("GAME: Surprise Party")
                       )}
                           </div>
                   )}
@@ -524,7 +650,8 @@ export default function XRSubpage() {
                         "Enhancing Synthetic IMU Generation for Human Activity Recognition",
                         `/projects/${generateSlug("Enhancing Synthetic IMU Generation for Human Activity Recognition")}`,
                         0, // Odd position: text left, image right
-                        "For my undergraduate thesis in Microelectronics, I chose a topic aligned with human pose recognition—a foundational problem underlying many AR and XR systems.\n\nWorking within the constraints of my department, I used this project to engage with multimodal data fusion and contemporary AI methods.\n\nThe experience deepened my understanding of how sensing, learning, and system design intersect in embodied, real-world applications."
+                        "For my undergraduate thesis in Microelectronics, I chose a topic aligned with human pose recognition—a foundational problem underlying many AR and XR systems.\n\nWorking within the constraints of my department, I used this project to engage with multimodal data fusion and contemporary AI methods.\n\nThe experience deepened my understanding of how sensing, learning, and system design intersect in embodied, real-world applications.",
+                        generateSlug("Enhancing Synthetic IMU Generation for Human Activity Recognition")
                       )}
                       <SubDivider />
                       {renderProjectCard(
@@ -534,7 +661,8 @@ export default function XRSubpage() {
                         "Managing Multi-User Interruptions in Human–Robot Interaction",
                         `/projects/${generateSlug("Managing Multi-User Interruptions in Human–Robot Interaction")}`,
                         1, // Even position: text right, image left
-                        "After finishing my undergraduate thesis, I sought out collaboration with the Software School's Digital Art Lab to work on a project aligned with my long-term AR vision.\n\nThrough developing a multi-user AR system for service robot interaction research, I began engaging with challenges of shared state, coordination, and system-level consistency across users."
+                        "After finishing my undergraduate thesis, I sought out collaboration with the Software School's Digital Art Lab to work on a project aligned with my long-term AR vision.\n\nThrough developing a multi-user AR system for service robot interaction research, I began engaging with challenges of shared state, coordination, and system-level consistency across users.",
+                        generateSlug("Managing Multi-User Interruptions in Human–Robot Interaction")
                       )}
                     </div>
                   )}
