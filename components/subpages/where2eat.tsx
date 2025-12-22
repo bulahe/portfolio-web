@@ -46,7 +46,7 @@ const sectionHeadingClass =
 
 export default function Where2EatSubpage() {
   const prototypeTestingVideoRef = useRef<HTMLVideoElement | null>(null);
-  const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const sectionRefs = useRef<(HTMLElement | null)[]>([]);
 
   const where2eatStages = [
     { number: "01", title: "Overview" },

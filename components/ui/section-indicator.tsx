@@ -102,7 +102,7 @@ export default function SectionIndicator({
       observers.forEach((observer) => observer.disconnect());
       visibleStages.clear();
     };
-  }, [sectionRefs]);
+  }, [sectionRefs, stages]);
 
   // Handle clicking on section indicator dots to scroll to section
   const scrollToStage = (index: number) => {

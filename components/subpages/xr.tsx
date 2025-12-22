@@ -170,7 +170,7 @@ const renderProjectCard = (
 
 export default function XRSubpage() {
   // Create refs for each timeline stage
-  const stageRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const stageRefs = useRef<(HTMLElement | null)[]>([]);
   const cafeteriaProjectRef = useRef<HTMLDivElement | null>(null);
 
   // Restore scroll position when returning from project pages

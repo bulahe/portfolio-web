@@ -112,7 +112,7 @@ const sectionHeadingClass =
 export default function SurprisePartySubpage() {
   const loopVideoRef = useRef<HTMLVideoElement | null>(null);
   const gameVideoRefs = useRef<Record<string, HTMLVideoElement | null>>({});
-  const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const sectionRefs = useRef<(HTMLElement | null)[]>([]);
 
   const surprisePartyStages = [
     { number: "01", title: "Overview" },

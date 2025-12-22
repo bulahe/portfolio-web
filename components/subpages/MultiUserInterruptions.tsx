@@ -63,7 +63,7 @@ export default function MultiUserInterruptionsSubpage() {
   const beaconVideoRef = useRef<HTMLVideoElement | null>(null);
   const sync1VideoRef = useRef<HTMLVideoElement | null>(null);
   const sync2VideoRef = useRef<HTMLVideoElement | null>(null);
-  const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const sectionRefs = useRef<(HTMLElement | null)[]>([]);
 
   const multiUserStages = [
     { number: "01", title: "Overview" },

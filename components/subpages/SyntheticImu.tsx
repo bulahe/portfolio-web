@@ -64,7 +64,7 @@ const sectionHeadingClass =
 
 export default function SyntheticImuSubpage() {
   const directionVideoRef = useRef<HTMLVideoElement | null>(null);
-  const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const sectionRefs = useRef<(HTMLElement | null)[]>([]);
 
   const syntheticImuStages = [
     { number: "01", title: "Overview" },
