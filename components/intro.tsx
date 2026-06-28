@@ -71,7 +71,7 @@ export default function Intro() {
                   className="mt-1 flex items-center gap-2 text-sm font-medium text-neutral-800 hover:text-[var(--brand-accent)] dark:text-neutral-100 dark:hover:text-[var(--brand-accent)]"
                 >
                   <FiMail className="text-[var(--brand-accent)]" />
-                  a539907687@icloud.com
+                  bulahechung2002@gmail.com
                 </a>
               </div>
               <div className="rounded-2xl border border-neutral-200/60 bg-white/70 p-4 dark:border-neutral-800/60 dark:bg-neutral-900/60">
