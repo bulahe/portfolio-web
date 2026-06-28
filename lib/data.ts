@@ -73,14 +73,27 @@ export type IntroHighlight = {
   icon: IconType;
   title: string;
   body: string;
+  details?: Array<{
+    label: string;
+    value: string;
+  }>;
 };
 
 export const introHighlights: IntroHighlight[] = [
   {
     icon: LuGraduationCap,
-    title: "Undergraduate Student @ SJTU",
-    body:
-      "Pursuing a B.S. in Electrical and Computer Engineering (Microelectronics focus) at Shanghai Jiao Tong University.",
+    title: "Education",
+    body: "",
+    details: [
+      {
+        label: "Shanghai Jiao Tong University",
+        value: "B.S. in Electrical and Computer Engineering",
+      },
+      {
+        label: "New York University",
+        value: "Incoming M.S. in Integrated Design & Media",
+      },
+    ],
   },
   {
     icon: TbDeviceVisionPro,

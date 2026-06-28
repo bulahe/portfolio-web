@@ -87,7 +87,7 @@ export default function Intro() {
                   Location
                 </p>
                 <p className="mt-1 text-sm font-medium text-neutral-800 dark:text-neutral-100">
-                  Shanghai, China
+                  Shanghai / Taipei / New York
                 </p>
               </div>
             </div>
@@ -137,9 +137,24 @@ export default function Intro() {
                           {item.title}
                         </h2>
                       </div>
-                      <p className="text-sm leading-relaxed text-neutral-600 dark:text-neutral-300">
-                        {item.body}
-                      </p>
+                      {item.details ? (
+                        <div className="space-y-2.5 text-sm leading-snug">
+                          {item.details.map((detail) => (
+                            <div key={detail.label}>
+                              <p className="font-medium text-neutral-800 dark:text-neutral-100">
+                                {detail.label}
+                              </p>
+                              <p className="mt-0.5 text-neutral-600 dark:text-neutral-300">
+                                {detail.value}
+                              </p>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <p className="text-sm leading-relaxed text-neutral-600 dark:text-neutral-300">
+                          {item.body}
+                        </p>
+                      )}
                     </motion.div>
                   );
                 })}
