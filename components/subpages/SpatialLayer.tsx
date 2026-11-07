@@ -26,7 +26,7 @@ const milestones = [
   { date: "October 14, 2026", title: "Completing the content lifecycle", body: "Added deletion on both devices, server-side protection for models being edited, and cancellation of pending loads so a deleted model does not reappear." },
 ];
 
-const sectionClass = "scroll-mt-24 rounded-[2.25rem] border border-neutral-200/70 bg-neutral-50/55 p-6 text-neutral-800 shadow-lg backdrop-blur-sm dark:border-neutral-700/60 dark:bg-neutral-900/40 dark:text-neutral-200 sm:p-8";
+const sectionClass = "scroll-mt-24 py-8 text-neutral-800 dark:text-neutral-200 sm:py-10 border-t border-neutral-300/50 dark:border-neutral-700/60";
 const headingClass = "text-sm font-semibold uppercase tracking-[0.2em] text-neutral-500 dark:text-neutral-400";
 
 export default function SpatialLayerSubpage() {
@@ -37,7 +37,7 @@ export default function SpatialLayerSubpage() {
       <PortfolioBackButton />
       <SectionIndicator stages={stages} sectionRefs={sectionRefs} />
       <article className="mx-auto flex w-full max-w-3xl flex-col gap-5 lg:max-w-[54%]">
-        <header className="flex flex-col gap-5 rounded-[2.5rem] border border-neutral-200/70 bg-neutral-50/60 p-6 text-neutral-900 shadow-xl backdrop-blur-sm dark:border-neutral-700/60 dark:bg-neutral-900/40 dark:text-neutral-100 sm:p-8">
+        <header className="flex flex-col gap-8 py-6 text-neutral-900 dark:text-neutral-100 sm:py-10 border-t border-neutral-300/50 dark:border-neutral-700/60">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <span className="rounded-full border border-violet-300/70 bg-violet-100/70 px-3 py-1 text-xs font-semibold tracking-wide text-violet-800 dark:border-violet-700 dark:bg-violet-950/70 dark:text-violet-200">Work in Progress</span>
             <time dateTime="2026-10-15" className="text-xs text-neutral-500 dark:text-neutral-400">Progress archived · October 15, 2026</time>
@@ -47,7 +47,7 @@ export default function SpatialLayerSubpage() {
             <p className="mt-3 text-lg leading-relaxed text-neutral-600 dark:text-neutral-300">Creating shared digital content that stays connected to a real place.</p>
           </div>
           <figure>
-            <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-neutral-200 bg-neutral-950 dark:border-neutral-800">
+            <div className="relative aspect-[4/3] overflow-hidden bg-neutral-950 rounded-lg">
               <Image src="/SpatialLayer/shared-space.svg" alt="System illustration: an iPhone and a Vision Pro share 3D content aligned to one fixed physical reference." fill priority sizes="(min-width: 1024px) 54vw, 95vw" />
             </div>
             <figcaption className="mt-3 text-xs leading-relaxed text-neutral-500 dark:text-neutral-400">System illustration, not an application screenshot. The prototype uses a fixed physical reference to align content across devices.</figcaption>
@@ -71,7 +71,7 @@ export default function SpatialLayerSubpage() {
           <p className="mt-5 text-sm leading-relaxed">The current creator loop connects import, placement, persistence, and viewing on another device.</p>
           <ol className="my-6 grid grid-cols-2 gap-2 sm:grid-cols-4" aria-label="Creator workflow">
             {["Import USDZ", "Place & move", "Save to space", "Join & revisit"].map((step, index) => (
-              <li key={step} className="rounded-2xl border border-neutral-200/70 bg-white/50 p-4 dark:border-neutral-700/60 dark:bg-neutral-950/30">
+              <li key={step} className="p-4 border-t border-neutral-300/50 dark:border-neutral-700/60">
                 <span className="text-xs text-violet-600 dark:text-violet-300">0{index + 1}</span>
                 <span className="mt-2 block text-sm font-medium">{step}</span>
               </li>
@@ -82,7 +82,7 @@ export default function SpatialLayerSubpage() {
               <div key={item.title}><h3 className="text-base font-semibold">{item.title}</h3><p className="mt-2 text-sm leading-relaxed text-neutral-600 dark:text-neutral-300">{item.body}</p></div>
             ))}
           </div>
-          <aside className="mt-7 rounded-2xl border border-neutral-200/70 p-5 text-sm leading-relaxed dark:border-neutral-700/60">
+          <aside className="mt-7 p-5 text-sm leading-relaxed border-t border-neutral-300/50 dark:border-neutral-700/60">
             <h3 className="font-semibold">Current boundaries</h3>
             <p className="mt-2">This is a development prototype using a reachable server and a fixed reference object. Cross-device reference spaces require both devices to recognize that same physical reference. The reference must stay in place; arbitrary-room, markerless localization is not implemented.</p>
             <p className="mt-3">Models are initially sized for placement. Rotation and scale are stored, but their editing controls, behavior presets, and animation authoring are future work. The current shared-space movement does not provide collision against the physical environment.</p>

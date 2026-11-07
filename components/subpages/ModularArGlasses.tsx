@@ -80,12 +80,12 @@ const renderOverviewPoints = (points: readonly string[]) =>
       ))}
     </ul>
   ) : (
-    <div className="min-h-[6rem] rounded-2xl border border-neutral-200/60 bg-white/40 dark:border-neutral-700/60 dark:bg-neutral-900/35" />
+    <div className="min-h-[6rem] border-t border-neutral-300/50 dark:border-neutral-700/60" />
   );
 
 const baseSectionClass =
-  "flex flex-col rounded-[2.25rem] border border-neutral-200/70 bg-neutral-50/55 text-neutral-800 shadow-lg backdrop-blur-sm dark:border-neutral-700/60 dark:bg-neutral-900/40 dark:text-neutral-200";
-const sectionPaddingClass = "p-6 sm:p-7";
+  "flex flex-col text-neutral-800 dark:text-neutral-200 border-t border-neutral-300/50 dark:border-neutral-700/60";
+const sectionPaddingClass = "py-8 sm:py-10";
 const sectionHeadingClass =
   "text-sm font-semibold uppercase tracking-[0.2em] text-neutral-500 dark:text-neutral-400 sm:text-base";
 
@@ -134,13 +134,13 @@ export default function ModularArGlassesSubpage() {
         <PortfolioBackButton />
 
         <div className="mx-auto flex w-full max-w-3xl flex-col gap-4 lg:max-w-[54%]">
-          <article className="flex flex-col gap-4">
-            <header className="flex flex-col gap-5 rounded-[2.5rem] border border-neutral-200/70 bg-neutral-50/60 p-6 text-neutral-900 shadow-xl backdrop-blur-sm dark:border-neutral-700/60 dark:bg-neutral-900/40 dark:text-neutral-100">
-              <h1 className="text-2xl font-semibold leading-tight sm:text-3xl">
+          <article className="flex flex-col gap-10">
+            <header className="flex flex-col gap-8 py-6 text-neutral-900 dark:text-neutral-100 border-t border-neutral-300/50 dark:border-neutral-700/60">
+              <h1 className="text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">
                 Modular AR Glasses with Magnetic Hand-Tracking Bands
               </h1>
 
-              <div className="relative mx-auto aspect-[4/3] w-full overflow-hidden rounded-3xl border border-neutral-200 bg-neutral-100 shadow-inner dark:border-neutral-800 dark:bg-neutral-950">
+              <div className="relative mx-auto aspect-[4/3] w-full overflow-hidden bg-neutral-100 dark:bg-neutral-950 rounded-lg">
                 <Image
                   src="/glassBandDesign/glassBandDesignHero.png"
                   alt="Concept render of the modular AR glasses with hand-tracking bands."
@@ -197,7 +197,7 @@ export default function ModularArGlassesSubpage() {
                 <p>
                   During my senior year of high school, I came across a fan-made concept video for “Apple Glass” — not an official product, but an imaginative vision of what AR glasses could become. That moment sparked a lasting belief that augmented reality would one day merge seamlessly with everyday life. I became fascinated by how digital content could coexist with the physical world, leading me to start imagining what the hardware behind such experiences might look like.
                 </p>
-                <div className="group relative mx-auto w-full overflow-hidden rounded-3xl border border-neutral-200/70 bg-neutral-100 shadow-sm dark:border-neutral-700/60 dark:bg-neutral-900/35">
+                <div className="group relative mx-auto w-full overflow-hidden bg-neutral-100 dark:bg-neutral-900/35 rounded-lg">
                   <div className="relative aspect-video">
                     <Image
                       src="/glassBandDesign/appleGlassYT.png"
@@ -239,7 +239,7 @@ export default function ModularArGlassesSubpage() {
                 </p>
 
                 <div
-                  className="relative w-full overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-100 shadow-inner dark:border-neutral-800 dark:bg-neutral-950"
+                  className="relative w-full overflow-hidden bg-neutral-100 dark:bg-neutral-950 rounded-lg"
                   style={{ aspectRatio: "16 / 9" }}
                 >
                   <Image
@@ -261,7 +261,7 @@ export default function ModularArGlassesSubpage() {
                 </div>
 
                 <div
-                  className="relative w-full overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-100 shadow-inner dark:border-neutral-800 dark:bg-neutral-950"
+                  className="relative w-full overflow-hidden bg-neutral-100 dark:bg-neutral-950 rounded-lg"
                   style={{ aspectRatio: "16 / 9" }}
                 >
                   <Image
@@ -294,7 +294,7 @@ export default function ModularArGlassesSubpage() {
 
                 <div className="space-y-2 text-center">
                   <div
-                    className="relative mx-auto w-full overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-100 shadow-inner dark:border-neutral-800 dark:bg-neutral-950"
+                    className="relative mx-auto w-full overflow-hidden bg-neutral-100 dark:bg-neutral-950 rounded-lg"
                     style={{ aspectRatio: "16 / 9" }}
                   >
                     <Image
@@ -321,7 +321,7 @@ export default function ModularArGlassesSubpage() {
                     Camera-based hand tracking often fails when hands move outside the field of view, forcing users to keep their arms raised unnaturally during operation. A more ergonomic approach would enable continuous gesture recognition even when hands are relaxed — potentially through wearable sensing integrated into everyday accessories.
                   </p>
                   <div className="mx-auto mt-4 w-full max-w-[16rem]">
-                    <div className="relative aspect-square overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-100 shadow-inner dark:border-neutral-800 dark:bg-neutral-950">
+                    <div className="relative aspect-square overflow-hidden bg-neutral-100 dark:bg-neutral-950 rounded-lg">
                       <Image
                         src="/glassBandDesign/VRshake.jpg"
                         alt="Square concept render illustrating the VR shake interaction challenge."
@@ -350,7 +350,7 @@ export default function ModularArGlassesSubpage() {
                     👓 AR Glasses
                   </p>
                   <div className="space-y-5 text-sm leading-relaxed text-neutral-800 dark:text-neutral-100">
-                    <div className="relative overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-100 shadow-inner dark:border-neutral-800 dark:bg-neutral-950">
+                    <div className="relative overflow-hidden bg-neutral-100 dark:bg-neutral-950 rounded-lg">
                       <Image
                         src="/glassBandDesign/ARglassHero.jpg"
                         alt="Hero render of the modular AR glasses concept."
@@ -369,7 +369,7 @@ export default function ModularArGlassesSubpage() {
                         <li>Maintains depth perception and scene reconstruction accuracy while minimizing privacy concerns.</li>
                       </ul>
                     </div>
-                    <div className="relative overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-100 shadow-inner dark:border-neutral-800 dark:bg-neutral-950">
+                    <div className="relative overflow-hidden bg-neutral-100 dark:bg-neutral-950 rounded-lg">
                       <Image
                         src="/glassBandDesign/lidar.png"
                         alt="Diagram explaining LiDAR-based sensing for the AR glasses concept."
@@ -404,7 +404,7 @@ export default function ModularArGlassesSubpage() {
                   <p className="text-sm leading-relaxed text-neutral-800 dark:text-neutral-100">
                     A pair of magnetically detachable wrist bands that provide full-range hand tracking beyond camera limits, designed for both ergonomic comfort and daily wearability.
                   </p>
-                  <div className="relative overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-100 shadow-inner dark:border-neutral-800 dark:bg-neutral-950">
+                  <div className="relative overflow-hidden bg-neutral-100 dark:bg-neutral-950 rounded-lg">
                     <Image
                       src="/glassBandDesign/bandHero.png"
                       alt="Hero render showcasing the dual wrist band concept."
@@ -443,7 +443,7 @@ export default function ModularArGlassesSubpage() {
                       <p>
                         Inspired by Apple’s Solo Loop design, the bands are made of ultra-soft, stretchable silicone that conforms comfortably to the wrist. This buckle-free material ensures a smooth, continuous surface and makes the magnetic merging mechanism both practical and elegant — allowing the two bands to connect as one unified, minimalist form.
                       </p>
-                      <div className="relative overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-100 shadow-inner dark:border-neutral-800 dark:bg-neutral-950">
+                      <div className="relative overflow-hidden bg-neutral-100 dark:bg-neutral-950 rounded-lg">
                         <Image
                           src="/glassBandDesign/strap.png"
                           alt="Close-up of the dual wrist band strap material and magnetic connection detail."

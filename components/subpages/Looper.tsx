@@ -82,12 +82,12 @@ const renderOverviewPoints = (points: readonly string[]) =>
       ))}
     </ul>
   ) : (
-    <div className="min-h-[6rem] rounded-2xl border border-neutral-200/60 bg-white/40 dark:border-neutral-700/60 dark:bg-neutral-900/35" />
+    <div className="min-h-[6rem] border-t border-neutral-300/50 dark:border-neutral-700/60" />
   );
 
 const baseSectionClass =
-  "flex flex-col rounded-[2.25rem] border border-neutral-200/70 bg-neutral-50/55 text-neutral-800 shadow-lg backdrop-blur-sm dark:border-neutral-700/60 dark:bg-neutral-900/40 dark:text-neutral-200";
-const sectionPaddingClass = "p-6 sm:p-7";
+  "flex flex-col text-neutral-800 dark:text-neutral-200 border-t border-neutral-300/50 dark:border-neutral-700/60";
+const sectionPaddingClass = "py-8 sm:py-10";
 const sectionHeadingClass =
   "text-sm font-semibold uppercase tracking-[0.2em] text-neutral-500 dark:text-neutral-400 sm:text-base";
 
@@ -136,13 +136,13 @@ export default function LooperSubpage() {
 
         <div className="mx-auto flex w-full max-w-3xl flex-col gap-4 lg:max-w-[54%]">
 
-          <article className="flex flex-col gap-4">
-            <header className="flex flex-col gap-5 rounded-[2.5rem] border border-neutral-200/70 bg-neutral-50/60 p-6 text-neutral-900 shadow-xl backdrop-blur-sm dark:border-neutral-700/60 dark:bg-neutral-900/40 dark:text-neutral-100">
-              <h1 className="text-2xl font-semibold leading-tight sm:text-3xl">
+          <article className="flex flex-col gap-10">
+            <header className="flex flex-col gap-8 py-6 text-neutral-900 dark:text-neutral-100 border-t border-neutral-300/50 dark:border-neutral-700/60">
+              <h1 className="text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">
                 ESP32 MIDI Foot Pedal for Live Looping
               </h1>
 
-              <div className="relative mx-auto aspect-[4/3] w-full overflow-hidden rounded-3xl border border-neutral-200 bg-neutral-100 shadow-inner dark:border-neutral-800 dark:bg-neutral-950">
+              <div className="relative mx-auto aspect-[4/3] w-full overflow-hidden bg-neutral-100 dark:bg-neutral-950 rounded-lg">
                 <Image
                   src="/Looper/LooperHero.png"
                   alt="Photo of the custom ESP32 MIDI pedalboard."
@@ -206,7 +206,7 @@ export default function LooperSubpage() {
                 <p>
                   However, commercial loopers like the Boss RC-300 were too bulky, limited in track count, and restricted by a fixed input interface that could only handle one microphone and one instrument.
                 </p>
-                <div className="relative mx-auto aspect-[16/9] w-full max-w-md overflow-hidden rounded-2xl border border-neutral-200/60 bg-neutral-100 shadow-sm dark:border-neutral-700/60 dark:bg-neutral-900/35">
+                <div className="relative mx-auto aspect-[16/9] w-full max-w-md overflow-hidden bg-neutral-100 dark:bg-neutral-900/35 rounded-lg">
                   <Image
                     src="/Looper/bossRc300problem.jpg"
                     alt="Boss RC-300 looper highlighting its large footprint on stage."
@@ -224,7 +224,7 @@ export default function LooperSubpage() {
                 <p>
                   While wireless audio transmission introduces noticeable latency, wireless MIDI control signals are lightweight and show almost no perceptible delay, making Bluetooth the ideal choice for this setup.
                 </p>
-                <div className="mx-auto w-full max-w-2xl overflow-hidden rounded-2xl border border-neutral-200/60 bg-neutral-100 shadow-sm dark:border-neutral-700/60 dark:bg-neutral-900/35">
+                <div className="mx-auto w-full max-w-2xl overflow-hidden bg-neutral-100 dark:bg-neutral-900/35 rounded-lg">
                   <div className="relative aspect-video">
                     <Image
                       src="/Looper/loopyProGood.jpg"
@@ -313,7 +313,7 @@ export default function LooperSubpage() {
                       implemented a MicroPython MIDI control script so each footswitch could send
                       configurable CC or Note messages wirelessly to Loopy Pro on iPad.
                     </p>
-                    <div className="mx-auto w-full max-w-2xl overflow-hidden rounded-2xl border border-neutral-200/60 bg-neutral-100 shadow-sm dark:border-neutral-700/60 dark:bg-neutral-900/35">
+                    <div className="mx-auto w-full max-w-2xl overflow-hidden bg-neutral-100 dark:bg-neutral-900/35 rounded-lg">
                       <div className="relative aspect-video">
                         <Image
                           src="/Looper/software.png"
@@ -353,7 +353,7 @@ export default function LooperSubpage() {
                   <span className="italic">Celestial</span> (Ed Sheeran) at the 2023 Shanghai Jiao
                   Tong University Guitar Association Spring Concert.
                 </p>
-                 <div className="group relative mx-auto w-full max-w-2xl overflow-hidden rounded-3xl border border-neutral-200/70 bg-neutral-100 shadow-sm dark:border-neutral-700/60 dark:bg-neutral-900/35">
+                 <div className="group relative mx-auto w-full max-w-2xl overflow-hidden bg-neutral-100 dark:bg-neutral-900/35 rounded-lg">
                   <div className="relative aspect-video">
                     <Image
                       src="/Looper/live.png"

@@ -17,14 +17,14 @@ export default function Intro() {
       className="scroll-mt-[100rem]"
       style={brandVarStyles}
     >
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-3 px-0 sm:px-6 md:flex-row md:items-start md:gap-9">
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-10 px-2 sm:px-6 md:flex-row md:items-start md:gap-16">
         <motion.aside
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ ease: "easeOut", duration: 0.4, delay: 0.1 }}
-          className="flex w-full flex-col items-start -mt-24 md:mt-0 md:w-[19rem] md:flex-none md:self-start md:sticky md:top-24 md:items-stretch"
+          className="flex w-full flex-col items-start mt-0 md:mt-0 md:w-[15rem] md:flex-none md:self-start md:sticky md:top-24 md:items-stretch"
         >
-          <div className="w-full rounded-3xl border border-neutral-200/70 bg-white/95 p-5 shadow-lg dark:border-neutral-800/60 dark:bg-neutral-900/80 md:hidden">
+          <div className="w-full pb-6 border-b border-neutral-300/40 dark:border-neutral-700/60 md:hidden">
             <div className="flex items-center gap-4">
               <div className="relative aspect-square w-24 flex-shrink-0 overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-800">
                 <Image
@@ -43,8 +43,8 @@ export default function Intro() {
             </div>
           </div>
 
-          <div className="hidden w-full flex-col gap-6 rounded-3xl border border-neutral-200/70 bg-white/95 p-6 text-left shadow-lg dark:border-neutral-800/60 dark:bg-neutral-900/80 md:flex">
-            <div className="relative mx-auto aspect-square w-40 overflow-hidden rounded-3xl border border-neutral-200 bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-800">
+          <div className="hidden w-full flex-col gap-8 text-left md:flex">
+            <div className="relative aspect-square w-32 overflow-hidden rounded-3xl border border-neutral-200 bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-800">
               <Image
                 alt="Portrait of Brian Chung"
                 src="/me.jpg"
@@ -62,7 +62,7 @@ export default function Intro() {
               </p>
             </div>
             <div className="space-y-4">
-              <div className="rounded-2xl border border-neutral-200/60 bg-white/80 p-4 dark:border-neutral-800/60 dark:bg-neutral-900/60">
+              <div className="py-3">
                 <p className="text-xs font-semibold uppercase tracking-wide text-neutral-500 dark:text-neutral-400">
                   Email
                 </p>
@@ -74,7 +74,7 @@ export default function Intro() {
                   bulahechung2002@gmail.com
                 </a>
               </div>
-              <div className="rounded-2xl border border-neutral-200/60 bg-white/70 p-4 dark:border-neutral-800/60 dark:bg-neutral-900/60">
+              <div className="py-3">
                 <p className="text-xs font-semibold uppercase tracking-wide text-neutral-500 dark:text-neutral-400">
                   Birthday
                 </p>
@@ -82,7 +82,7 @@ export default function Intro() {
                   2002/10/01
                 </p>
               </div>
-              <div className="rounded-2xl border border-neutral-200/60 bg-white/70 p-4 dark:border-neutral-800/60 dark:bg-neutral-900/60">
+              <div className="py-3">
                 <p className="text-xs font-semibold uppercase tracking-wide text-neutral-500 dark:text-neutral-400">
                   Location
                 </p>
@@ -99,9 +99,9 @@ export default function Intro() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ ease: "easeOut", duration: 0.4, delay: 0.15 }}
-            className="flex flex-col gap-6 rounded-3xl border border-neutral-200/70 bg-neutral-50/60 p-6 backdrop-blur-sm dark:border-neutral-800/60 dark:bg-neutral-900/40"
+            className="flex flex-col gap-10"
           >
-            <h1 className="text-4xl font-semibold tracking-tight text-neutral-900 dark:text-white">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold leading-tight tracking-tight text-neutral-900 dark:text-white">
               Hey, I&apos;m{" "}
               <span className="text-[var(--brand-accent)]">
                 Brian Chung
@@ -117,8 +117,7 @@ export default function Intro() {
             </div>
 
             <div className="space-y-6">
-              <SubDivider />
-              <div className="grid gap-4 sm:grid-cols-2">
+              <div className="grid gap-x-10 gap-y-8 sm:grid-cols-2">
                 {introHighlights.map((item, index) => {
                   const Icon = item.icon;
                   return (
@@ -127,9 +126,9 @@ export default function Intro() {
                       initial={{ opacity: 0, y: 16 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ ease: "easeOut", duration: 0.4, delay: 0.55 + index * 0.05 }}
-                      className="flex h-full flex-col gap-3 rounded-2xl border border-neutral-200/70 bg-white/90 p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-md dark:border-neutral-800/70 dark:bg-neutral-900/70"
+                      className="flex h-full flex-col gap-4 border-t border-neutral-300/50 pt-6 dark:border-neutral-700/60"
                     >
-                      <div className="flex min-h-[3.5rem] items-start gap-3">
+                      <div className="flex items-start gap-3">
                         <div className="flex items-start justify-center text-neutral-700 dark:text-neutral-200">
                           <Icon className="h-7 w-7 text-[var(--brand-accent)]" />
                         </div>
@@ -163,14 +162,14 @@ export default function Intro() {
 
             <div className="space-y-6">
               <SubDivider />
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-x-6 gap-y-3">
                 {introSkills.map((skill, index) => (
                     <motion.span
                     key={skill}
                     initial={{ opacity: 0, y: 8 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ ease: "easeOut", duration: 0.3, delay: 0.75 + index * 0.03 }}
-                    className="rounded-full border border-neutral-300 bg-white px-4 py-1 text-sm font-medium text-[var(--brand-accent)] shadow-sm transition-colors duration-200 hover:border-[var(--brand-primary)] hover:bg-[var(--brand-secondary)]/35 hover:text-[var(--brand-hover)] dark:border-neutral-700 dark:bg-neutral-800 dark:text-[var(--brand-accent)] dark:hover:border-[var(--brand-secondary)] dark:hover:bg-[var(--brand-primary)]/20 dark:hover:text-[var(--brand-hover)]"
+                    className="text-sm font-medium text-neutral-600 dark:text-neutral-400"
                   >
                     {skill}
                   </motion.span>

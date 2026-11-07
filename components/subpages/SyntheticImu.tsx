@@ -53,12 +53,12 @@ const renderOverviewPoints = (points: readonly string[]) =>
       ))}
     </ul>
   ) : (
-    <div className="min-h-[6rem] rounded-2xl border border-neutral-200/60 bg-white/40 dark:border-neutral-700/60 dark:bg-neutral-900/35" />
+    <div className="min-h-[6rem] border-t border-neutral-300/50 dark:border-neutral-700/60" />
   );
 
 const baseSectionClass =
-  "flex flex-col rounded-[2.25rem] border border-neutral-200/70 bg-neutral-50/55 text-neutral-800 shadow-lg backdrop-blur-sm dark:border-neutral-700/60 dark:bg-neutral-900/40 dark:text-neutral-200";
-const sectionPaddingClass = "p-6 sm:p-7";
+  "flex flex-col text-neutral-800 dark:text-neutral-200 border-t border-neutral-300/50 dark:border-neutral-700/60";
+const sectionPaddingClass = "py-8 sm:py-10";
 const sectionHeadingClass =
   "text-sm font-semibold uppercase tracking-[0.2em] text-neutral-500 dark:text-neutral-400 sm:text-base";
 
@@ -110,13 +110,13 @@ export default function SyntheticImuSubpage() {
         <PortfolioBackButton />
 
         <div className="mx-auto flex w-full max-w-3xl flex-col gap-4 lg:max-w-[54%]">
-          <article className="flex flex-col gap-4">
-            <header className="flex flex-col gap-5 rounded-[2.5rem] border border-neutral-200/70 bg-neutral-50/60 p-6 text-neutral-900 shadow-xl backdrop-blur-sm dark:border-neutral-700/60 dark:bg-neutral-900/40 dark:text-neutral-100">
-              <h1 className="text-2xl font-semibold leading-tight sm:text-3xl">
+          <article className="flex flex-col gap-10">
+            <header className="flex flex-col gap-8 py-6 text-neutral-900 dark:text-neutral-100 border-t border-neutral-300/50 dark:border-neutral-700/60">
+              <h1 className="text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">
                 Enhancing Synthetic IMU Generation for Human Activity Recognition
               </h1>
 
-              <div className="relative mx-auto aspect-[4/3] w-full overflow-hidden rounded-3xl border border-neutral-200 bg-neutral-100 shadow-inner dark:border-neutral-800 dark:bg-neutral-950">
+              <div className="relative mx-auto aspect-[4/3] w-full overflow-hidden bg-neutral-100 dark:bg-neutral-950 rounded-lg">
                 <Image
                   src="/undergraduate thesis/undergraduate thesisHero.jpeg"
                   alt="Visualization of the synthetic IMU research project."
@@ -173,7 +173,7 @@ export default function SyntheticImuSubpage() {
                 <p className="text-xs font-semibold uppercase tracking-[0.14em] text-neutral-500 dark:text-neutral-400">
                   🛰️ What is IMU?
                 </p>
-                <figure className="mt-3 w-full overflow-hidden rounded-2xl border border-neutral-200 bg-white/40 shadow-sm dark:border-neutral-800 dark:bg-neutral-950/60">
+                <figure className="mt-3 w-full overflow-hidden bg-white/40 dark:bg-neutral-950/60 rounded-lg">
                   <Image
                     src="/undergraduate thesis/ImuFunction.png"
                     alt="Six-channel IMU sensing across acceleration and angular velocity axes."
@@ -191,7 +191,7 @@ export default function SyntheticImuSubpage() {
                 <p className="text-xs font-semibold uppercase tracking-[0.14em] text-neutral-500 dark:text-neutral-400">
                   ⚠️ Real IMU dataset cons
                 </p>
-                <figure className="mt-3 w-full overflow-hidden rounded-2xl border border-neutral-200 bg-white/40 shadow-sm dark:border-neutral-800 dark:bg-neutral-950/60">
+                <figure className="mt-3 w-full overflow-hidden bg-white/40 dark:bg-neutral-950/60 rounded-lg">
                   <Image
                     src="/undergraduate thesis/ImuRealCons.png"
                     alt="Different datasets place sensors and define activities differently, creating isolated data islands."
@@ -212,7 +212,7 @@ export default function SyntheticImuSubpage() {
                 <p className="text-xs font-semibold uppercase tracking-[0.14em] text-neutral-500 dark:text-neutral-400">
                   ✨ Synthetic IMU pros
                 </p>
-                <figure className="mt-3 w-full overflow-hidden rounded-2xl border border-neutral-200 bg-white/40 shadow-sm dark:border-neutral-800 dark:bg-neutral-950/60">
+                <figure className="mt-3 w-full overflow-hidden bg-white/40 dark:bg-neutral-950/60 rounded-lg">
                   <Image
                     src="/undergraduate thesis/Flexible sensor placement.jpg"
                     alt="Flexible sensor placement options to align virtual and real IMU setups."
@@ -257,7 +257,7 @@ export default function SyntheticImuSubpage() {
                       <span>One-way pipeline: Text → Motion → Virtual IMU stays fixed, letting noisy or inaccurate samples leak into the classifier.</span>
                     </li>
                   </ul>
-                <figure className="w-full overflow-hidden rounded-2xl border border-neutral-200 bg-white/40 shadow-sm dark:border-neutral-800 dark:bg-neutral-950/60">
+                <figure className="w-full overflow-hidden bg-white/40 dark:bg-neutral-950/60 rounded-lg">
                   <Image
                     src="/undergraduate thesis/limitationIMUGPT 2.jpg"
                     alt="Prior IMUGPT pipeline lacks feedback, evaluation, and selection stages."
@@ -276,7 +276,7 @@ export default function SyntheticImuSubpage() {
                     Research Goals
                   </h3>
                   <div className="grid gap-3 sm:grid-cols-3">
-                    <div className="flex flex-col gap-2 rounded-2xl border border-neutral-200 bg-white/40 p-4 shadow-inner dark:border-neutral-800 dark:bg-neutral-900/40">
+                    <div className="flex flex-col gap-2 p-4 border-t border-neutral-300/50 dark:border-neutral-700/60">
                       <p className="text-sm font-semibold text-neutral-900 dark:text-neutral-50">
                         📊 Analyze virtual–real signal gaps
                       </p>
@@ -284,7 +284,7 @@ export default function SyntheticImuSubpage() {
                         Measure how synthetic IMU differs from real data using embedding and distribution metrics.
                       </p>
                     </div>
-                    <div className="flex flex-col gap-2 rounded-2xl border border-neutral-200 bg-white/40 p-4 shadow-inner dark:border-neutral-800 dark:bg-neutral-900/40">
+                    <div className="flex flex-col gap-2 p-4 border-t border-neutral-300/50 dark:border-neutral-700/60">
                       <p className="text-sm font-semibold text-neutral-900 dark:text-neutral-50">
                         🔁 Build an evaluation–selection loop
                       </p>
@@ -292,7 +292,7 @@ export default function SyntheticImuSubpage() {
                         Filter generated samples via semantic checks and calibration to keep only reliable signals.
                       </p>
                     </div>
-                    <div className="flex flex-col gap-2 rounded-2xl border border-neutral-200 bg-white/40 p-4 shadow-inner dark:border-neutral-800 dark:bg-neutral-900/40">
+                    <div className="flex flex-col gap-2 p-4 border-t border-neutral-300/50 dark:border-neutral-700/60">
                       <p className="text-sm font-semibold text-neutral-900 dark:text-neutral-50">
                         🌐 Validate across datasets
                       </p>
@@ -319,7 +319,7 @@ export default function SyntheticImuSubpage() {
                   <h3 className="text-base font-semibold text-neutral-800 dark:text-neutral-100">
                     ❗ Synthetic IMU often gets motion direction wrong
                   </h3>
-                  <div className="relative w-full overflow-hidden rounded-2xl border border-neutral-200 bg-white/40 shadow-inner dark:border-neutral-800 dark:bg-neutral-900/35">
+                  <div className="relative w-full overflow-hidden bg-white/40 dark:bg-neutral-900/35 rounded-lg">
                     <video
                       ref={directionVideoRef}
                       src="/undergraduate thesis/UpDownStairs.mov"
@@ -342,7 +342,7 @@ export default function SyntheticImuSubpage() {
                   <h3 className="text-base font-semibold text-neutral-800 dark:text-neutral-100">
                     ❗ Real datasets also disagree
                   </h3>
-                  <figure className="relative w-full overflow-hidden rounded-2xl border border-neutral-200 bg-white/40 shadow-inner dark:border-neutral-800 dark:bg-neutral-900/35">
+                  <figure className="relative w-full overflow-hidden bg-white/40 dark:bg-neutral-900/35 rounded-lg">
                     <Image
                       src="/undergraduate%20thesis/Comparison%20of%20two%20datasets%20(Pamap2%20vs.%20RealWorld)%20for%20the%20same%20action%20standing%20Feature%20distributions%20are%20scattered%20and%20inconsistent%20Clusters%20from%20different%20datasets%20do%20not%20overlap.jpg"
                       alt="t-SNE comparison showing PAMAP2 vs RealWorld standing actions scattered without overlapping clusters."
@@ -363,7 +363,7 @@ export default function SyntheticImuSubpage() {
                   <h3 className="text-base font-semibold text-neutral-800 dark:text-neutral-100">
                     ❗ IMUGPT had a hidden axis-mapping bug
                   </h3>
-                  <figure className="relative w-full overflow-hidden rounded-2xl border border-neutral-200 bg-white/40 shadow-inner dark:border-neutral-800 dark:bg-neutral-900/35">
+                  <figure className="relative w-full overflow-hidden bg-white/40 dark:bg-neutral-900/35 rounded-lg">
                     <Image
                       src="/undergraduate thesis/FID.png"
                       alt="Alignment visualization highlighting an axis-mapping bug between IMUGPT and IMUSim."
@@ -400,7 +400,7 @@ export default function SyntheticImuSubpage() {
                         1) Text → Motion (baseline from IMUGPT)
                       </p>
                       <div className="space-y-3">
-                        <div className="relative overflow-hidden rounded-2xl border border-neutral-200 bg-white/40 shadow-inner dark:border-neutral-800 dark:bg-neutral-900/35">
+                        <div className="relative overflow-hidden bg-white/40 dark:bg-neutral-900/35 rounded-lg">
                           <video
                             src="/undergraduate%20thesis/1%203.mov"
                             muted
@@ -422,7 +422,7 @@ export default function SyntheticImuSubpage() {
                         2) Motion → IMU (baseline from IMUGPT + light extension)
                       </p>
                       <div className="space-y-3">
-                        <div className="relative overflow-hidden rounded-2xl border border-neutral-200 bg-white/40 shadow-inner dark:border-neutral-800 dark:bg-neutral-900/35">
+                        <div className="relative overflow-hidden bg-white/40 dark:bg-neutral-900/35 rounded-lg">
                           <video
                             src="/undergraduate%20thesis/2%203.mov"
                             muted
@@ -443,7 +443,7 @@ export default function SyntheticImuSubpage() {
                       <p className="font-semibold text-neutral-900 dark:text-neutral-50">
                         3) Evaluation & Filtering (my main contribution)
                       </p>
-                      <figure className="relative w-full overflow-hidden rounded-2xl border border-neutral-200 bg-white/40 shadow-inner dark:border-neutral-800 dark:bg-neutral-900/35">
+                      <figure className="relative w-full overflow-hidden bg-white/40 dark:bg-neutral-900/35 rounded-lg">
                         <Image
                           src="/undergraduate%20thesis/eva1.jpg"
                           alt="Evaluation pipeline visualization showing embedding-based IMU encoder scoring."
@@ -455,7 +455,7 @@ export default function SyntheticImuSubpage() {
                       <p>
                         Use an embedding-based IMU encoder (ImageBind) to score semantic consistency between text, motion, and IMU signals. Only high-quality, physically plausible synthetic samples are kept, creating the feedback-and-selection loop missing in prior work.
                       </p>
-                      <figure className="relative w-full overflow-hidden rounded-2xl border border-neutral-200 bg-white/40 shadow-inner dark:border-neutral-800 dark:bg-neutral-900/35">
+                      <figure className="relative w-full overflow-hidden bg-white/40 dark:bg-neutral-900/35 rounded-lg">
                         <Image
                           src="/undergraduate%20thesis/eva2.jpg"
                           alt="Sample selection results illustrating high-quality synthetic IMU retention."
@@ -507,7 +507,7 @@ export default function SyntheticImuSubpage() {
                   <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-50">
                     📈 Experiment A — Benchmark Against IMUGPT (Across Datasets)
                   </h3>
-                  <figure className="relative w-full overflow-hidden rounded-2xl border border-neutral-200 bg-white/40 shadow-inner dark:border-neutral-800 dark:bg-neutral-900/35">
+                  <figure className="relative w-full overflow-hidden bg-white/40 dark:bg-neutral-900/35 rounded-lg">
                     <Image
                       src="/undergraduate%20thesis/F1%20Macronjpg.jpg"
                       alt="F1-macro comparison chart across R2R, V2R, and Mix2R regimes."
@@ -536,7 +536,7 @@ export default function SyntheticImuSubpage() {
                   <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-50">
                     📉 Experiment B — Real Data Size vs. Performance (Mix2R vs. R2R)
                   </h3>
-                  <figure className="relative w-full overflow-hidden rounded-2xl border border-neutral-200 bg-white/40 shadow-inner dark:border-neutral-800 dark:bg-neutral-900/35">
+                  <figure className="relative w-full overflow-hidden bg-white/40 dark:bg-neutral-900/35 rounded-lg">
                     <Image
                       src="/undergraduate%20thesis/ratiojpg.jpg"
                       alt="Performance vs real-data ratio comparing Mix2R and R2R."

@@ -35,12 +35,12 @@ const renderOverviewPoints = (points: readonly string[]) =>
       ))}
     </ul>
   ) : (
-    <div className="min-h-[6rem] rounded-2xl border border-neutral-200/60 bg-white/40 dark:border-neutral-700/60 dark:bg-neutral-900/35" />
+    <div className="min-h-[6rem] border-t border-neutral-300/50 dark:border-neutral-700/60" />
   );
 
 const baseSectionClass =
-  "flex flex-col rounded-[2.25rem] border border-neutral-200/70 bg-neutral-50/55 text-neutral-800 shadow-lg backdrop-blur-sm dark:border-neutral-700/60 dark:bg-neutral-900/40 dark:text-neutral-200";
-const sectionPaddingClass = "p-6 sm:p-7";
+  "flex flex-col text-neutral-800 dark:text-neutral-200 border-t border-neutral-300/50 dark:border-neutral-700/60";
+const sectionPaddingClass = "py-8 sm:py-10";
 const sectionHeadingClass =
   "text-sm font-semibold uppercase tracking-[0.2em] text-neutral-500 dark:text-neutral-400 sm:text-base";
 
@@ -89,8 +89,8 @@ export default function Where2EatSubpage() {
         <PortfolioBackButton />
 
         <div className="mx-auto flex w-full max-w-3xl flex-col gap-4 lg:max-w-[54%]">
-          <article className="flex flex-col gap-4">
-            <header className="flex flex-col gap-5 rounded-[2.5rem] border border-neutral-200/70 bg-neutral-50/60 p-6 text-neutral-900 shadow-xl backdrop-blur-sm dark:border-neutral-700/60 dark:bg-neutral-900/40 dark:text-neutral-100 sm:p-8">
+          <article className="flex flex-col gap-10">
+            <header className="flex flex-col gap-8 py-6 text-neutral-900 dark:text-neutral-100 sm:p-8 border-t border-neutral-300/50 dark:border-neutral-700/60">
               <h1 className="text-3xl font-semibold leading-tight sm:text-4xl">
                 Cafeteria Seat-Finding System
               </h1>
@@ -147,7 +147,7 @@ export default function Where2EatSubpage() {
                   Since full AR rendering was far beyond scope, we concentrated on real-time computer vision and surfaced the results through a simple mobile interface—validating the core idea and paving the way for potential AR extensions.
                 </p>
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                  <div className="relative overflow-hidden rounded-2xl border border-neutral-200/60 bg-neutral-100 shadow-sm dark:border-neutral-700/60 dark:bg-neutral-900/35">
+                  <div className="relative overflow-hidden bg-neutral-100 dark:bg-neutral-900/35 rounded-lg">
                     <div className="relative aspect-video">
                       <Image
                         src="/Where2eat/becon1.png"
@@ -158,7 +158,7 @@ export default function Where2EatSubpage() {
                       />
                     </div>
                   </div>
-                  <div className="relative overflow-hidden rounded-2xl border border-neutral-200/60 bg-neutral-100 shadow-sm dark:border-neutral-700/60 dark:bg-neutral-900/35">
+                  <div className="relative overflow-hidden bg-neutral-100 dark:bg-neutral-900/35 rounded-lg">
                     <div className="relative aspect-video">
                       <Image
                         src="/Where2eat/becon2.jpeg"
@@ -184,7 +184,7 @@ export default function Where2EatSubpage() {
             >
               <h2 className={sectionHeadingClass}>SYSTEM DESIGN & IMPLEMENTATION</h2>
               <div className="space-y-4 text-sm leading-relaxed">
-                <div className="relative mx-auto w-full max-w-2xl overflow-hidden rounded-2xl border border-neutral-200/60 bg-neutral-100 shadow-sm dark:border-neutral-700/60 dark:bg-neutral-900/35">
+                <div className="relative mx-auto w-full max-w-2xl overflow-hidden bg-neutral-100 dark:bg-neutral-900/35 rounded-lg">
                   <div className="relative aspect-video">
                     <Image
                       src="/Where2eat/system.jpg"
@@ -209,7 +209,7 @@ export default function Where2EatSubpage() {
                     <p>
                       A single overhead camera feeds video into a Raspberry Pi, which handles both image capture and processing. The same Pi runs a lightweight web server that publishes an up-to-date seat-availability view to any phone on the local hotspot, effectively turning the camera feed into a live occupancy map.
                     </p>
-                    <div className="relative w-full overflow-hidden rounded-2xl border border-neutral-200/60 bg-neutral-100 shadow-sm dark:border-neutral-700/60 dark:bg-neutral-900/35">
+                    <div className="relative w-full overflow-hidden bg-neutral-100 dark:bg-neutral-900/35 rounded-lg">
                       <Image
                         src="/Where2eat/systemArch.png"
                         alt="System architecture diagram showing camera, Raspberry Pi, and web interface flow."
@@ -246,7 +246,7 @@ export default function Where2EatSubpage() {
                         <span>Occupancy inference that classifies each table as free or occupied based on the detected changes.</span>
                       </li>
                     </ul>
-                    <div className="relative w-full overflow-hidden rounded-2xl border border-neutral-200/60 bg-neutral-100 shadow-sm dark:border-neutral-700/60 dark:bg-neutral-900/35">
+                    <div className="relative w-full overflow-hidden bg-neutral-100 dark:bg-neutral-900/35 rounded-lg">
                       <Image
                         src="/Where2eat/Computer Vision Pipeline.jpg"
                         alt="Computer vision pipeline diagram showing table calibration, edge detection, and occupancy inference."
@@ -269,7 +269,7 @@ export default function Where2EatSubpage() {
                     <p>
                       Because we couldn&apos;t test directly in the cafeteria, I designed and built a simple ceiling-style camera mount so we could emulate the installation height and angle in the lab and run repeatable tests.
                     </p>
-                    <div className="relative mx-auto w-full max-w-md overflow-hidden rounded-2xl border border-neutral-200/60 bg-neutral-100 shadow-sm dark:border-neutral-700/60 dark:bg-neutral-900/35">
+                    <div className="relative mx-auto w-full max-w-md overflow-hidden bg-neutral-100 dark:bg-neutral-900/35 rounded-lg">
                       <Image
                         src="/Where2eat/Prototype Setup.jpg"
                         alt="Prototype setup showing the ceiling-style camera mount in the lab environment."
@@ -301,7 +301,7 @@ export default function Where2EatSubpage() {
                       A playful short video illustrating the problem: struggling to find a seat during peak hours. The story follows me wandering through the cafeteria in frustration—until a classmate shows me the app, which instantly helps me locate an open table.
                     </p>
                     <div className="mt-6 flex flex-col items-center space-y-2">
-                      <div className="group relative mx-auto w-1/2 overflow-hidden rounded-3xl border border-neutral-200/70 bg-neutral-100 shadow-sm dark:border-neutral-700/60 dark:bg-neutral-900/35">
+                      <div className="group relative mx-auto w-1/2 overflow-hidden bg-neutral-100 dark:bg-neutral-900/35 rounded-lg">
                         <div className="relative aspect-video">
                           <Image
                             src="/Where2eat/trailer.png"
@@ -336,7 +336,7 @@ export default function Where2EatSubpage() {
                     <p>
                       Since real cafeteria access was restricted during development, we validated the CV pipeline using printed table layouts that reproduced the overhead camera view. These tests allowed us to tune edge detection, calibrate table regions, and verify occupancy inference before integrating the full system.
                     </p>
-                    <div className="group relative mt-4 overflow-hidden rounded-2xl border border-neutral-200/60 bg-white/60 shadow-inner transition hover:-translate-y-0.5 hover:shadow-lg hover:shadow-sky-200/40 dark:border-neutral-700/60 dark:bg-neutral-900/35 dark:hover:shadow-sky-900/25">
+                    <div className="group relative mt-4 overflow-hidden bg-white/60 transition dark:bg-neutral-900/35 rounded-lg">
                       <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-gradient-to-tr from-sky-100/40 to-transparent dark:from-sky-500/10" />
                       <div className="flex items-center justify-between px-4 pt-3 text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500 dark:text-neutral-400">
                         <span>Prototype Testing</span>
@@ -383,7 +383,7 @@ export default function Where2EatSubpage() {
                       The system did run end-to-end on an actual table during the final in-class presentation, demonstrating real-time updates on the Raspberry Pi and mobile interface. However, the recording from that session only captured my verbal presentation, not the live demo itself. The photos below document the setup and environment from the final session.
                     </p>
                     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                      <div className="relative overflow-hidden rounded-2xl border border-neutral-200/60 bg-neutral-100 shadow-sm dark:border-neutral-700/60 dark:bg-neutral-900/35">
+                      <div className="relative overflow-hidden bg-neutral-100 dark:bg-neutral-900/35 rounded-lg">
                         <div className="relative aspect-video">
                           <Image
                             src="/Where2eat/present.png"
@@ -394,7 +394,7 @@ export default function Where2EatSubpage() {
                           />
                         </div>
                       </div>
-                      <div className="relative overflow-hidden rounded-2xl border border-neutral-200/60 bg-neutral-100 shadow-sm dark:border-neutral-700/60 dark:bg-neutral-900/35">
+                      <div className="relative overflow-hidden bg-neutral-100 dark:bg-neutral-900/35 rounded-lg">
                         <div className="relative aspect-video">
                           <Image
                             src="/Where2eat/together.png"

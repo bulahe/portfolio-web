@@ -50,12 +50,12 @@ const renderOverviewPoints = (points: readonly string[]) =>
       ))}
     </ul>
   ) : (
-    <div className="min-h-[6rem] rounded-2xl border border-neutral-200/60 bg-white/40 dark:border-neutral-700/60 dark:bg-neutral-900/35" />
+    <div className="min-h-[6rem] border-t border-neutral-300/50 dark:border-neutral-700/60" />
   );
 
 const baseSectionClass =
-  "flex flex-col rounded-[2.25rem] border border-neutral-200/70 bg-neutral-50/55 text-neutral-800 shadow-lg backdrop-blur-sm dark:border-neutral-700/60 dark:bg-neutral-900/40 dark:text-neutral-200";
-const sectionPaddingClass = "p-6 sm:p-7";
+  "flex flex-col text-neutral-800 dark:text-neutral-200 border-t border-neutral-300/50 dark:border-neutral-700/60";
+const sectionPaddingClass = "py-8 sm:py-10";
 const sectionHeadingClass =
   "text-sm font-semibold uppercase tracking-[0.2em] text-neutral-500 dark:text-neutral-400 sm:text-base";
 
@@ -108,13 +108,13 @@ export default function MultiUserInterruptionsSubpage() {
         <PortfolioBackButton />
 
         <div className="mx-auto flex w-full max-w-3xl flex-col gap-4 lg:max-w-[54%]">
-          <article className="flex flex-col gap-4">
-            <header className="flex flex-col gap-5 rounded-[2.5rem] border border-neutral-200/70 bg-neutral-50/60 p-6 text-neutral-900 shadow-xl backdrop-blur-sm dark:border-neutral-700/60 dark:bg-neutral-900/40 dark:text-neutral-100">
-              <h1 className="text-2xl font-semibold leading-tight sm:text-3xl">
+          <article className="flex flex-col gap-10">
+            <header className="flex flex-col gap-8 py-6 text-neutral-900 dark:text-neutral-100 border-t border-neutral-300/50 dark:border-neutral-700/60">
+              <h1 className="text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">
                 Multi-User Robot Interruption Study
               </h1>
 
-              <div className="relative mx-auto aspect-[4/3] w-full overflow-hidden rounded-3xl border border-neutral-200 bg-neutral-100 shadow-inner dark:border-neutral-800 dark:bg-neutral-950">
+              <div className="relative mx-auto aspect-[4/3] w-full overflow-hidden bg-neutral-100 dark:bg-neutral-950 rounded-lg">
                 <Image
                   src="/XRobot/XRobotHero.png"
                   alt="Illustration of the multi-user robot interaction study."
@@ -172,7 +172,7 @@ export default function MultiUserInterruptionsSubpage() {
                   <p className="text-base font-semibold text-neutral-900 dark:text-white">
                     👥 1.1 Multi-user conflicts in public service robots
                   </p>
-                  <div className="overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-100 shadow-inner dark:border-neutral-800 dark:bg-neutral-950">
+                  <div className="overflow-hidden bg-neutral-100 dark:bg-neutral-950 rounded-lg">
                     <Image
                       src="/XRobot/teaser.png"
                       alt="Real-world multi-user interruption scenario in the MR study."
@@ -261,7 +261,7 @@ export default function MultiUserInterruptionsSubpage() {
                   <p className="text-base font-semibold text-neutral-900 dark:text-white">
                     🏗️ 2.1 Multiuser MR Framework Architecture
                   </p>
-                  <div className="overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-100 shadow-inner dark:border-neutral-800 dark:bg-neutral-950">
+                  <div className="overflow-hidden bg-neutral-100 dark:bg-neutral-950 rounded-lg">
                     <Image
                       src="/XRobot/task.png"
                       alt="Multiuser MR Framework Architecture diagram."
@@ -321,7 +321,7 @@ export default function MultiUserInterruptionsSubpage() {
                       </li>
                     </ul>
                   </div>
-                  <div className="group relative mt-4 overflow-hidden rounded-2xl border border-neutral-200/60 bg-white/60 shadow-inner transition hover:-translate-y-0.5 hover:shadow-lg hover:shadow-sky-200/40 dark:border-neutral-700/60 dark:bg-neutral-900/35 dark:hover:shadow-sky-900/25">
+                  <div className="group relative mt-4 overflow-hidden bg-white/60 transition dark:bg-neutral-900/35 rounded-lg">
                     <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-gradient-to-tr from-sky-100/40 to-transparent dark:from-sky-500/10" />
                     <div className="flex items-center justify-between px-4 pt-3 text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500 dark:text-neutral-400">
                       <span>Beacon UI Sync</span>
@@ -383,7 +383,7 @@ export default function MultiUserInterruptionsSubpage() {
                       </li>
                     </ul>
                   </div>
-                  <div className="group relative mt-4 overflow-hidden rounded-2xl border border-neutral-200/60 bg-white/60 shadow-inner transition hover:-translate-y-0.5 hover:shadow-lg hover:shadow-sky-200/40 dark:border-neutral-700/60 dark:bg-neutral-900/35 dark:hover:shadow-sky-900/25">
+                  <div className="group relative mt-4 overflow-hidden bg-white/60 transition dark:bg-neutral-900/35 rounded-lg">
                     <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-gradient-to-tr from-sky-100/40 to-transparent dark:from-sky-500/10" />
                     <div className="flex items-center justify-between px-4 pt-3 text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500 dark:text-neutral-400">
                       <span>Sync Demo 1</span>
@@ -438,7 +438,7 @@ export default function MultiUserInterruptionsSubpage() {
                       </li>
                     </ul>
                   </div>
-                  <div className="group relative mt-4 overflow-hidden rounded-2xl border border-neutral-200/60 bg-white/60 shadow-inner transition hover:-translate-y-0.5 hover:shadow-lg hover:shadow-sky-200/40 dark:border-neutral-700/60 dark:bg-neutral-900/35 dark:hover:shadow-sky-900/25">
+                  <div className="group relative mt-4 overflow-hidden bg-white/60 transition dark:bg-neutral-900/35 rounded-lg">
                     <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-gradient-to-tr from-sky-100/40 to-transparent dark:from-sky-500/10" />
                     <div className="flex items-center justify-between px-4 pt-3 text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500 dark:text-neutral-400">
                       <span>Sync Demo 2</span>
@@ -539,7 +539,7 @@ export default function MultiUserInterruptionsSubpage() {
                   <p className="text-base font-semibold text-neutral-900 dark:text-white">
                     🤖 3.2 Robot Types & Scenarios
                   </p>
-                  <div className="overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-100 shadow-inner dark:border-neutral-800 dark:bg-neutral-950">
+                  <div className="overflow-hidden bg-neutral-100 dark:bg-neutral-950 rounded-lg">
                     <Image
                       src="/XRobot/mode.png"
                       alt="Robot Types & Scenarios diagram."
@@ -598,7 +598,7 @@ export default function MultiUserInterruptionsSubpage() {
                   <p className="text-base font-semibold text-neutral-900 dark:text-white">
                     📋 3.4 Procedure
                   </p>
-                  <div className="overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-100 shadow-inner dark:border-neutral-800 dark:bg-neutral-950">
+                  <div className="overflow-hidden bg-neutral-100 dark:bg-neutral-950 rounded-lg">
                     <Image
                       src="/XRobot/sequence.png"
                       alt="Procedure sequence diagram."

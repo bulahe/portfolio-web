@@ -100,12 +100,12 @@ const renderOverviewPoints = (points: readonly string[]) =>
       ))}
     </ul>
   ) : (
-    <div className="min-h-[6rem] rounded-2xl border border-neutral-200/60 bg-white/40 dark:border-neutral-700/60 dark:bg-neutral-900/35" />
+    <div className="min-h-[6rem] border-t border-neutral-300/50 dark:border-neutral-700/60" />
   );
 
 const baseSectionClass =
-  "flex flex-col rounded-[2.25rem] border border-neutral-200/70 bg-neutral-50/55 text-neutral-800 shadow-lg backdrop-blur-sm dark:border-neutral-700/60 dark:bg-neutral-900/40 dark:text-neutral-200";
-const sectionPaddingClass = "p-6 sm:p-7";
+  "flex flex-col text-neutral-800 dark:text-neutral-200 border-t border-neutral-300/50 dark:border-neutral-700/60";
+const sectionPaddingClass = "py-8 sm:py-10";
 const sectionHeadingClass =
   "text-sm font-semibold uppercase tracking-[0.2em] text-neutral-500 dark:text-neutral-400 sm:text-base";
 
@@ -157,13 +157,13 @@ export default function SurprisePartySubpage() {
         <PortfolioBackButton />
 
         <div className="mx-auto flex w-full max-w-3xl flex-col gap-4 lg:max-w-[54%]">
-          <article className="flex flex-col gap-4">
-            <header className="flex flex-col gap-5 rounded-[2.5rem] border border-neutral-200/70 bg-neutral-50/60 p-6 text-neutral-900 shadow-xl backdrop-blur-sm dark:border-neutral-700/60 dark:bg-neutral-900/40 dark:text-neutral-100">
-              <h1 className="text-2xl font-semibold leading-tight sm:text-3xl">
+          <article className="flex flex-col gap-10">
+            <header className="flex flex-col gap-8 py-6 text-neutral-900 dark:text-neutral-100 border-t border-neutral-300/50 dark:border-neutral-700/60">
+              <h1 className="text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">
                 GAME: Surprise Party
               </h1>
 
-              <div className="relative mx-auto aspect-[4/3] w-full overflow-hidden rounded-3xl border border-neutral-200 bg-neutral-100 shadow-inner dark:border-neutral-800 dark:bg-neutral-950">
+              <div className="relative mx-auto aspect-[4/3] w-full overflow-hidden bg-neutral-100 dark:bg-neutral-950 rounded-lg">
                 <Image
                   src="/partyGame/partyGameHero.png"
                   alt="Screenshot from the Surprise Party multiplayer game."
@@ -221,7 +221,7 @@ export default function SurprisePartySubpage() {
                   <p key={paragraph}>{paragraph}</p>
                 ))}
               </div>
-              <div className="group relative mt-6 overflow-hidden rounded-2xl border border-neutral-200/60 bg-white/60 shadow-inner transition hover:-translate-y-0.5 hover:shadow-lg hover:shadow-sky-200/40 dark:border-neutral-700/60 dark:bg-neutral-900/35 dark:hover:shadow-sky-900/25">
+              <div className="group relative mt-6 overflow-hidden bg-white/60 transition dark:bg-neutral-900/35 rounded-lg">
                 <div className="absolute inset-0 pointer-events-none opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-gradient-to-tr from-sky-100/40 to-transparent dark:from-sky-500/10" />
                 <div className="flex items-center justify-between px-4 pt-3 text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500 dark:text-neutral-400">
                   <span>Core loop demo</span>
@@ -272,7 +272,7 @@ export default function SurprisePartySubpage() {
                     </p>
                     <p className="leading-relaxed">{game.description}</p>
                     {game.videoSrc ? (
-                      <div className="group relative mt-2 overflow-hidden rounded-2xl border border-neutral-200/60 bg-white/60 shadow-inner transition hover:-translate-y-0.5 hover:shadow-lg hover:shadow-sky-200/40 dark:border-neutral-700/60 dark:bg-neutral-900/35 dark:hover:shadow-sky-900/25">
+                      <div className="group relative mt-2 overflow-hidden bg-white/60 transition dark:bg-neutral-900/35 rounded-lg">
                         <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-gradient-to-tr from-sky-100/40 to-transparent dark:from-sky-500/10" />
                         <div className="flex items-center justify-between px-4 pt-3 text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-neutral-500 dark:text-neutral-400">
                           <span>Hover to play</span>
@@ -329,7 +329,7 @@ export default function SurprisePartySubpage() {
                   <p className="text-sm font-medium text-neutral-700 dark:text-neutral-200">
                     Christmas-themed world layout that matches the season and sets a festive tone.
                   </p>
-                  <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-neutral-200/70 bg-neutral-100 shadow-inner dark:border-neutral-700/60 dark:bg-neutral-900/35">
+                  <div className="relative aspect-[4/3] overflow-hidden bg-neutral-100 dark:bg-neutral-900/35 rounded-lg">
                     <Image
                       src="/partyGame/scene.png"
                       alt="Snowy Christmas-themed world layout with festive elements."
@@ -343,7 +343,7 @@ export default function SurprisePartySubpage() {
                   <p className="text-sm font-medium text-neutral-700 dark:text-neutral-200">
                     A central road serves as the game’s main axis, creating a clear forward flow for players.
                   </p>
-                  <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-neutral-200/70 bg-neutral-100 shadow-inner dark:border-neutral-700/60 dark:bg-neutral-900/35">
+                  <div className="relative aspect-[4/3] overflow-hidden bg-neutral-100 dark:bg-neutral-900/35 rounded-lg">
                     <Image
                       src="/partyGame/road.png"
                       alt="Central road guiding players through the game world."
@@ -391,7 +391,7 @@ export default function SurprisePartySubpage() {
               <p className="text-sm leading-relaxed">
                 A short one-minute clip capturing the highlights of the project.
               </p>
-              <div className="group relative mx-auto w-full max-w-3xl overflow-hidden rounded-3xl border border-neutral-200/70 bg-neutral-100 shadow-sm dark:border-neutral-700/60 dark:bg-neutral-900/35">
+              <div className="group relative mx-auto w-full max-w-3xl overflow-hidden bg-neutral-100 dark:bg-neutral-900/35 rounded-lg">
                 <div className="relative aspect-video">
                   <Image
                     src="/partyGame/partyGameHero.png"
