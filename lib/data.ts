@@ -28,6 +28,12 @@ export type ProjectCard = {
 };
 
 export const projectsData: ProjectCard[] = [
+  {
+    title: "SpatialLayer",
+    subtitle: "An ongoing exploration of shared spatial content: import, place, and revisit 3D models together on iPhone and Apple Vision Pro.",
+    tags: ["Work in Progress", "Spatial Computing", "Swift", "Multi-user AR"],
+    image: "/SpatialLayer/shared-space.svg",
+  },
   { 
     title: "Managing Multi-User Interruptions in Human–Robot Interaction",
     subtitle: "An AR-simulated study of real-world service robot interactions in multi-user environments, reviewed at CHI 2026 and currently undergoing revision for resubmission.",
@@ -91,7 +97,7 @@ export const introHighlights: IntroHighlight[] = [
       },
       {
         label: "New York University",
-        value: "Incoming M.S. in Integrated Design & Media",
+        value: "M.S. in Integrated Design & Media (in progress)",
       },
     ],
   },

@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">SpatialLayer — a shared place for digital content</title>
+  <desc id="desc">Conceptual system illustration. An iPhone and a Vision Pro connect to a shared coordinate frame defined by a fixed physical reference. Imported 3D objects are placed and saved in that frame.</desc>
+  <defs>
+    <linearGradient id="bg" x1="80" y1="0" x2="1120" y2="900" gradientUnits="userSpaceOnUse"><stop stop-color="#17182C"/><stop offset="1" stop-color="#0C111C"/></linearGradient>
+    <linearGradient id="surface" x1="330" y1="350" x2="850" y2="680" gradientUnits="userSpaceOnUse"><stop stop-color="#A89CE8" stop-opacity=".19"/><stop offset="1" stop-color="#76D8BE" stop-opacity=".04"/></linearGradient>
+    <linearGradient id="object" x1="505" y1="390" x2="690" y2="550" gradientUnits="userSpaceOnUse"><stop stop-color="#D4C9FF"/><stop offset="1" stop-color="#8275CF"/></linearGradient>
+  </defs>
+  <rect width="1200" height="900" rx="28" fill="url(#bg)"/>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <text x="72" y="94" fill="#ACA0D8" font-size="20" letter-spacing="5">SHARED SPATIAL CONTENT</text>
+    <text x="68" y="180" fill="#F3F0FF" font-size="76" font-weight="600" letter-spacing="-3">SpatialLayer</text>
+    <text x="73" y="226" fill="#B9B8CA" font-size="25">One physical place. More than one perspective.</text>
+    <rect x="902" y="66" width="226" height="42" rx="21" stroke="#706796"/>
+    <text x="1015" y="93" text-anchor="middle" fill="#D5CAFF" font-size="17" letter-spacing="2">WORK IN PROGRESS</text>
+    <path d="M600 350 925 530 600 710 275 530Z" fill="url(#surface)" stroke="#71648E" stroke-width="2"/>
+    <g stroke="#706582" stroke-opacity=".4">
+      <path d="m340 494 325 180M405 458l325 180M470 422l325 180M535 386l325 180M340 566l325-180M405 602l325-180M470 638l325-180M535 674l325-180"/>
+    </g>
+    <ellipse cx="600" cy="555" rx="102" ry="30" fill="#05070E" opacity=".55"/>
+    <path d="m600 378 92 53v106l-92 53-92-53V431Z" fill="url(#object)"/>
+    <path d="m508 431 92 54 92-54M600 485v105" stroke="#EAE3FF" stroke-opacity=".6" stroke-width="2"/>
+    <path d="m600 378 92 53-92 54-92-54Z" fill="#ECE5FF" fill-opacity=".25"/>
+    <g stroke="#C9B9F4" stroke-width="1.5" stroke-dasharray="6 7" opacity=".7"><path d="M508 431v106M600 378v-30M692 431v106"/></g>
+    <rect x="480" y="302" width="240" height="40" rx="20" fill="#28253C" stroke="#74668F"/>
+    <text x="600" y="328" text-anchor="middle" fill="#E5DDF9" font-size="18">Your 3D content</text>
+    <g stroke="#A99BDA" stroke-width="2">
+      <rect x="98" y="365" width="132" height="226" rx="22" fill="#1D2133"/>
+      <rect x="108" y="377" width="112" height="200" rx="15" fill="#141827"/>
+      <path d="M144 388h40" stroke-width="5" stroke-linecap="round"/>
+      <path d="m164 435 34 20v40l-34 20-34-20v-40Z" fill="#A99BDA" fill-opacity=".2"/>
+      <path d="m130 455 34 20 34-20m-34 20v40"/>
+    </g>
+    <text x="164" y="634" text-anchor="middle" fill="#ECE6FC" font-size="24">iPhone</text>
+    <text x="164" y="663" text-anchor="middle" fill="#9697AF" font-size="17">Create &amp; interact</text>
+    <g stroke="#A99BDA" stroke-width="2">
+      <path d="M1017 412c-37 0-78 6-84 27-6 20-1 67 21 78 16 8 36-14 63-14s47 22 63 14c22-11 27-58 21-78-6-21-47-27-84-27Z" fill="#1D2133"/>
+      <path d="M951 444c21-16 111-16 132 0l-2 43c-18 10-34-11-64-11s-46 21-64 11Z" fill="#A99BDA" fill-opacity=".18"/>
+      <path d="M1103 444h24v44h-31"/>
+    </g>
+    <text x="1017" y="634" text-anchor="middle" fill="#ECE6FC" font-size="24">Vision Pro</text>
+    <text x="1017" y="663" text-anchor="middle" fill="#9697AF" font-size="17">Create &amp; interact</text>
+    <g stroke="#A99BDA" stroke-width="2" stroke-dasharray="7 8" opacity=".7"><path d="M241 468h160M799 468h121"/></g>
+    <g stroke="#8ADFC5" stroke-width="2"><path d="M600 656v-38m0 38 35-19m-35 19-35-19"/></g>
+    <circle cx="600" cy="656" r="5" fill="#8ADFC5"/>
+    <path d="M600 676v48" stroke="#8ADFC5" stroke-width="1.5"/>
+    <text x="600" y="755" text-anchor="middle" fill="#A1E9D3" font-size="20">Fixed physical reference · Shared coordinates</text>
+    <path d="M72 796h1056" stroke="#343249"/>
+    <text x="73" y="844" fill="#B4ADC9" font-size="20">Import</text><text x="283" y="844" fill="#B4ADC9" font-size="20">Place</text><text x="493" y="844" fill="#B4ADC9" font-size="20">Save</text><text x="703" y="844" fill="#B4ADC9" font-size="20">Revisit</text>
+    <text x="1126" y="844" text-anchor="end" fill="#76738F" font-size="16">SYSTEM SKETCH / 2026</text>
+  </g>
+</svg>

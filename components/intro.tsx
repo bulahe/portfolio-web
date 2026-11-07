@@ -28,7 +28,7 @@ export default function Intro() {
             <div className="flex items-center gap-4">
               <div className="relative aspect-square w-24 flex-shrink-0 overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-800">
                 <Image
-                  alt="Portrait of Yu-Chen bulahe Chung"
+                  alt="Portrait of Brian Chung"
                   src="/me.jpg"
                   fill
                   className="object-cover"
@@ -37,7 +37,7 @@ export default function Intro() {
               </div>
               <div className="flex flex-1 flex-col items-center justify-center gap-1">
                 <p className="text-base font-semibold text-neutral-900 dark:text-white">
-                  Yu-Chen “bulahe” Chung
+                  Brian Chung
                 </p>
               </div>
             </div>
@@ -46,7 +46,7 @@ export default function Intro() {
           <div className="hidden w-full flex-col gap-6 rounded-3xl border border-neutral-200/70 bg-white/95 p-6 text-left shadow-lg dark:border-neutral-800/60 dark:bg-neutral-900/80 md:flex">
             <div className="relative mx-auto aspect-square w-40 overflow-hidden rounded-3xl border border-neutral-200 bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-800">
               <Image
-                alt="Portrait of Yu-Chen bulahe Chung"
+                alt="Portrait of Brian Chung"
                 src="/me.jpg"
                 fill
                 className="object-cover"
@@ -55,7 +55,7 @@ export default function Intro() {
             </div>
             <div>
               <p className="text-xl font-semibold text-neutral-900 dark:text-white">
-                Yu-Chen “bulahe” Chung
+                Brian Chung
               </p>
               <p className="text-sm text-neutral-500 dark:text-neutral-400">
                
@@ -104,7 +104,7 @@ export default function Intro() {
             <h1 className="text-4xl font-semibold tracking-tight text-neutral-900 dark:text-white">
               Hey, I&apos;m{" "}
               <span className="text-[var(--brand-accent)]">
-                Bulahe Chung
+                Brian Chung
               </span>
             </h1>
             <div className="space-y-3 text-neutral-700 dark:text-neutral-200">
